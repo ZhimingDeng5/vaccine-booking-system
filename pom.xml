@@ -46,7 +46,10 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>copy</goal></goals>
+                        <goals>
+                                 <goal>war</goal>
+                                 <goal>exploded</goal>
+                        </goals>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
