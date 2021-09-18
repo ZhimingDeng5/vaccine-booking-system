@@ -1,0 +1,19 @@
+package com.example.Flying_Tiger;
+
+public class Administrator extends User{
+    private String name;
+    public Administrator(long ID, String password, String name){
+        super(ID, password);
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+
+
+
+
+}
