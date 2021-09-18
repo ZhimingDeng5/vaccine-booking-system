@@ -3,9 +3,9 @@ import java.sql.*;
 import java.sql.Connection;
 
 public class DBConn {
-    private final String url = "jdbc:postgresql://localhost:5432/myDB";
-    private final String user = "postgres";
-    private final String password = "1234";
+    private final String url = "jdbc:postgresql://ec2-52-45-238-24.compute-1.amazonaws.com:5432/dccothu1bdft1b";
+    private final String user = "dsjwzngeawuwgg";
+    private final String password = "303fe3367d9d5b0afbed2710251d75d64515baa57f5e134a90f2ed1ac30fd478";
     /**
      * Connect to the PostgreSQL database
      * @return a Connection object
@@ -15,9 +15,9 @@ public class DBConn {
     ResultSet rs;
     public void openDB(){
         try {
-            String url="jdbc:postgresql://localhost:5432/myDB";
+//            String url="jdbc:postgresql://localhost:5432/myDB";
             DriverManager.registerDriver(new org.postgresql.Driver());
-            conn= DriverManager.getConnection(url, "postgres", "1234");
+            conn= DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
