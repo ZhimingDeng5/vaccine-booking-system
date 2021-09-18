@@ -24,5 +24,7 @@
 
 <body>
 <%out.println(request.getParameter("username")); %>登陆成功<br>
+<a href="timeslot-table.jsp">timeslot table </a>
+
 </body>
 </html>

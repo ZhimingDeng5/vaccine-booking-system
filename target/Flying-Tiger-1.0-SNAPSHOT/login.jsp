@@ -31,11 +31,11 @@
     DBConn dbc=new DBConn();
 
     dbc.openDB();
-    String sql="select * from users";
+    String sql="select * from administrator";
     ResultSet rs= dbc.execQuery(sql);
     boolean v=false;
     while(rs.next()){
-        if(rs.getString("username").equals(usr)&&rs.getString("password").compareTo(pwd)==0){
+        if(rs.getString("adminID").equals(usr)&&rs.getString("password").compareTo(pwd)==0){
             v=true;
             break;
         }
