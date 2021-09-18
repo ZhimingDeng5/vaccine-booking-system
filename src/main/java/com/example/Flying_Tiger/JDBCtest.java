@@ -1,3 +1,5 @@
+package com.example.Flying_Tiger;
+
 import java.sql.*;
 
 public class JDBCtest {
