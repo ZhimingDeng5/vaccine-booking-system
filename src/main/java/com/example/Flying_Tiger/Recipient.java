@@ -39,7 +39,9 @@ public class Recipient extends User {
     public void setInjected(boolean injected){
         this.injected = injected;
     }
-
-
+    public static RecipientMapper getMapper ()
+    {
+        return new RecipientMapper("recipient");
+    }
 
 }

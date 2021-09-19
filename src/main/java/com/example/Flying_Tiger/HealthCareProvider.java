@@ -32,6 +32,9 @@ public class HealthCareProvider extends User {
     }
     public Timeslot[] getTimeslots(){return this.timeslots;}
 
-
+    public static HealthCareProviderMapper getMapper ()
+    {
+        return new HealthCareProviderMapper("healthcareprovider");
+    }
 
 }

@@ -15,15 +15,16 @@ public class UserMapper extends Mapper {
         String password;
         User result;
         try {
-            rs.next();
-            password = rs.getString("password");
-            result = new User(id, password);
-            return result;
+            if (rs.next()) {
+                password = rs.getString("password");
+                result = new User(id, password);
+                return result;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new User(id, "");
+        return null;
 
     }
 

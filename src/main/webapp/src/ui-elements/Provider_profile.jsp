@@ -8,10 +8,10 @@
     <title>Provider Profile </title>
     
     <!-- plugin css file  -->
-    <link rel="stylesheet" href="assets/plugin/datatables/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="assets/plugin/datatables/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="../assets/plugin/datatables/dataTables.bootstrap5.min.css">
     <!-- project css file  -->
-    <link rel="stylesheet" href="assets/css/ihealth.style.min.css">
+    <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
 
@@ -29,9 +29,9 @@
         <!-- Menu: main ul -->
 
         <ul class="menu-list flex-grow-1 mt-3">
-            <li><a class="m-link" href="Provider_profile.html"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+            <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
             <li><a class="m-link" href="Edit_questionnaire.html"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-            <li><a class="m-link" href="booking_list.html"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+            <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
             <li><a class="m-link" href="timeslot_list.html"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
         </ul>
 
@@ -58,13 +58,13 @@
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="assets/images/profile_av.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="assets/images/profile_av.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
                                                 <small class="">ID:0020392</small>
@@ -74,7 +74,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="ui-elements/auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                             <div class="card-body d-flex teacher-fulldeatil">
                                 <div class="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
                                     <a href="#">
-                                        <img src="assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                        <img src="../assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     </a>
                                     <div class="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
                                         <span class="text-muted small">ID : 0020392</span>
@@ -151,16 +151,16 @@
 </div>
 
 <!-- Jquery Core Js -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
+<script src="../assets/bundles/libscripts.bundle.js"></script>
 
 
 <!-- Plugin Js-->
-<script src="assets/bundles/apexcharts.bundle.js"></script>
-<script src="assets/bundles/dataTables.bundle.js"></script>
+<script src="../assets/bundles/apexcharts.bundle.js"></script>
+<script src="../assets/bundles/dataTables.bundle.js"></script>
 
 <!-- Jquery Page Js -->
-<script src="js/template.js"></script>
-<script src="js/page/doctor-profile.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/page/doctor-profile.js"></script>
  
 </body>
 </html> 

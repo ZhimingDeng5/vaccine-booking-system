@@ -18,21 +18,22 @@ public class RecipientMapper extends UserMapper {
         Recipient result;
         boolean suitable;
         boolean injected;
-        try {
-            rs.next();
-            password = rs.getString("password");
-            name = rs.getString("name");
+            try {
+                if (rs.next()) {
+                    password = rs.getString("password");
+                    name = rs.getString("name");
 
-            birthDate = rs.getDate("birthDate");
-            suitable = rs.getBoolean("suitable");
-            injected = rs.getBoolean("injected");
-            result = new Recipient(id, password, name, birthDate, suitable, injected);
-            return result;
+                    birthDate = rs.getDate("birthDate");
+                    suitable = rs.getBoolean("suitable");
+                    injected = rs.getBoolean("injected");
+                    result = new Recipient(id, password, name, birthDate, suitable, injected);
+                    return result;
+                }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return new Recipient(id, "", "", null, false,false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return null;
     }
 
     /**

@@ -17,21 +17,20 @@ public class HealthCareProviderMapper extends UserMapper{
         int postcode;
         Timeslot[] timeslots;
         HealthCareProvider result;
-
         try {
-            rs.next();
-            password = rs.getString("password");
-            name = rs.getString("name");
-            type = rs.getString("hcpType");
-            postcode = rs.getInt("postcode");
-            timeslots= loadTimeslots(id);
-            result = new HealthCareProvider(id, password, name, type, postcode, timeslots);
-            return result;
-
+            if (rs.next()) {
+                password = rs.getString("password");
+                name = rs.getString("name");
+                type = rs.getString("hcpType");
+                postcode = rs.getInt("postcode");
+                timeslots = loadTimeslots(id);
+                result = new HealthCareProvider(id, password, name, type, postcode, timeslots);
+                return result;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new HealthCareProvider(id, "", "", "", 0, new Timeslot[0]);
+        return null;
     }
 
     public Timeslot[] loadTimeslots(long hcpID){

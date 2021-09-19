@@ -14,16 +14,19 @@ public class AdministratorMapper extends UserMapper{
         String password;
         String name;
         Administrator result;
-        try {
-            rs.next();
-            password = rs.getString("password");
-            name = rs.getString("name");
-            result = new Administrator(id, password, name);
-            return result;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return new Administrator(id, "", "");
+
+            try {
+                if (rs.next()) {
+                    password = rs.getString("password");
+                    name = rs.getString("name");
+                    result = new Administrator(id, password, name);
+                    return result;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return null;
     }
 }

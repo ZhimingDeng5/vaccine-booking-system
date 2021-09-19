@@ -13,7 +13,9 @@ public class Administrator extends User{
         this.name = name;
     }
 
-
-
+    public static AdministratorMapper getMapper ()
+    {
+        return new AdministratorMapper("administrator");
+    }
 
 }
