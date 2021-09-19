@@ -15,7 +15,8 @@ public class DBConn {
     ResultSet rs;
     public void openDB(){
         try {
-//            String url="jdbc:postgresql://localhost:5432/myDB";
+            //String url="jdbc:postgresql://localhost:5432/myDB";
+
             DriverManager.registerDriver(new org.postgresql.Driver());
             conn= DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
