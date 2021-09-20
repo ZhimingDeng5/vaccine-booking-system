@@ -42,6 +42,7 @@
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
                 <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
                 <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
+                <li><a class="m-link" href="manage_vaccines.jsp"><i class="icofont-blood-test fs-5"></i> <span>Manage Vaccines</span></a></li>
                 <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
             </ul>
 
@@ -123,7 +124,6 @@
                                             <th>Name</th>
                                             <th>Type</th>
                                             <th>Postcode</th>
-                                            <th>Vaccine&Number</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -141,7 +141,6 @@
                                            <td>
                                                 0000001
                                            </td>
-                                           <td>AstraZeneca[10]</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
@@ -158,7 +157,7 @@
             </div>
         </div>
 
-        <!-- Add Recipients -->
+        <!-- Add providers -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
@@ -192,12 +191,7 @@
                                     <label for="depone" class="form-label">Postcode</label>
                                     <input type="text" class="form-control" postcode="depone">
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="abc" class="form-label">Vaccine&Number</label>
-                                    <input type="text" class="form-control" Vaccine&Number="depone">
-                                </div>
                             </div>
-
                         </form>
                     </div>
                     
@@ -226,21 +220,17 @@
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label for="depone" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="depone">
+                            <input type="text" class="form-control" Name="depone">
                         </div>
                         <div class="col-sm-6">
                             <label for="abc" class="form-label">Type</label>
-                            <input type="text" class="form-control" id="depone">
+                            <input type="text" class="form-control" Type="depone">
                         </div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label for="depone" class="form-label">Postcode</label>
-                            <input type="text" class="form-control" id="depone">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="abc" class="form-label">Vaccine&Number</label>
-                            <input type="text" class="form-control" id="depone">
+                            <input type="text" class="form-control" Postcode="depone">
                         </div>
                     </div>
                     

@@ -132,7 +132,12 @@
                                            <td>
                                                12:00
                                            </td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
+                                           <td>
+                                                <select class="form-select">
+                                                    <option selected>In Progress</option>
+                                                    <option value="1">Completed</option>
+                                                </select>
+                                           </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>

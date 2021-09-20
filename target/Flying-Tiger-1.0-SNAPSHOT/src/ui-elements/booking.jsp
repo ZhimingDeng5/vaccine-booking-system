@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Answer Questionnaire </title>
+    <title>Booking</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/parsleyjs/css/parsley.css">
@@ -92,7 +92,7 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">Booking</h3>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -101,83 +101,43 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">Before booking, please answer a questionnaire.</h6>
+                                <h6 class="mb-0 fw-bold ">Please choose the option that suits you.</h6>
                             </div>
                             <div class="card-body">
                                 <form id="basic-form" method="post" novalidate>
                                     <div class="row g-3 align-items-center">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 1</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q1" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q1" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select the Health Care Provider</label>
+                                                <select class="form-select">
+                                                    <option selected>A hospital</option>
+                                                    <option value="1">B hospital</option>
+                                                    <option value="2">C hospital</option>
+                                                    <option value="3">D hospital</option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 2</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q2" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q2" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select Vaccine Type</label>
+                                                <select class="form-select">
+                                                    <option selected>A </option>
+                                                    <option value="1">B </option>
+                                                    <option value="2">C </option>
+                                                    <option value="3">D </option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 3</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q3" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q3" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
+                                            <div class="col-sm-6">
+                                                <label for="abc" class="form-label">Select Date</label>
+                                                <input type="date" class="form-control" id="abc">
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 4</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q4" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q4" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select Time</label>
+                                                <select class="form-select">
+                                                    <option selected>9:00 </option>
+                                                    <option value="1">11:00 </option>
+                                                    <option value="2">14:00 </option>
+                                                    <option value="3">16:00 </option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 5</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q5" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="q5" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
-                                    
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>

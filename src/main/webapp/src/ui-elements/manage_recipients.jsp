@@ -32,6 +32,7 @@
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
                 <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
                 <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
+                <li><a class="m-link" href="manage_vaccines.jsp"><i class="icofont-blood-test fs-5"></i> <span>Manage Vaccines</span></a></li>
                 <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
             </ul>
 
@@ -112,6 +113,7 @@
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Health Care Provider</th>
+                                            <th>Vaccine Type</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Status</th>   
@@ -129,6 +131,9 @@
                                            <td>
                                             <span class="fw-bold ms-1">A hospital</span>
                                            </td>
+                                            <td>
+                                                AstraZeneca
+                                            </td>
                                            <td>
                                                 12/03/2021
                                            </td>
@@ -150,6 +155,9 @@
                                             </td>
                                             <td>
                                                <span class="fw-bold ms-1">B hospital</span>
+                                            </td>
+                                            <td>
+                                                AstraZeneca
                                             </td>
                                             <td>
                                                 12/03/2021
@@ -201,7 +209,6 @@
                                 <input type="date" class="form-control" birthdate="abc">
                               </div>
                             </div>
-
                         </form>
                     </div>
                     
@@ -232,11 +239,11 @@
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
                                         <label for="depone" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="depone">
+                                        <input type="text" class="form-control" name="depone">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="abc" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" id="abc">
+                                        <input type="date" class="form-control" birthdate="abc">
                                     </div>
                                 </div>
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Providers List</title>
+    <title>Vaccines List</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
@@ -106,9 +106,9 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Providers List</h3>
+                            <h3 class="fw-bold mb-0">Vaccines List</h3>
                             <div class="col-auto d-flex w-sm-100">
-                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Providers</button>
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Vaccine Type</button>
                             </div>
                         </div>
                     </div>
@@ -120,30 +120,27 @@
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Postcode</th>
-                                            <th>Actions</th>
+                                            <th>Vaccine Type</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                AstraZeneca
                                             </td>
                                             <td>
-                                                Laundry 
-                                           </td>
-                                           <td>
-                                               <span class="fw-bold ms-1">A</span>
-                                           </td>
-                                           <td>
-                                                0000001
-                                           </td>
+                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                pdsaf
+                                            </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
@@ -157,92 +154,28 @@
             </div>
         </div>
 
-        <!-- Add providers -->
+        <!-- Add Vaccine Type -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Providers</h5>
+                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Vaccine Type</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
+                    <div class="mb-6">
+                        <label for="item" class="form-label">Vaccine Type</label>
+                        <input type="text" class="form-control" Vaccine Type="item">
                     </div>
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
-                    </div>
-                    <div class="deadline-form">
-                        <form>
-                            <div class="row g-3 mb-3">
-                              <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="abc" class="form-label">Type</label>
-                                  <input type="text" class="form-control" type="depone">
-                              </div>
-                            </div>
-                            <div class="row g-3 mb-3">
-                                <div class="col-sm-6">
-                                    <label for="depone" class="form-label">Postcode</label>
-                                    <input type="text" class="form-control" postcode="depone">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
                 </div>
             </div>
             </div>
         </div>
-
-         <!-- Edit Recipients-->
-        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
-                    <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
-                            <label for="depone" class="form-label">Name</label>
-                            <input type="text" class="form-control" Name="depone">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="abc" class="form-label">Type</label>
-                            <input type="text" class="form-control" Type="depone">
-                        </div>
-                    </div>
-                    <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
-                            <label for="depone" class="form-label">Postcode</label>
-                            <input type="text" class="form-control" Postcode="depone">
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
     </div>     
 </div>
  

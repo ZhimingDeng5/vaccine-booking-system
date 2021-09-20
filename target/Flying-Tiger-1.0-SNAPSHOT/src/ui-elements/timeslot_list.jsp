@@ -112,7 +112,7 @@
                                             <th>Id</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                            <th>Vaccine&Number</th>
+                                            <th>Number of Vaccine</th>
                                             <th>Actions</th>  
                                         </tr>
                                     </thead>
@@ -128,7 +128,7 @@
                                                 15:00
                                            </td>
                                            <td>
-                                               AstraZeneca[10]
+                                               10
                                            </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -148,7 +148,7 @@
                                                 16:00
                                             </td>
                                             <td>
-                                                AstraZeneca[5]
+                                                5
                                            </td>
                                              <td>
                                                  <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -176,8 +176,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Vaccine&Number</label>
-                        <input type="text" class="form-control" Vaccine&Number="item">
+                        <label for="item" class="form-label">Number of Vaccine</label>
+                        <input type="text" class="form-control" Number of Vaccine="item">
                     </div>
                     <div class="deadline-form">
                         <form>
@@ -214,8 +214,8 @@
                 </div>
                 <div class="modal-body">
                         <div class="mb-3">
-                            <label for="item" class="form-label">Vaccine&Number</label>
-                            <input type="text" class="form-control" Vaccine&Number="item">
+                            <label for="item" class="form-label">Number of Vaccine</label>
+                            <input type="text" class="form-control" Number of Vaccine="item">
                         </div>
                         <div class="deadline-form">
                             <form>
