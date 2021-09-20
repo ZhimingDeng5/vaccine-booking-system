@@ -1,5 +1,6 @@
 package com.example.Flying_Tiger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
@@ -10,7 +11,7 @@ public class UserMapper extends Mapper {
         super(table);
     }
 
-    public User find(long id){
+    public User find(long id) throws SQLException {
         ResultSet rs = super.findRow(id);
         String password;
         User result;

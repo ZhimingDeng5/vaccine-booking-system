@@ -34,7 +34,7 @@ public class HealthCareProvider extends User {
 
     public static HealthCareProviderMapper getMapper ()
     {
-        return new HealthCareProviderMapper("healthcareprovider");
+        return new HealthCareProviderMapper();
     }
 
 }

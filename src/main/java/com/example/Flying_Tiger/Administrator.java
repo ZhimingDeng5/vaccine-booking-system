@@ -15,7 +15,7 @@ public class Administrator extends User{
 
     public static AdministratorMapper getMapper ()
     {
-        return new AdministratorMapper("administrator");
+        return new AdministratorMapper();
     }
 
 }

@@ -36,12 +36,14 @@ public class Recipient extends User {
     public void setSuitable(boolean suitable){
         this.suitable = suitable;
     }
+    public boolean getSuitable(){return suitable;}
     public void setInjected(boolean injected){
         this.injected = injected;
     }
+    public boolean getInjected(){return injected;}
     public static RecipientMapper getMapper ()
     {
-        return new RecipientMapper("recipient");
+        return new RecipientMapper();
     }
 
 }

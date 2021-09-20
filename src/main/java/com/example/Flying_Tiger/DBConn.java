@@ -46,6 +46,11 @@ public class DBConn {
         }
         return rs;
     }
+    // prepared statement
+    public PreparedStatement setPreparedStatement(String sql) throws SQLException {
+        PreparedStatement myStmt = conn.prepareStatement(sql);
+        return myStmt;
+    }
 
     //增删改
     public int execUpdate(String sql){
