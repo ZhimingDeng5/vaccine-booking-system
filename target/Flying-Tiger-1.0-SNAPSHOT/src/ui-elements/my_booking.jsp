@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My booking </title>
+    
+  
+    <!-- project css file  -->
+    <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
+</head>
+<body>
+
+<div id="ihealth-layout" class="theme-tradewind">
+
+    <!-- sidebar -->
+    <div class="sidebar px-4 py-4 py-md-5 me-0">
+        <div class="d-flex flex-column h-100">
+            <a href="index.html" class="mb-0 brand-icon">
+                <span class="logo-icon">
+                    <i class="icofont-heart-beat fs-2"></i>
+                </span>
+                <span class="logo-text">Vaccine Recipient</span>
+            </a>
+            <!-- Menu: main ul -->
+
+            <ul class="menu-list flex-grow-1 mt-3">
+                <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
+                <li><a class="m-link" href="Recipients_questionnaire.html"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                 </ul>
+
+            <!-- Menu: menu collepce btn -->
+            <button type="button" class="btn btn-link sidebar-mini-btn text-light">
+                <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- main body area -->
+    <div class="main px-lg-4 px-md-4">
+
+        <!-- Body: Header -->
+        <div class="header">
+            <nav class="navbar py-4">
+                <div class="container-xxl">
+
+                    <!-- header rightbar icon -->
+                    <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
+                        <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                            <div class="u-info me-2">
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                <small>Vaccine Recipient</small>
+                            </div>
+                            <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
+                            </a>
+                            <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
+                                <div class="card border-0 w280">
+                                    <div class="card-body pb-0">
+                                        <div class="d-flex py-1">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
+                                            <div class="flex-fill ms-3">
+                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <small class="">ID:0020392</small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div><hr class="dropdown-divider border-dark"></div>
+                                    </div>
+                                    <div class="list-group m-2 ">
+                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- menu toggler -->
+                    <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
+                        <span class="fa fa-bars"></span>
+                    </button>
+
+                    <!-- main menu Search-->
+                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
+                        <div class="input-group flex-nowrap input-group-lg">
+                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
+                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Body: Body -->
+        <div class="body d-flex py-lg-3 py-md-2">
+            <div class="container-xxl">
+                
+                <div class="row align-items-center">
+                    <div class="border-0 mb-4">
+                        <div class="card-header no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                            <h3 class="fw-bold mb-0 py-3 pb-2">My booking</h3>
+                        </div>
+                    </div>
+                </div> <!-- Row end  -->
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="Invoice-list">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8 col-md-12">
+                                        <div class="card mb-3">
+                                            <div class="card-body d-sm-flex justify-content-between">
+                                                <a href="javascript:void(0);" class="d-flex">
+                                                    <img class="avatar rounded-circle" src="../assets/images/xs/avatar1.jpg" alt="">
+                                                    <div class="flex-fill ms-3 text-truncate">
+                                                        <h6 class="d-flex justify-content-between mb-0"><span>Dr.Ryan MacLeod</span></h6>
+                                                        <span class="text-muted">Recipient Id:0002230</span>
+                                                    </div>
+                                                </a>
+                                                <div class="text-end d-none d-md-block">
+                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i> 2211 Jones Avenue,Winston Salem FL 27107</p>
+                                                    <span class="text-muted">03/09/2021 12:00</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer justify-content-between d-flex align-items-center">
+                                                <div class="d-none d-md-block">
+                                                    <strong>Status:</strong>
+                                                    <span>Completed</span>
+                                                </div>
+                                                <div class="card-hover-show">
+                                                    <a class="btn btn-sm btn-white border lift" href="#">Download</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>  <!-- Row end  -->
+                            </div> <!-- tab end  -->
+                        </div>
+                    </div>
+
+                </div> <!-- Row end  -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jquery Core Js -->
+<script src="../assets/bundles/libscripts.bundle.js"></script>
+
+<!-- Jquery Page Js -->
+<script src="../js/template.js"></script>
+
+</body>
+</html>
