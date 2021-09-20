@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Recipients List</title>
+    <title>Timeslot List</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
@@ -21,18 +21,18 @@
     <div class="sidebar px-4 py-4 py-md-5 me-0">
         <div class="d-flex flex-column h-100">
             <a href="index.html" class="mb-0 brand-icon">
-                <span class="logo-icon">
-                    <i class="icofont-heart-beat fs-2"></i>
-                </span>
-                <span class="logo-text">Administrator</span>
+            <span class="logo-icon">
+                <i class="icofont-heart-beat fs-2"></i>
+            </span>
+                <span class="logo-text">Health Care Provider</span>
             </a>
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
-                <li><a class="m-link" href="manage_recipients.html"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
-                <li><a class="m-link" href="manage_providers.html"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
-                <li><a class="m-link" href="view_booking.html"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
+                <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+                <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+                <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -54,8 +54,8 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
-                                <small>Administrator</small>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
+                                <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                 <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
@@ -66,7 +66,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
                                                 <small class="">ID:0020392</small>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,16 +85,6 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-
-<!--                    &lt;!&ndash; main menu Search&ndash;&gt;-->
-<!--                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">-->
-<!--                        <div class="input-group flex-nowrap input-group-lg">-->
-<!--                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">-->
-<!--                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-
                 </div>
             </nav>
         </div>
@@ -105,9 +95,9 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Recipients List</h3>
+                            <h3 class="fw-bold mb-0">Timeslot List</h3>
                             <div class="col-auto d-flex w-sm-100">
-                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Recipients</button>
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Timeslot</button>
                             </div>
                         </div>
                     </div>
@@ -120,11 +110,9 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Health Care Provider</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                            <th>Status</th>   
+                                            <th>Vaccine&Number</th>
                                             <th>Actions</th>  
                                         </tr>
                                     </thead>
@@ -134,16 +122,14 @@
                                                 #EX-00002
                                             </td>
                                             <td>
-                                                Laundry 
-                                           </td>
-                                           <td>
-                                            <span class="fw-bold ms-1">A hospital</span>
-                                           </td>
-                                           <td>
                                                 12/03/2021
                                            </td>
-                                           <td>9:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
+                                           <td>
+                                                15:00
+                                           </td>
+                                           <td>
+                                               AstraZeneca[10]
+                                           </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
@@ -156,16 +142,14 @@
                                                 #EX-00006
                                             </td>
                                             <td>
-                                                Julia
-                                            </td>
-                                            <td>
-                                               <span class="fw-bold ms-1">B hospital</span>
-                                            </td>
-                                            <td>
                                                 12/03/2021
+                                            </td>
+                                            <td>
+                                                16:00
+                                            </td>
+                                            <td>
+                                                AstraZeneca[5]
                                            </td>
-                                           <td>16:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
                                              <td>
                                                  <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
@@ -182,34 +166,30 @@
             </div>
         </div>
 
-        <!-- Add Recipients -->
+        <!-- Add timeslot -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Recipients</h5>
+                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
+                        <label for="item" class="form-label">Vaccine&Number</label>
+                        <input type="text" class="form-control" Vaccine&Number="item">
                     </div>
                     <div class="deadline-form">
                         <form>
                             <div class="row g-3 mb-3">
-                              <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="abc" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" birthdate="abc">
-                              </div>
+                                <div class="col-sm-6">
+                                    <label for="depone" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="abc">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="abc" class="form-label">time</label>
+                                    <input type="time" class="form-control" id="abc">
+                                </div>
                             </div>
 
                         </form>
@@ -224,29 +204,29 @@
             </div>
         </div>
 
-         <!-- Edit Recipients-->
+         <!-- Edit timeslot-->
         <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>
+                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                         <div class="mb-3">
-                            <label for="item" class="form-label">Id</label>
-                            <input type="text" class="form-control" id="item">
+                            <label for="item" class="form-label">Vaccine&Number</label>
+                            <input type="text" class="form-control" Vaccine&Number="item">
                         </div>
                         <div class="deadline-form">
                             <form>
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
-                                        <label for="depone" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="depone">
+                                        <label for="depone" class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="abc">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="abc" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" id="abc">
+                                        <label for="abc" class="form-label">time</label>
+                                        <input type="time" class="form-control" id="depone">
                                     </div>
                                 </div>
 

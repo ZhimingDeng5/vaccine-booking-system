@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Booking List</title>
+    <title>View Booking List</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
@@ -21,18 +21,18 @@
     <div class="sidebar px-4 py-4 py-md-5 me-0">
         <div class="d-flex flex-column h-100">
             <a href="index.html" class="mb-0 brand-icon">
-            <span class="logo-icon">
-                <i class="icofont-heart-beat fs-2"></i>
-            </span>
-                <span class="logo-text">Health Care Provider</span>
+                <span class="logo-icon">
+                    <i class="icofont-heart-beat fs-2"></i>
+                </span>
+                <span class="logo-text">Administrator</span>
             </a>
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-                <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-                <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+                <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
+                <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
+                <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
+                <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -54,8 +54,8 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
-                                <small>Health Care Provider</small>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                 <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
@@ -66,7 +66,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
                                                 <small class="">ID:0020392</small>
                                             </div>
                                         </div>
@@ -95,7 +95,7 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Booking List</h3>
+                            <h3 class="fw-bold mb-0">View Booking List</h3>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -108,9 +108,10 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Recipients Name</th>
-                                            <th>Vaccine Type</th>
+                                            <th>Providers Name</th>
                                             <th>Date</th>
                                             <th>Time</th>
+                                            <th>vaccine type</th>
                                             <th>Status</th>   
                                             <th>Actions</th>  
                                         </tr>
@@ -124,7 +125,7 @@
                                                 Laundry 
                                             </td>
                                             <td>
-                                                AstraZeneca
+                                                A hospital
                                             </td>
                                            <td>
                                                 12/03/2021
@@ -132,6 +133,9 @@
                                            <td>
                                                12:00
                                            </td>
+                                            <td>
+                                                AstraZeneca
+                                            </td>
                                            <td><span class="badge bg-warning">In Progress</span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">

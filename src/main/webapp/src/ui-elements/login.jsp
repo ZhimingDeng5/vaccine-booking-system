@@ -36,7 +36,7 @@
             if(v)
                 request.getRequestDispatcher("Admin_Dashboard.jsp").forward(request, response);
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.html'</script>";
+                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
@@ -48,7 +48,7 @@
             if(v)
                 request.getRequestDispatcher("Provider_profile.jsp").forward(request, response);
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.html'</script>";
+                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
@@ -60,7 +60,7 @@
             if(v)
                 request.getRequestDispatcher("my_booking.jsp").forward(request, response);
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.html'</script>";
+                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
