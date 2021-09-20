@@ -20,6 +20,22 @@ public class Mapper {
         return rs;
 
     }
+    public int getnum()
+    {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // get the row with this id
+        String query = "SELECT COUNT (*) FROM " + this.table;
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }

@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Administrator" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -30,7 +33,7 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
-                <li><a class="m-link" href="manage_recipients.html"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
+                <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
                 <li><a class="m-link" href="manage_providers.html"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
                 <li><a class="m-link" href="view_booking.html"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
             </ul>
@@ -108,6 +111,11 @@
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
                                 <h6 class="mb-0 fw-bold ">Dashboard</h6>
                             </div>
+                            <%
+                                int numOfRecipient= Recipient.getMapper().getnum();
+                                int numOfhcp= HealthCareProvider.getMapper().getnum();
+                                int numbook= Recipient.getMapper().getnumOfBooking();
+                            %>
                             <div class="card-body">
                                 <div class="row g-3 row-deck">
                                     <div class="col-md-4 col-sm-6">
@@ -115,7 +123,7 @@
                                             <div class="card-body ">
                                                 <i class="icofont-patient-file fs-3 text-secondary"></i>
                                                 <h6 class="mt-3 mb-0 fw-bold small-14">Total Health Care Providers</h6>
-                                                <span class="text-muted">400</span>
+                                                <span class="text-muted"><%= numOfhcp%></span>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +132,7 @@
                                             <div class="card-body ">
                                                 <i class="icofont-student-alt fs-3 color-lightblue"></i>
                                                 <h6 class="mt-3 mb-0 fw-bold small-14">Total Vaccine Recipients</h6>
-                                                <span class="text-muted">117</span>
+                                                <span class="text-muted"><%= numOfRecipient%></span>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +141,7 @@
                                             <div class="card-body ">
                                                 <i class="icofont-prescription fs-3 color-light-success"></i>
                                                 <h6 class="mt-3 mb-0 fw-bold small-14">Total Bookings</h6>
-                                                <span class="text-muted">16</span>
+                                                <span class="text-muted"> <%=numbook%> </span>
                                             </div>
                                         </div>
                                     </div>
