@@ -35,7 +35,47 @@ public class RecipientMapper extends UserMapper {
             }
         return null;
     }
+    public int getnumOfBooking()
+    {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public Recipient[] findall(){
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table;
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            int size = 0;
+            while(rs.next()){
+                size++;
+            }
+            rs = dbc.execQuery(query);
+            Recipient[] recipients= new Recipient[size];
+            for(int i =0; i< size; i++){
+                rs.next();
+                recipients[i] = new Recipient(rs.getLong("ID"), rs.getString("password"), rs.getString("name"), rs.getDate("birthDate"), rs.getBoolean("suitable"),rs.getBoolean("injected"));
+            }
+            return recipients;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Recipient[0];
+
+    }
     /**
      * foreign key mapping
      * @param timeslotID
@@ -66,7 +106,6 @@ public class RecipientMapper extends UserMapper {
         return new Recipient[0];
 
     }
-
     // calculate the age of the recipients when timeslot
     public int calculateAge(long id){
         ResultSet rs = this.findRow(id);
