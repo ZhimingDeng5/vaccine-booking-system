@@ -9,7 +9,7 @@
     
   
     <!-- project css file  -->
-    <link rel="stylesheet" href="assets/css/ihealth.style.min.css">
+    <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="my_booking.html"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
+                <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
                 <li><a class="m-link" href="Recipients_questionnaire.html"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
                  </ul>
 
@@ -54,13 +54,13 @@
                                 <small>Vaccine Recipient</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="assets/images/profile_av.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="assets/images/profile_av.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
                                                 <small class="">ID:0020392</small>
@@ -70,7 +70,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="ui-elements/auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                         </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                         <div class="card mb-3">
                                             <div class="card-body d-sm-flex justify-content-between">
                                                 <a href="javascript:void(0);" class="d-flex">
-                                                    <img class="avatar rounded-circle" src="assets/images/xs/avatar1.jpg" alt="">
+                                                    <img class="avatar rounded-circle" src="../assets/images/xs/avatar1.jpg" alt="">
                                                     <div class="flex-fill ms-3 text-truncate">
                                                         <h6 class="d-flex justify-content-between mb-0"><span>Dr.Ryan MacLeod</span></h6>
                                                         <span class="text-muted">Recipient Id:0002230</span>
@@ -149,10 +149,10 @@
 </div>
 
 <!-- Jquery Core Js -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
+<script src="../assets/bundles/libscripts.bundle.js"></script>
 
 <!-- Jquery Page Js -->
-<script src="js/template.js"></script>
+<script src="../js/template.js"></script>
 
 </body>
 </html>

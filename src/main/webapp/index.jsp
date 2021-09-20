@@ -4,4 +4,5 @@
 <head>
     <meta http-equiv="refresh" content="1;url=src/ui-elements/auth-signin.html">
 </head>
+
 </html>
