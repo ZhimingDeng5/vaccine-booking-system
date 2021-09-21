@@ -23,6 +23,6 @@
 </head>
 
 <body>
-登陆失败，请重新<a href="auth-signin.html">登录</a><br>
+登陆失败，请重新<a href="auth-signin.jsp">登录</a><br>
 </body>
 </html>

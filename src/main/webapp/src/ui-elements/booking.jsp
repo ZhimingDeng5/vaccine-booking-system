@@ -1,13 +1,14 @@
 ﻿<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My booking </title>
+    <title>Booking</title>
     
-  
+    <!-- plugin css file  -->
+    <link rel="stylesheet" href="../assets/plugin/parsleyjs/css/parsley.css">
+
     <!-- project css file  -->
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
@@ -29,7 +30,7 @@
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
                 <li><a class="m-link" href="Recipients_questionnaire.jsp"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
-                 </ul>
+            </ul>
 
             <!-- Menu: menu collepce btn -->
             <button type="button" class="btn btn-link sidebar-mini-btn text-light">
@@ -66,12 +67,12 @@
                                                 <small class="">ID:0020392</small>
                                             </div>
                                         </div>
-                                        
+
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
                                         <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,64 +87,85 @@
         </div>
 
         <!-- Body: Body -->
-        <div class="body d-flex py-lg-3 py-md-2">
+        <div class="body d-flex py-3">
             <div class="container-xxl">
-                
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
-                        <div class="card-header no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0 py-3 pb-2">My booking</h3>
+                        <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                            <h3 class="fw-bold mb-0">Booking</h3>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
 
-                <div class="row justify-content-center">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="Invoice-list">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8 col-md-12">
-                                        <div class="card mb-3">
-                                            <div class="card-body d-sm-flex justify-content-between">
-                                                <a href="javascript:void(0);" class="d-flex">
-                                                    <img class="avatar rounded-circle" src="../assets/images/xs/avatar1.jpg" alt="">
-                                                    <div class="flex-fill ms-3 text-truncate">
-                                                        <h6 class="d-flex justify-content-between mb-0"><span>Dr.Ryan MacLeod</span></h6>
-                                                        <span class="text-muted">Recipient Id:0002230</span>
-                                                    </div>
-                                                </a>
-                                                <div class="text-end d-none d-md-block">
-                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i> 2211 Jones Avenue,Winston Salem FL 27107</p>
-                                                    <span class="text-muted">03/09/2021 12:00</span>
-                                                </div>
+                <div class="row align-item-center">
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                                <h6 class="mb-0 fw-bold ">Please choose the option that suits you.</h6>
+                            </div>
+                            <div class="card-body">
+                                <form id="basic-form" method="post" novalidate>
+                                    <div class="row g-3 align-items-center">
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select the Health Care Provider</label>
+                                                <select class="form-select">
+                                                    <option selected>A hospital</option>
+                                                    <option value="1">B hospital</option>
+                                                    <option value="2">C hospital</option>
+                                                    <option value="3">D hospital</option>
+                                                </select>
                                             </div>
-                                            <div class="card-footer justify-content-between d-flex align-items-center">
-                                                <div class="d-none d-md-block">
-                                                    <strong>Status:</strong>
-                                                    <span>Completed</span>
-                                                </div>
-                                                <div class="card-hover-show">
-                                                    <a class="btn btn-sm btn-white border lift" href="#">Download</a>
-                                                </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select Vaccine Type</label>
+                                                <select class="form-select">
+                                                    <option selected>A </option>
+                                                    <option value="1">B </option>
+                                                    <option value="2">C </option>
+                                                    <option value="3">D </option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        </div>
+                                            <div class="col-sm-6">
+                                                <label for="abc" class="form-label">Select Date</label>
+                                                <input type="date" class="form-control" id="abc">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Select Time</label>
+                                                <select class="form-select">
+                                                    <option selected>9:00 </option>
+                                                    <option value="1">11:00 </option>
+                                                    <option value="2">14:00 </option>
+                                                    <option value="3">16:00 </option>
+                                                </select>
+                                            </div>
                                     </div>
-                                </div>  <!-- Row end  -->
-                            </div> <!-- tab end  -->
+                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div> <!-- Row end  -->
+                </div>
             </div>
-        </div>
-    </div>
+        </div> 
+
+    </div> 
+  
 </div>
 
 <!-- Jquery Core Js -->
 <script src="../assets/bundles/libscripts.bundle.js"></script>
 
+<!-- Plugin Js-->
+<script src="../assets/plugin/parsleyjs/js/parsley.js"></script>
+    
+
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
-
+<script>
+    $(function() {
+        // initialize after multiselect
+        $('#basic-form').parsley();
+    });
+</script>
+ 
 </body>
-</html>
+</html> 

@@ -20,16 +20,18 @@
     <div class="sidebar px-4 py-4 py-md-5 me-0">
         <div class="d-flex flex-column h-100">
             <a href="index.html" class="mb-0 brand-icon">
-                <span class="logo-icon">
-                    <i class="icofont-heart-beat fs-2"></i>
-                </span>
-                <span class="logo-text">Vaccine Recipient</span>
+            <span class="logo-icon">
+                <i class="icofont-heart-beat fs-2"></i>
+            </span>
+                <span class="logo-text">Health Care Provider</span>
             </a>
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="Recipients_questionnaire.html"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+                <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+                <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -51,8 +53,8 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
-                                <small>Vaccine Recipient</small>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
+                                <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                 <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
@@ -63,7 +65,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
                                                 <small class="">ID:0020392</small>
                                             </div>
                                         </div>
@@ -71,7 +73,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,19 +84,10 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-
-<!--                    &lt;!&ndash; main menu Search&ndash;&gt;-->
-<!--                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">-->
-<!--                        <div class="input-group flex-nowrap input-group-lg">-->
-<!--                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">-->
-<!--                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-
                 </div>
             </nav>
         </div>
+
 
         <!-- Body: Body -->
         <div class="body d-flex py-3">
@@ -111,7 +104,7 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">Before booking, please answer a questionnaire.</h6>
+                                <h6 class="mb-0 fw-bold ">You can edit questions.</h6>
                             </div>
                             <div class="card-body">
                                 <form>
@@ -119,80 +112,35 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 1</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
+                                                <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 2</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
+                                                <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 3</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
+                                                <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 4</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
+                                                <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 5</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
+                                                <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>

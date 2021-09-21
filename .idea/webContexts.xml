@@ -5,6 +5,8 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/faillogin.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/sign.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/Admin_Dashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/Edit_questionnaire.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
       </map>
     </option>
   </component>

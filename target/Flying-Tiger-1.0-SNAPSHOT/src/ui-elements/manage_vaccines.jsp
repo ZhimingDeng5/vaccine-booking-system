@@ -5,13 +5,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>View Booking List</title>
+    <title>Vaccines List</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
     <link rel="stylesheet" href="../assets/plugin/datatables/dataTables.bootstrap5.min.css">
     <!-- project css file  -->
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(c) {
+            $('.alert-close').on('click', function(c){
+                $('.message').fadeOut('slow', function(c){
+                    $('.message').remove();
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -30,9 +40,10 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
-                <li><a class="m-link" href="manage_recipients.html"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
-                <li><a class="m-link" href="manage_providers.html"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
-                <li><a class="m-link" href="view_booking.html"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
+                <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
+                <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
+                <li><a class="m-link" href="manage_vaccines.jsp"><i class="icofont-blood-test fs-5"></i> <span>Manage Vaccines</span></a></li>
+                <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -74,7 +85,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,16 +96,6 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-
-<!--                    &lt;!&ndash; main menu Search&ndash;&gt;-->
-<!--                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">-->
-<!--                        <div class="input-group flex-nowrap input-group-lg">-->
-<!--                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">-->
-<!--                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-
                 </div>
             </nav>
         </div>
@@ -105,7 +106,10 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">View Booking List</h3>
+                            <h3 class="fw-bold mb-0">Vaccines List</h3>
+                            <div class="col-auto d-flex w-sm-100">
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Vaccine Type</button>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -116,37 +120,25 @@
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Recipients Name</th>
-                                            <th>Providers Name</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>vaccine type</th>
-                                            <th>Status</th>   
-                                            <th>Actions</th>  
+                                            <th>Vaccine Type</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                #EX-00002
-                                            </td>
-                                            <td>
-                                                Laundry 
-                                            </td>
-                                            <td>
-                                                A hospital
-                                            </td>
-                                           <td>
-                                                12/03/2021
-                                           </td>
-                                           <td>
-                                               12:00
-                                           </td>
-                                            <td>
                                                 AstraZeneca
                                             </td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                pdsaf
+                                            </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
@@ -161,7 +153,30 @@
                 </div><!-- Row End -->
             </div>
         </div>
-    </div>
+
+        <!-- Add Vaccine Type -->
+        <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Vaccine Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-6">
+                        <label for="item" class="form-label">Vaccine Type</label>
+                        <input type="text" class="form-control" Vaccine Type="item">
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>     
 </div>
  
 <!-- Jquery Core Js -->
