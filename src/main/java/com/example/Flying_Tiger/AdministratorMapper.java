@@ -1,21 +1,20 @@
 package com.example.Flying_Tiger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdministratorMapper extends UserMapper{
-    public AdministratorMapper(String table){
-        super(table);
+    public AdministratorMapper(){
+        super("administrator");
     }
 
     @Override
-    public Administrator find(long id) {
+    public Administrator find(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
         String password;
         String name;
         Administrator result;
-
-
             try {
                 if (rs.next()) {
                     password = rs.getString("password");
@@ -29,4 +28,18 @@ public class AdministratorMapper extends UserMapper{
             }
         return null;
     }
+
+    public void update(Administrator administrator) throws SQLException {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set \"password\" = ?, \"name\" = ?  WHERE  \"ID\" = ?; ";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setString(1, administrator.getPassword());
+        myStmt.setString(2, administrator.getName());
+        myStmt.setLong(3, administrator.getID());
+        myStmt.executeUpdate();
+    }
+
+
 }

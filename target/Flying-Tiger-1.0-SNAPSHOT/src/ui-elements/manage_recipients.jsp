@@ -30,10 +30,16 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
+<<<<<<< HEAD:src/main/webapp/src/ui-elements/manage_recipients.html
+                <li><a class="m-link" href="manage_recipients.html"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
+                <li><a class="m-link" href="manage_providers.html"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
+                <li><a class="m-link" href="view_booking.html"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
+=======
                 <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
                 <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
                 <li><a class="m-link" href="manage_vaccines.jsp"><i class="icofont-blood-test fs-5"></i> <span>Manage Vaccines</span></a></li>
                 <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
+>>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/manage_recipients.jsp
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -75,7 +81,11 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
+<<<<<<< HEAD:src/main/webapp/src/ui-elements/manage_recipients.html
+                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+=======
                                         <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+>>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/manage_recipients.jsp
                                     </div>
                                 </div>
                             </div>

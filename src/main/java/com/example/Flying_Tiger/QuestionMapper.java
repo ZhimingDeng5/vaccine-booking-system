@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class QuestionMapper extends Mapper{
-    public QuestionMapper(String table){
-        super(table);
+    public QuestionMapper(){
+        super("question");
     }
     /**
      * foreign key mapping

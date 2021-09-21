@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -12,7 +13,8 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<% String id=request.getParameter("id");
+    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id)); %>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -27,8 +29,8 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="Recipients_questionnaire.jsp"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                <li><a class="m-link" href="my_booking.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
+                <li><a class="m-link" href="Recipients_questionnaire.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
                  </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -50,7 +52,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=recipient.getName()%></span></p>
                                 <small>Vaccine Recipient</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -88,7 +90,6 @@
         <!-- Body: Body -->
         <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
-                
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
@@ -133,6 +134,7 @@
                             </div> <!-- tab end  -->
                         </div>
                     </div>
+
                 </div> <!-- Row end  -->
             </div>
         </div>

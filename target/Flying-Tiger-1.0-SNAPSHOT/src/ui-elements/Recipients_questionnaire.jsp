@@ -29,7 +29,11 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
+<<<<<<< HEAD:src/main/webapp/src/ui-elements/Recipients_questionnaire.html
+                <li><a class="m-link" href="Recipients_questionnaire.html"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+=======
                 <li><a class="m-link" href="Recipients_questionnaire.jsp"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+>>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Recipients_questionnaire.jsp
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -71,7 +75,11 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
+<<<<<<< HEAD:src/main/webapp/src/ui-elements/Recipients_questionnaire.html
+                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+=======
                                         <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+>>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Recipients_questionnaire.jsp
                                     </div>
                                 </div>
                             </div>
@@ -82,6 +90,19 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
+<<<<<<< HEAD:src/main/webapp/src/ui-elements/Recipients_questionnaire.html
+
+                    <!-- main menu Search-->
+                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
+                        <div class="input-group flex-nowrap input-group-lg">
+                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
+                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
+
+                        </div>
+                    </div>
+
+=======
+>>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Recipients_questionnaire.jsp
                 </div>
             </nav>
         </div>

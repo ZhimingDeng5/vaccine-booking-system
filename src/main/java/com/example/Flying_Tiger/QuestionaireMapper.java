@@ -7,10 +7,10 @@ import java.sql.SQLException;
  * pattern: embedded value
  */
 public class QuestionaireMapper extends Mapper {
-    public QuestionaireMapper(String table){
-        super(table);
+    public QuestionaireMapper(){
+        super("questionaire");
     }
-    public Questionaire find(long id){
+    public Questionaire find(long id) throws SQLException {
         // get the timeslot information from timeslot table
         ResultSet rs = super.findRow(id);
         try {
@@ -18,12 +18,12 @@ public class QuestionaireMapper extends Mapper {
             // look up the recipient and calculate the age of the recipient
             long recID = rs.getLong("recID");
 
-            RecipientMapper recipientMapper = new RecipientMapper("recipient");
+            RecipientMapper recipientMapper = new RecipientMapper();
             Recipient recipient = recipientMapper.find(recID);
             int age = recipientMapper.calculateAge(recID);
 
             // get the questions information
-            QuestionMapper questionMapper = new QuestionMapper("question");
+            QuestionMapper questionMapper = new QuestionMapper();
             Question[] questions = questionMapper.findForQuestionaire(id);
             Questionaire result = new Questionaire(id, recipient, age, questions);
             return result;

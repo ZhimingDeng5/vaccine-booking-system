@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -107,6 +108,9 @@
                   <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+                                    Recipient[] recipients=Recipient.getMapper().findall();
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
@@ -122,16 +126,19 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <%
+                                                for (Recipient recipient:recipients){
+                                            %>
                                             <td>
-                                                #EX-00002
+                                                <%=recipient.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=recipient.getName()%>
                                            </td>
                                            <td>
                                             <span class="fw-bold ms-1">A hospital</span>
                                            </td>
-                                            <td>
+                                           <td>
                                                 AstraZeneca
                                             </td>
                                            <td>
@@ -146,31 +153,9 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                #EX-00006
-                                            </td>
-                                            <td>
-                                                Julia
-                                            </td>
-                                            <td>
-                                               <span class="fw-bold ms-1">B hospital</span>
-                                            </td>
-                                            <td>
-                                                AstraZeneca
-                                            </td>
-                                            <td>
-                                                12/03/2021
-                                           </td>
-                                           <td>16:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -179,7 +164,8 @@
                 </div><!-- Row End -->
             </div>
         </div>
-
+        
+   
         <!-- Add Recipients -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
@@ -209,6 +195,7 @@
                                 <input type="date" class="form-control" birthdate="abc">
                               </div>
                             </div>
+
                         </form>
                     </div>
                     

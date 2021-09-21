@@ -96,6 +96,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
+
                 </div>
             </nav>
         </div>
@@ -157,7 +158,8 @@
             </div>
         </div>
 
-        <!-- Add providers -->
+
+        <!-- Add Providers -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
@@ -190,7 +192,7 @@
                                 <div class="col-sm-6">
                                     <label for="depone" class="form-label">Postcode</label>
                                     <input type="text" class="form-control" postcode="depone">
-                                </div>
+                                </div>      
                             </div>
                         </form>
                     </div>
@@ -220,20 +222,19 @@
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label for="depone" class="form-label">Name</label>
-                            <input type="text" class="form-control" Name="depone">
+                            <input type="text" class="form-control" name="depone">
                         </div>
                         <div class="col-sm-6">
                             <label for="abc" class="form-label">Type</label>
-                            <input type="text" class="form-control" Type="depone">
+                            <input type="text" class="form-control" type="depone">
                         </div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label for="depone" class="form-label">Postcode</label>
-                            <input type="text" class="form-control" Postcode="depone">
+                            <input type="text" class="form-control" postcode="depone">
                         </div>
                     </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>

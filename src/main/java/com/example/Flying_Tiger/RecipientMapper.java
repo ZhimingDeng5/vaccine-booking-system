@@ -1,16 +1,14 @@
 package com.example.Flying_Tiger;
-import java.sql.ResultSet;
-import java.sql.Date;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.Period;
 
 public class RecipientMapper extends UserMapper {
-    public RecipientMapper(String table){
-        super(table);
+    public RecipientMapper(){
+        super("recipient");
     }
     @Override
-    public Recipient find(long id) {
+    public Recipient find(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
         String password;
         String name;
@@ -35,17 +33,27 @@ public class RecipientMapper extends UserMapper {
             }
         return null;
     }
+    public int getnumOfBooking()
+    {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
 
-    /**
-     * foreign key mapping
-     * @param timeslotID
-     * @return Recipient[]
-     */
-    public Recipient[] findForTimeslot(long timeslotID){
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public Recipient[] findall(){
         DBConn dbc=new DBConn();
         dbc.openDB();
         // get the row with this id
-        String query = "SELECT * FROM " + super.table + " WHERE \"timeslotID\" = "+timeslotID;
+        String query = "SELECT * FROM " + super.table;
         ResultSet rs = dbc.execQuery(query);
         try {
             int size = 0;
@@ -66,9 +74,95 @@ public class RecipientMapper extends UserMapper {
         return new Recipient[0];
 
     }
+    /**
+     * foreign key mapping
+     * @param timeslotID
+     * @return Recipient[]
+     */
+    public Recipient[] findForTimeslot(long timeslotID) throws SQLException {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table + " WHERE \"timeslotID\" = ?";
+        // get the row with this id
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, timeslotID);
+        ResultSet rs = myStmt.executeQuery();
+        try {
+            int size = 0;
+            while(rs.next()){
+                size++;
+            }
+            rs = myStmt.executeQuery();
+            Recipient[] recipients= new Recipient[size];
+            for(int i =0; i< size; i++){
+                rs.next();
+                recipients[i] = new Recipient(rs.getLong("ID"), rs.getString("password"), rs.getString("name"), rs.getDate("birthDate"), rs.getBoolean("suitable"),rs.getBoolean("injected"));
+            }
+            return recipients;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Recipient[0];
+
+    }
+
+    /**
+     * get the vaccineType the recipient book
+     * @param id
+     * @return vaccineType
+     * @throws SQLException
+     */
+    public String getVaccineType(long id) throws SQLException{
+        ResultSet rs = this.findRow(id);
+        if(rs.next()){
+            String vaccineType = rs.getString("vaccineType");
+            return vaccineType;
+        }
+        return null;
+    }
+
+    /**
+     * get the date which the recipient chose
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public Date timeslotDate(long id) throws SQLException {
+        ResultSet rs = this.findRow(id);
+        if(rs.next()){
+            long timeslotID = rs.getLong("timeslotID");
+            if( timeslotID != 0){
+                TimeslotMapper timeslotMapper = new TimeslotMapper();
+                return timeslotMapper.find(timeslotID).getDate();
+            }
+
+        }
+        return null;
+    }
+
+    /**
+     * get the time which the recipient chose
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public Time timeslotTime(long id) throws SQLException {
+        ResultSet rs = this.findRow(id);
+        if(rs.next()){
+            long timeslotID = rs.getLong("timeslotID");
+            if( timeslotID != 0){
+                TimeslotMapper timeslotMapper = new TimeslotMapper();
+                return timeslotMapper.find(timeslotID).getTime();
+            }
+
+        }
+        return null;
+    }
 
     // calculate the age of the recipients when timeslot
-    public int calculateAge(long id){
+    public int calculateAge(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
         Date birthDate = null;
         long timeslotID = 0;
@@ -80,7 +174,7 @@ public class RecipientMapper extends UserMapper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        TimeslotMapper tm = new TimeslotMapper("timeslot");
+        TimeslotMapper tm = new TimeslotMapper();
         Date timeslotDate =  tm.timeslotDate(timeslotID);
         LocalDate timeslotDateLocal = timeslotDate.toLocalDate();
         LocalDate birthDateLocal = birthDate.toLocalDate();
@@ -88,4 +182,50 @@ public class RecipientMapper extends UserMapper {
 
         return age;
     }
+
+    /**
+     * update the row with recipient
+     * @param recipient
+     * @throws SQLException
+     */
+    public void update(Recipient recipient) throws SQLException {
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set \"password\" = ?, \"name\" = ?, \"birthDate\"=?, \"suitable\"=?, \"injected\"=?  WHERE  \"ID\" = ?; ";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setString(1, recipient.getPassword());
+        myStmt.setString(2, recipient.getName());
+        myStmt.setDate(3, recipient.getBirth());
+        myStmt.setBoolean(4, recipient.getSuitable());
+        myStmt.setBoolean(5, recipient.getInjected());
+        myStmt.setLong(6, recipient.getID());
+        myStmt.executeUpdate();
+    }
+
+    /**
+     * update the row about timeslotID and hcpID given the contents submitted by web
+     * @param ID,timeslotDate,timeslotTime,hcpName
+     * @throws SQLException
+     */
+    public void updateTimeslotIDHcpID(long ID, Date timeslotDate, Time timeslotTime, String hcpName) throws SQLException {
+
+        // get the hcpID given contents submitted by web
+        HealthCareProviderMapper healthCareProviderMapper = new HealthCareProviderMapper();
+        long hcpID = healthCareProviderMapper.getIDByName(hcpName);
+        // get the timeslotID given Date and time submitted by web
+        TimeslotMapper timeslotMapper = new TimeslotMapper();
+        long timeslotID = timeslotMapper.getIDByDateTime(timeslotDate,timeslotTime);
+        DBConn dbc=new DBConn();
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set \"timeslotID\" = ?, \"hcpID\" = ? WHERE  \"ID\" = ?; ";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, timeslotID);
+        myStmt.setLong(2, hcpID);
+        myStmt.setLong(3, ID);
+        myStmt.executeUpdate();
+    }
+
+
 }
