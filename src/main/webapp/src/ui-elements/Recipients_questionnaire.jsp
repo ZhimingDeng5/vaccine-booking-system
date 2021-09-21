@@ -85,15 +85,6 @@
                         <span class="fa fa-bars"></span>
                     </button>
 
-                    <!-- main menu Search-->
-                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
-                        <div class="input-group flex-nowrap input-group-lg">
-                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
-                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
-
-                        </div>
-                    </div>
-
                 </div>
             </nav>
         </div>
@@ -123,11 +114,11 @@
                                                 <label class="form-label">Qestion 1</label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q1" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q1" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
@@ -138,11 +129,11 @@
                                                 <label class="form-label">Qestion 2</label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q2" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q2" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
@@ -153,11 +144,11 @@
                                                 <label class="form-label">Qestion 3</label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q3" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q3" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
@@ -168,11 +159,11 @@
                                                 <label class="form-label">Qestion 4</label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q4" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q4" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
@@ -183,11 +174,11 @@
                                                 <label class="form-label">Qestion 5</label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q5" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q5" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
