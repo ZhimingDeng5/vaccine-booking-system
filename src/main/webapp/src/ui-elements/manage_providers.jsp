@@ -128,7 +128,7 @@
                                             <th>Name</th>
                                             <th>Type</th>
                                             <th>Postcode</th>
-                                            <th>Actions</th>
+<%--                                            <th>Actions</th>--%>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,12 +147,12 @@
                                                 <%=hcp.getPost()%>
                                            </td>
 
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="submit" class="btn btn-outline-secondary deleterow" onclick="this.form.submit()"><i class="icofont-ui-delete text-danger"></i></button>
-                                                </div>
-                                            </td>
+<%--                                            <td>--%>
+<%--                                                <div class="btn-group" role="group" aria-label="Basic outlined example">--%>
+<%--                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>--%>
+<%--                                                    <button type="submit" class="btn btn-outline-secondary deleterow" onclick="this.form.submit()"><i class="icofont-ui-delete text-danger"></i></button>--%>
+<%--                                                </div>--%>
+<%--                                            </td>--%>
                                             <% } %>
                                         </tr>
                                     </tbody>
@@ -208,43 +208,43 @@
             </div>
         </div>
 
-         <!-- Edit Recipients-->
-        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
-                    <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
-                            <label for="depone" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="depone">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="abc" class="form-label">Type</label>
-                            <input type="text" class="form-control" type="depone">
-                        </div>
-                    </div>
-                    <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
-                            <label for="depone" class="form-label">Postcode</label>
-                            <input type="text" class="form-control" postcode="depone">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            </div>
-        </div>
+<%--         <!-- Edit Recipients-->--%>
+<%--        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">--%>
+<%--            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>--%>
+<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                </div>--%>
+<%--                <div class="modal-body">--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="item" class="form-label">Id</label>--%>
+<%--                        <input type="text" class="form-control" id="item">--%>
+<%--                    </div>--%>
+<%--                    <div class="row g-3 mb-3">--%>
+<%--                        <div class="col-sm-6">--%>
+<%--                            <label for="depone" class="form-label">Name</label>--%>
+<%--                            <input type="text" class="form-control" name="depone">--%>
+<%--                        </div>--%>
+<%--                        <div class="col-sm-6">--%>
+<%--                            <label for="abc" class="form-label">Type</label>--%>
+<%--                            <input type="text" class="form-control" type="depone">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row g-3 mb-3">--%>
+<%--                        <div class="col-sm-6">--%>
+<%--                            <label for="depone" class="form-label">Postcode</label>--%>
+<%--                            <input type="text" class="form-control" postcode="depone">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="modal-footer">--%>
+<%--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>--%>
+<%--                    <button type="submit" class="btn btn-primary">Save</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
     </div>     
 </div>

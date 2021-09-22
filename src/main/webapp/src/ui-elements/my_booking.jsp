@@ -94,6 +94,12 @@
                     <div class="border-0 mb-4">
                         <div class="card-header no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                             <h3 class="fw-bold mb-0 py-3 pb-2">My booking</h3>
+                            <div class="col-auto py-2 w-sm-100">
+                                <ul class="nav nav-tabs tab-body-header rounded invoice-set" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#Booking-Detail" role="tab">Booking Detail</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#View-Proof" role="tab">View Proof</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -101,7 +107,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12 col-md-12">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="Invoice-list">
+                            <div class="tab-pane fade show active" id="Booking-Detail">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8 col-md-12">
                                         <div class="card mb-3">
@@ -123,18 +129,53 @@
                                                     <strong>Status:</strong>
                                                     <span>Completed</span>
                                                 </div>
-                                                <div class="card-hover-show">
-                                                    <a class="btn btn-sm btn-white border lift" href="#">Download</a>
-                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>  <!-- Row end  -->
                             </div> <!-- tab end  -->
-                        </div>
+                            <div class="tab-pane fade" id="View-Proof">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8 col-md-12">
+                                        <div class="d-flex justify-content-center">
+                                            <table class="card p-5">
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">
+                                                        <table>
+                                                            <tr>
+                                                                <td class="text-center py-2">
+                                                                    <h4 class="mb-0"><strong>Letter of Commitment on COVID-19 Vaccination</strong></h4>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="pt-2 pb-4">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td>
+                                                                                This is to certify that XXX has completed the COVID-19 vaccination, on date.<br>
+                                                                                *This statement is true and valid.<br>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="pt-2 pb-2 text-end">
+                                                                    <a href="#">A hospital</a><br>
+                                                                    <button type="button" class="btn btn-outline-secondary btn-lg my-1"><i class="fa fa-print"></i> Print</button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div> <!-- Row end  -->
+                            </div> <!-- tab end  -->
+                         </div>
                     </div>
-
                 </div> <!-- Row end  -->
             </div>
         </div>

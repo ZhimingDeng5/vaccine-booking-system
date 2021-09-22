@@ -121,7 +121,7 @@
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Status</th>   
-                                            <th>Actions</th>  
+<%--                                            <th>Actions</th>  --%>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -176,10 +176,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
-                    <div class="mb-3">
                         <label for="item" class="form-label">Password</label>
                         <input type="text" class="form-control" password="item">
                     </div>
@@ -208,43 +204,43 @@
             </div>
         </div>
 
-         <!-- Edit Recipients-->
-        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="item" class="form-label">Id</label>
-                            <input type="text" class="form-control" id="item">
-                        </div>
-                        <div class="deadline-form">
-                            <form>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-sm-6">
-                                        <label for="depone" class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="depone">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label for="abc" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" birthdate="abc">
-                                    </div>
-                                </div>
+<%--         <!-- Edit Recipients-->--%>
+<%--        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">--%>
+<%--            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>--%>
+<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                </div>--%>
+<%--                <div class="modal-body">--%>
+<%--                        <div class="mb-3">--%>
+<%--                            <label for="item" class="form-label">Id</label>--%>
+<%--                            <input type="text" class="form-control" id="item">--%>
+<%--                        </div>--%>
+<%--                        <div class="deadline-form">--%>
+<%--                            <form>--%>
+<%--                                <div class="row g-3 mb-3">--%>
+<%--                                    <div class="col-sm-6">--%>
+<%--                                        <label for="depone" class="form-label">Name</label>--%>
+<%--                                        <input type="text" class="form-control" name="depone">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-sm-6">--%>
+<%--                                        <label for="abc" class="form-label">Birthdate</label>--%>
+<%--                                        <input type="date" class="form-control" birthdate="abc">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
 
-                            </form>
-                        </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            </div>
-        </div>
+<%--                            </form>--%>
+<%--                        </div>--%>
+<%--                    --%>
+<%--                </div>--%>
+<%--                <div class="modal-footer">--%>
+<%--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>--%>
+<%--                    <button type="submit" class="btn btn-primary">Save</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
     </div>     
 </div>

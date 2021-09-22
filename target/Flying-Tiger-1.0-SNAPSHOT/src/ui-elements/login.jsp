@@ -34,7 +34,7 @@
             if (admin!=null&&admin.getPassword().equals(pwd))
                 v=true;
             if(v)
-                request.getRequestDispatcher("Admin_Dashboard.jsp").forward(request, response);
+                request.getRequestDispatcher("Admin_Dashboard.jsp?id="+admin.getID()).forward(request, response);
             else {
                 String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
@@ -58,14 +58,13 @@
             if (rcp!=null&&rcp.getPassword().equals(pwd))
                 v=true;
             if(v)
-                request.getRequestDispatcher("my_booking.jsp").forward(request, response);
+                request.getRequestDispatcher("my_booking.jsp?id="+rcp.getID()).forward(request, response);
             else {
                 String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
     }
-
 %>
 </body>
 </html>
