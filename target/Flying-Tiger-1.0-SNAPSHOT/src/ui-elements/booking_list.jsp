@@ -85,6 +85,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
+
                 </div>
             </nav>
         </div>
@@ -132,7 +133,7 @@
                                            <td>
                                                12:00
                                            </td>
-                                           <td>
+                                            <td>
                                                 <select class="form-select">
                                                     <option selected>In Progress</option>
                                                     <option value="1">Completed</option>

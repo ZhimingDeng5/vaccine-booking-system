@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -30,16 +31,10 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Admin_Dashboard.jsp"><i class="icofont-dashboard fs-5"></i> <span>Dashboard</span></a></li>
-<<<<<<< HEAD:src/main/webapp/src/ui-elements/manage_recipients.html
-                <li><a class="m-link" href="manage_recipients.html"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
-                <li><a class="m-link" href="manage_providers.html"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
-                <li><a class="m-link" href="view_booking.html"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
-=======
                 <li><a class="m-link" href="manage_recipients.jsp"><i class="icofont-student-alt fs-5"></i> <span>Manage Recipients</span></a></li>
                 <li><a class="m-link" href="manage_providers.jsp"><i class="icofont-patient-file fs-5"></i> <span>Manage Providers</span></a></li>
                 <li><a class="m-link" href="manage_vaccines.jsp"><i class="icofont-blood-test fs-5"></i> <span>Manage Vaccines</span></a></li>
                 <li><a class="m-link" href="view_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>View Booking</span></a></li>
->>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/manage_recipients.jsp
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -81,11 +76,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-<<<<<<< HEAD:src/main/webapp/src/ui-elements/manage_recipients.html
-                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
-=======
                                         <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
->>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/manage_recipients.jsp
                                     </div>
                                 </div>
                             </div>
@@ -117,6 +108,9 @@
                   <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+                                    Recipient[] recipients=Recipient.getMapper().findall();
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
@@ -132,16 +126,19 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <%
+                                                for (Recipient recipient:recipients){
+                                            %>
                                             <td>
-                                                #EX-00002
+                                                <%=recipient.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=recipient.getName()%>
                                            </td>
                                            <td>
                                             <span class="fw-bold ms-1">A hospital</span>
                                            </td>
-                                            <td>
+                                           <td>
                                                 AstraZeneca
                                             </td>
                                            <td>
@@ -156,31 +153,9 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                #EX-00006
-                                            </td>
-                                            <td>
-                                                Julia
-                                            </td>
-                                            <td>
-                                               <span class="fw-bold ms-1">B hospital</span>
-                                            </td>
-                                            <td>
-                                                AstraZeneca
-                                            </td>
-                                            <td>
-                                                12/03/2021
-                                           </td>
-                                           <td>16:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -189,7 +164,8 @@
                 </div><!-- Row End -->
             </div>
         </div>
-
+        
+   
         <!-- Add Recipients -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
@@ -219,6 +195,7 @@
                                 <input type="date" class="form-control" birthdate="abc">
                               </div>
                             </div>
+
                         </form>
                     </div>
                     
