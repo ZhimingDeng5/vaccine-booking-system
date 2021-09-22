@@ -136,15 +136,15 @@
                                                 <%=recipient.getName()%>
                                            </td>
                                            <td>
-                                            <span class="fw-bold ms-1">A hospital</span>
+                                            <span class="fw-bold ms-1"><%=Recipient.getMapper().getHcpName(recipient.getID())%></span>
                                            </td>
                                            <td>
-                                                AstraZeneca
+                                               <%=Recipient.getMapper().getVaccineType(recipient.getID())%>
                                             </td>
                                            <td>
-                                                12/03/2021
+                                               <%=Recipient.getMapper().timeslotDate(recipient.getID())%>
                                            </td>
-                                           <td>9:00</td>
+                                           <td><%=Recipient.getMapper().timeslotTime(recipient.getID())%></td>
                                            <td><span class="badge bg-warning">In Progress</span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">

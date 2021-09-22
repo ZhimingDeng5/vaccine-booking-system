@@ -32,7 +32,6 @@ public class TimeslotMapper extends Mapper{
      * @throws SQLException
      */
     public long getIDByDateTime(Date date, Time time) throws SQLException {
-        DBConn dbc=new DBConn();
         dbc.openDB();
         // find id with name
         String query = "SELECT \"ID\" FROM " + this.table + " WHERE \"date\" = ? and \"time\" = ?";

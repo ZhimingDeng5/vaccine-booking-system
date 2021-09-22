@@ -35,8 +35,6 @@ public class RecipientMapper extends UserMapper {
     }
     public int getnumOfBooking()
     {
-        DBConn dbc=new DBConn();
-        dbc.openDB();
         String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";
         ResultSet rs = dbc.execQuery(query);
         try {
@@ -50,8 +48,6 @@ public class RecipientMapper extends UserMapper {
         return 0;
     }
     public Recipient[] findall(){
-        DBConn dbc=new DBConn();
-        dbc.openDB();
         // get the row with this id
         String query = "SELECT * FROM " + super.table;
         ResultSet rs = dbc.execQuery(query);
@@ -80,8 +76,6 @@ public class RecipientMapper extends UserMapper {
      * @return Recipient[]
      */
     public Recipient[] findForTimeslot(long timeslotID) throws SQLException {
-        DBConn dbc=new DBConn();
-        dbc.openDB();
         // get the row with this id
         String query = "SELECT * FROM " + super.table + " WHERE \"timeslotID\" = ?";
         // get the row with this id
@@ -160,7 +154,16 @@ public class RecipientMapper extends UserMapper {
         }
         return null;
     }
-
+    public String getHcpName(long id) throws SQLException {
+        ResultSet rs = this.findRow(id);
+        if (rs.next()) {
+            long hcpID = rs.getLong("hcpID");
+            if (hcpID != 0) {
+                return HealthCareProvider.getMapper().find(hcpID).getName();
+            }
+        }
+        return null;
+    }
     // calculate the age of the recipients when timeslot
     public int calculateAge(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
@@ -189,7 +192,6 @@ public class RecipientMapper extends UserMapper {
      * @throws SQLException
      */
     public void update(Recipient recipient) throws SQLException {
-        DBConn dbc=new DBConn();
         dbc.openDB();
         // update
         String query = "UPDATE " + this.table + " set \"password\" = ?, \"name\" = ?, \"birthDate\"=?, \"suitable\"=?, \"injected\"=?  WHERE  \"ID\" = ?; ";
@@ -216,7 +218,6 @@ public class RecipientMapper extends UserMapper {
         // get the timeslotID given Date and time submitted by web
         TimeslotMapper timeslotMapper = new TimeslotMapper();
         long timeslotID = timeslotMapper.getIDByDateTime(timeslotDate,timeslotTime);
-        DBConn dbc=new DBConn();
         dbc.openDB();
         // update
         String query = "UPDATE " + this.table + " set \"timeslotID\" = ?, \"hcpID\" = ? WHERE  \"ID\" = ?; ";

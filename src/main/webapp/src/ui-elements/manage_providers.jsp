@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -52,7 +53,9 @@
             </button>
         </div>
     </div>
-
+<%
+    HealthCareProvider[] hcps=HealthCareProvider.getMapper().findall();
+%>
     <!-- main body area -->
     <div class="main px-lg-4 px-md-4">
 
@@ -129,25 +132,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%for (HealthCareProvider hcp: hcps) {%>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                <%=hcp.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=hcp.getName()%>
                                            </td>
                                            <td>
-                                               <span class="fw-bold ms-1">A</span>
+                                               <span class="fw-bold ms-1"><%=hcp.getType()%></span>
                                            </td>
-                                           <td>
-                                                0000001
+                                           <td >
+                                                <%=hcp.getPost()%>
                                            </td>
+
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="submit" class="btn btn-outline-secondary deleterow" onclick="this.form.submit()"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
+                                            <% } %>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -168,30 +174,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
+                    <form id="form1" action="../../AddNewHcp-Servlet" method="post">
                     <div class="mb-3">
                         <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
+                        <input type="text" class="form-control" name="password">
                     </div>
                     <div class="deadline-form">
-                        <form>
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
                                 <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
+                                <input type="text" class="form-control" name="name">
                               </div>
                               <div class="col-sm-6">
                                 <label for="abc" class="form-label">Type</label>
-                                  <input type="text" class="form-control" type="depone">
+                                  <input type="text" class="form-control" name="type">
                               </div>
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
                                     <label for="depone" class="form-label">Postcode</label>
-                                    <input type="text" class="form-control" postcode="depone">
+                                    <input type="text" class="form-control" name="postcode">
                                 </div>      
                             </div>
                         </form>
@@ -200,7 +202,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
                 </div>
             </div>
             </div>

@@ -7,7 +7,7 @@ import java.sql.*;
  * return a new next key
  */
 public class KeyTable {
-    public long getKey(String tableName){
+    public static long getKey(String tableName){
         DBConn dbc=new DBConn();
         dbc.openDB();
         // get the next key from the table
@@ -22,7 +22,15 @@ public class KeyTable {
         }
         //update the table with the next key
         long nextKey = result + 1;
+        System.out.println(nextKey);
         String update = "UPDATE keys SET \"nextID\" = " + nextKey + " WHERE \"table\" = '" + tableName +"'";
+        System.out.println(update);
+        try {
+            PreparedStatement myStmt = dbc.setPreparedStatement(update);
+            myStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return  nextKey;
 
 
