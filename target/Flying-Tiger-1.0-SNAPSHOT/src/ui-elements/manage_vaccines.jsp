@@ -117,6 +117,9 @@
                   <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
@@ -125,16 +128,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                AstraZeneca
-                                            </td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+
                                         <tr>
                                             <td>
                                                 pdsaf

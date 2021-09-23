@@ -105,11 +105,20 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can edit questions.</h6>
+                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
                             </div>
                             <div class="card-body">
                                 <form>
                                     <div class="row g-3 align-items-center">
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Select Vaccine Type</label>
+                                            <select class="form-select">
+                                                <option selected>A </option>
+                                                <option value="1">B </option>
+                                                <option value="2">C </option>
+                                                <option value="3">D </option>
+                                            </select>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Qestion 1</label>

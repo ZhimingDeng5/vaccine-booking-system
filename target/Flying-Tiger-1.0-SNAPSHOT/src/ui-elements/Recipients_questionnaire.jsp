@@ -31,7 +31,7 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="my_booking.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="Recipients_questionnaire.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                <li><a class="m-link" href="booking.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -104,7 +104,7 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">Before booking, please answer a questionnaire.</h6>
+                                <h6 class="mb-0 fw-bold ">Please answer the questionnaire before completing your booking.</h6>
                             </div>
                             <div class="card-body">
                                 <form>

@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -13,7 +14,8 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<% String id=request.getParameter("id");
+    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id)); %>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -28,8 +30,8 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="my_booking.jsp"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="Recipients_questionnaire.jsp"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                <li><a class="m-link" href="my_booking.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
+                <li><a class="m-link" href="booking.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -138,12 +140,76 @@
                                                 </select>
                                             </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                                    <button type="sreach" class="btn btn-primary mt-4">Search</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row clearfix g-3">
+                    <div class="col-sm-12">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Providers Name</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Number of vaccines</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <tr>
+                                        <td>
+                                            #EX-00002
+                                        </td>
+                                        <td>
+                                            A hospital
+                                        </td>
+                                        <td>
+                                            12/03/2021
+                                        </td>
+                                        <td>
+                                            12:00
+                                        </td>
+                                        <td>
+                                            10
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            #EX-00005
+                                        </td>
+                                        <td>
+                                            B hospital
+                                        </td>
+                                        <td>
+                                            12/05/2021
+                                        </td>
+                                        <td>
+                                            11:00
+                                        </td>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
+                                        </td>
+                                    </tr>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row End -->
             </div>
         </div> 
 

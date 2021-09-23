@@ -121,7 +121,7 @@
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Status</th>   
-<%--                                            <th>Actions</th>  --%>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

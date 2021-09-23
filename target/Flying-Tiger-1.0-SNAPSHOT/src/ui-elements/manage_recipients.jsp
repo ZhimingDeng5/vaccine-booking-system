@@ -121,7 +121,7 @@
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Status</th>   
-<%--                                            <th>Actions</th>  --%>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -141,15 +141,15 @@
                                            <td>
                                                <%=Recipient.getMapper().getVaccineType(recipient.getID())%>
                                             </td>
-                                           <td>
+                                           <td >
                                                <%=Recipient.getMapper().timeslotDate(recipient.getID())%>
                                            </td>
-                                           <td><%=Recipient.getMapper().timeslotTime(recipient.getID())%></td>
+                                           <td ><%=Recipient.getMapper().timeslotTime(recipient.getID())%></td>
                                            <td><span class="badge bg-warning">In Progress</span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -167,6 +167,7 @@
         
    
         <!-- Add Recipients -->
+
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
@@ -174,35 +175,33 @@
                     <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Recipients</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
+                    <form id="form1" action="../../AddNewRec-Servlet" method="post">
                     <div class="mb-3">
                         <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
+                        <input type="text" class="form-control" name="password">
                     </div>
                     <div class="deadline-form">
-                        <form>
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
                                 <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
+                                <input type="text" class="form-control" name="name">
                               </div>
                               <div class="col-sm-6">
                                 <label for="abc" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" birthdate="abc">
+                                <input type="date" class="form-control" name="birthdate">
                               </div>
                             </div>
 
-                        </form>
+
                     </div>
+                    </form>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
                 </div>
             </div>
             </div>
