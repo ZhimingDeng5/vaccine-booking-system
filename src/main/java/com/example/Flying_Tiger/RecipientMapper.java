@@ -33,6 +33,28 @@ public class RecipientMapper extends UserMapper {
             }
         return null;
     }
+    public void insert(Long id, String password, String name, Date date) throws SQLException {
+        dbc.openDB();
+        String query = "INSERT INTO public." + super.table +
+                "(\"ID\", password, name,\"birthDate\") VALUES (?, ?, ?, ?)";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, id);
+        myStmt.setString(2, password);
+        myStmt.setString(3, name);
+        myStmt.setDate(4, date);
+        myStmt.executeUpdate();
+    }
+    public void delete(long id) {
+
+        String query = "DELETE FROM public.recipient WHERE \"ID\"=? " ;
+        try {
+            PreparedStatement myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1,id);
+            myStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public int getnumOfBooking()
     {
         String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";

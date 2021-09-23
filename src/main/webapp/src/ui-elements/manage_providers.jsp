@@ -196,8 +196,9 @@
                                     <input type="text" class="form-control" name="postcode">
                                 </div>      
                             </div>
-                        </form>
+
                     </div>
+                    </form>
                     
                 </div>
                 <div class="modal-footer">
