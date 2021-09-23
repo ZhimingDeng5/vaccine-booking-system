@@ -128,7 +128,7 @@
                                             <th>Name</th>
                                             <th>Type</th>
                                             <th>Postcode</th>
-<%--                                            <th>Actions</th>--%>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,12 +147,14 @@
                                                 <%=hcp.getPost()%>
                                            </td>
 
-<%--                                            <td>--%>
-<%--                                                <div class="btn-group" role="group" aria-label="Basic outlined example">--%>
-<%--                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>--%>
-<%--                                                    <button type="submit" class="btn btn-outline-secondary deleterow" onclick="this.form.submit()"><i class="icofont-ui-delete text-danger"></i></button>--%>
-<%--                                                </div>--%>
-<%--                                            </td>--%>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" data-id="<%=hcp.getID()%>" class="btn btn-outline-secondary editrow" data-password="<%=hcp.getPassword()%>"
+                                                            data-name="<%=hcp.getName()%>" data-type="<%=hcp.getType()%>" data-post="<%=hcp.getPost()%>"
+                                                            data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="submit" onclick="window.location='delete_hcp.jsp?id=<%=hcp.getID()%>'" class="btn btn-outline-secondary deleterow" ><i class="icofont-ui-delete text-danger"></i></button>
+                                                </div>
+                                            </td>
                                             <% } %>
                                         </tr>
                                     </tbody>
@@ -176,23 +178,23 @@
                 <div class="modal-body">
                     <form id="form1" action="../../AddNewHcp-Servlet" method="post">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
+                        <label  class="form-label">Password</label>
                         <input type="text" class="form-control" name="password">
                     </div>
                     <div class="deadline-form">
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
+                                <label  class="form-label">Name</label>
                                 <input type="text" class="form-control" name="name">
                               </div>
                               <div class="col-sm-6">
-                                <label for="abc" class="form-label">Type</label>
+                                <label class="form-label">Type</label>
                                   <input type="text" class="form-control" name="type">
                               </div>
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
-                                    <label for="depone" class="form-label">Postcode</label>
+                                    <label  class="form-label">Postcode</label>
                                     <input type="text" class="form-control" name="postcode">
                                 </div>      
                             </div>
@@ -209,43 +211,49 @@
             </div>
         </div>
 
-<%--         <!-- Edit Recipients-->--%>
-<%--        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">--%>
-<%--            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">--%>
-<%--            <div class="modal-content">--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>--%>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                </div>--%>
-<%--                <div class="modal-body">--%>
-<%--                    <div class="mb-3">--%>
-<%--                        <label for="item" class="form-label">Id</label>--%>
-<%--                        <input type="text" class="form-control" id="item">--%>
-<%--                    </div>--%>
-<%--                    <div class="row g-3 mb-3">--%>
-<%--                        <div class="col-sm-6">--%>
-<%--                            <label for="depone" class="form-label">Name</label>--%>
-<%--                            <input type="text" class="form-control" name="depone">--%>
-<%--                        </div>--%>
-<%--                        <div class="col-sm-6">--%>
-<%--                            <label for="abc" class="form-label">Type</label>--%>
-<%--                            <input type="text" class="form-control" type="depone">--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="row g-3 mb-3">--%>
-<%--                        <div class="col-sm-6">--%>
-<%--                            <label for="depone" class="form-label">Postcode</label>--%>
-<%--                            <input type="text" class="form-control" postcode="depone">--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="modal-footer">--%>
-<%--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>--%>
-<%--                    <button type="submit" class="btn btn-primary">Save</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+         <!-- Edit Recipients-->
+        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form2" action="../../UpdateHcp-Servlet" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Id</label>
+                        <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Password</label>
+                        <input type="text" class="form-control" name="password" id="password">
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label  class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="col-sm-6">
+                            <label  class="form-label">Type</label>
+                            <input type="text" class="form-control" id="type" name="type">
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label class="form-label">Postcode</label>
+                            <input type="text" class="form-control" id="post" name="post">
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form2').submit();">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
 
     </div>     
 </div>
@@ -270,6 +278,7 @@
             ]
         });
         $('.deleterow').on('click',function(){
+            console.log("1");
         var tablename = $(this).closest('table').DataTable();  
         tablename
                 .row( $(this)
@@ -278,7 +287,20 @@
                 .draw();
 
         } );
+        $('.editrow').on('click',function(){
+            var hcpId = $(this).data('id');
+            var name=$(this).data('name');
+            var type=$(this).data('type');
+            var post=$(this).data('post');
+            var password=$(this).data('password');
+            $(".modal-body #hcpId").val( hcpId );
+            $(".modal-body #name").val( name );
+            $(".modal-body #type").val( type );
+            $(".modal-body #post").val( post );
+            $(".modal-body #password").val( password );
+        } );
     });
+
 </script>
 </body>
 </html>
