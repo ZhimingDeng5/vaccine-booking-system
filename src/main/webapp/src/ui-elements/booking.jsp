@@ -130,15 +130,6 @@
                                                 <label for="abc" class="form-label">Select Date</label>
                                                 <input type="date" class="form-control" id="abc">
                                             </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Select Time</label>
-                                                <select class="form-select">
-                                                    <option selected>9:00 </option>
-                                                    <option value="1">11:00 </option>
-                                                    <option value="2">14:00 </option>
-                                                    <option value="3">16:00 </option>
-                                                </select>
-                                            </div>
                                     </div>
                                     <button type="sreach" class="btn btn-primary mt-4">Search</button>
                                 </form>
