@@ -169,7 +169,7 @@
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                        <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Add</button>
+                        <input type="submit" class="btn btn-primary" value="Add">
                     </div>
                 </form>
                 </div>

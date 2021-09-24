@@ -175,8 +175,9 @@
                     <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Providers</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form id="form1" action="../../AddNewHcp-Servlet" method="post">
                 <div class="modal-body">
-                    <form id="form1" action="../../AddNewHcp-Servlet" method="post">
+
                     <div class="mb-3">
                         <label  class="form-label">Password</label>
                         <input type="text" class="form-control" name="password" required>
@@ -200,15 +201,17 @@
                             </div>
 
                     </div>
-                    </form>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
+                    <input type="submit" class="btn btn-primary" value="Add">
                 </div>
+                </form>
             </div>
+
             </div>
+
         </div>
 
          <!-- Edit Recipients-->
@@ -219,8 +222,9 @@
                     <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Providers</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form id="form2" action="../../UpdateHcp-Servlet" method="post">
                 <div class="modal-body">
-                    <form id="form2" action="../../UpdateHcp-Servlet" method="post">
+
                     <div class="mb-3">
                         <label class="form-label">Id</label>
                         <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">
@@ -245,12 +249,13 @@
                             <input type="text" class="form-control" id="post" name="post" required>
                         </div>
                     </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form2').submit();">Save</button>
+                    <input type="submit" class="btn btn-primary" value="Save">
                 </div>
+                </form>
             </div>
             </div>
         </div>

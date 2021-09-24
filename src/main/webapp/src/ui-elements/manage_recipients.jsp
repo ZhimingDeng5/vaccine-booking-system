@@ -193,9 +193,9 @@
                         <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Recipients</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
+                    <form id="form1" action="../../AddNewRec-Servlet" method="post">
                     <div class="modal-body">
-                        <form id="form1" action="../../AddNewRec-Servlet" method="post">
+
                             <div class="mb-3">
                                 <label  class="form-label">Password</label>
                                 <input type="text" class="form-control" name="password" required>
@@ -214,13 +214,14 @@
 
 
                             </div>
-                        </form>
+
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                        <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
+                        <input type="submit" class="btn btn-primary" value="Add">
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -263,7 +264,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                            <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Save</button>
+                            <input type="submit" class="btn btn-primary" value="Save">
                         </div>
                     </form>
                 </div>

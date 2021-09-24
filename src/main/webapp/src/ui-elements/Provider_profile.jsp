@@ -68,7 +68,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%>></span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%></span></p>
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -80,7 +80,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold"><%=name%>></span></p>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
                                                 <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                                         <img src="../assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     </a>
                                     <div class="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                        <span class="text-muted small">ID : <%=id%>></span>
+                                        <span class="text-muted small">ID : <%=id%></span>
                                     </div>
                                 </div>
                                 <div class="teacher-info border-start ps-xl-4 ps-md-4 ps-sm-4 ps-4 w-100">
@@ -134,7 +134,7 @@
                                         <div class="col-xl-5">
                                             <div class="d-flex align-items-center">
                                                 <i class="icofont-home"></i>
-                                                <span class="ms-2"><%=type%>></span>
+                                                <span class="ms-2"><%=type%></span>
                                             </div>
                                         </div>
                                         <div class="col-xl-5">
