@@ -55,6 +55,19 @@ public class RecipientMapper extends UserMapper {
             e.printStackTrace();
         }
     }
+    public void deletebooking(long id) {
+
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set \"timeslotID\" = null, \"hcpID\" = null,  \"suitable\" = false, \"vacID\"=null  WHERE  \"ID\" = ?; ";
+        try {
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, id);
+        myStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public int getnumOfBooking()
     {
         String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";
@@ -72,13 +85,39 @@ public class RecipientMapper extends UserMapper {
     public Recipient[] findall(){
         // get the row with this id
         String query = "SELECT * FROM " + super.table;
-        ResultSet rs = dbc.execQuery(query);
         try {
+            PreparedStatement myStmt = dbc.setPreparedStatement(query);
+            ResultSet rs = myStmt.executeQuery();
             int size = 0;
             while(rs.next()){
                 size++;
             }
-            rs = dbc.execQuery(query);
+            myStmt = dbc.setPreparedStatement(query);
+            rs = myStmt.executeQuery();
+            Recipient[] recipients= new Recipient[size];
+            for(int i =0; i< size; i++){
+                rs.next();
+                recipients[i] = new Recipient(rs.getLong("ID"), rs.getString("password"), rs.getString("name"), rs.getDate("birthDate"), rs.getBoolean("suitable"),rs.getBoolean("injected"));
+            }
+            return recipients;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Recipient[0];
+
+    }
+    public Recipient[] findallbooking(){
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table + " WHERE \"timeslotID\" is not null";
+        try {
+            PreparedStatement myStmt = dbc.setPreparedStatement(query);
+            ResultSet rs = myStmt.executeQuery();
+            int size = 0;
+            while(rs.next()){
+                size++;
+            }
+            rs = myStmt.executeQuery();
             Recipient[] recipients= new Recipient[size];
             for(int i =0; i< size; i++){
                 rs.next();
@@ -100,7 +139,6 @@ public class RecipientMapper extends UserMapper {
     public Recipient[] findForTimeslot(long timeslotID) throws SQLException {
         // get the row with this id
         String query = "SELECT * FROM " + super.table + " WHERE \"timeslotID\" = ?";
-        // get the row with this id
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, timeslotID);
         ResultSet rs = myStmt.executeQuery();

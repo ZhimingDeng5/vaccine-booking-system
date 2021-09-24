@@ -27,6 +27,7 @@
     String option=request.getParameter("type");
     boolean v=false;
     Long id;
+    String script="";
     switch (option){
         case "1":
             id=Long.parseLong(usr);
@@ -34,9 +35,9 @@
             if (admin!=null&&admin.getPassword().equals(pwd))
                 v=true;
             if(v)
-                request.getRequestDispatcher("Admin_Dashboard.jsp?id="+admin.getID()).forward(request, response);
+                script="<script>location.href='Admin_Dashboard.jsp'</script>";
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
+                script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
@@ -46,10 +47,10 @@
             if (hcp!=null&&hcp.getPassword().equals(pwd))
                 v=true;
             if(v)
-                request.getRequestDispatcher("Provider_profile.jsp").forward(request, response);
+                script = "<script>location.href='Provider_profile.jsp?id="+id+"'</script>";
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
-                response.getWriter().println(script);
+                script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
+
             }
             break;
         case "2":
@@ -58,13 +59,14 @@
             if (rcp!=null&&rcp.getPassword().equals(pwd))
                 v=true;
             if(v)
-                request.getRequestDispatcher("my_booking.jsp?id="+rcp.getID()).forward(request, response);
+                script = "<script>location.href='my_booking.jsp?id="+id+"'</script>";
             else {
-                String script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
+                script = "<script>alert('userid or password incorrect!');location.href='auth-signin.jsp'</script>";
                 response.getWriter().println(script);
             }
             break;
     }
+    response.getWriter().println(script);
 %>
 </body>
 </html>

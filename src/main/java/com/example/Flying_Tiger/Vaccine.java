@@ -13,10 +13,10 @@ public class Vaccine {
     public void setType(String type){
         this.vacType = type;
     }
-
+    public long getID(){return this.ID;}
     public static VaccineMapper getMapper ()
     {
-        return new VaccineMapper();
+        return VaccineMapper.getInstance();
     }
 
 }

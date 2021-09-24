@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.sql.Time" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -104,6 +108,9 @@
                   <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+                                    Recipient[] recipients=Recipient.getMapper().findallbooking();
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
@@ -118,32 +125,52 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for (Recipient recipient:recipients){
+                                            try {
+                                                String hcp = Recipient.getMapper().getHcpName(recipient.getID());
+                                                String vacType = Recipient.getMapper().getVaccineType(recipient.getID());
+                                                Date date = Recipient.getMapper().timeslotDate(recipient.getID());
+                                                Time time = Recipient.getMapper().timeslotTime(recipient.getID());
+                                                String injected = "In Progress";
+                                                if (recipient.getInjected())
+                                                    injected = "Completed";
+
+
+                                    %>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                <%=recipient.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=recipient.getName()%>
                                             </td>
                                             <td>
-                                                A hospital
+                                                <%=hcp%>
                                             </td>
                                            <td>
-                                                12/03/2021
+                                               <%=date%>
                                            </td>
                                            <td>
-                                               12:00
+                                               <%=time%>
                                            </td>
                                             <td>
-                                                AstraZeneca
+                                                <%=vacType%>
                                             </td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
+                                           <td><span class="badge bg-warning"><%=injected%></span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"
+                                                            onclick="window.location='delete_booking.jsp?id=<%=recipient.getID()%>'"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
+                                    <%
+                                            } catch (SQLException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

@@ -1,4 +1,7 @@
 ﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.sql.Time" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -125,10 +128,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for (Recipient recipient:recipients){
+                                            String hcp= null;
+                                            try {
+                                                hcp = Recipient.getMapper().getHcpName(recipient.getID());
+                                                String vacType = Recipient.getMapper().getVaccineType(recipient.getID());
+                                                Date date = Recipient.getMapper().timeslotDate(recipient.getID());
+                                                Time time = Recipient.getMapper().timeslotTime(recipient.getID());
+                                                String injected = "In Progress";
+                                                if(recipient.getInjected())
+                                                    injected="Completed";
+
+
+                                    %>
                                         <tr>
-                                            <%
-                                                for (Recipient recipient:recipients){
-                                            %>
                                             <td>
                                                 <%=recipient.getID()%>
                                             </td>
@@ -136,24 +150,30 @@
                                                 <%=recipient.getName()%>
                                            </td>
                                            <td>
-                                            <span class="fw-bold ms-1"><%=Recipient.getMapper().getHcpName(recipient.getID())%></span>
+                                            <span class="fw-bold ms-1"><%=hcp%></span>
                                            </td>
                                            <td>
-                                               <%=Recipient.getMapper().getVaccineType(recipient.getID())%>
+                                               <%=vacType%>
                                             </td>
                                            <td >
-                                               <%=Recipient.getMapper().timeslotDate(recipient.getID())%>
+                                               <%=date%>
                                            </td>
-                                           <td ><%=Recipient.getMapper().timeslotTime(recipient.getID())%></td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
+                                           <td ><%=time%></td>
+                                           <td><span class="badge bg-warning"><%=injected%></span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" data-id="<%=recipient.getID()%>" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="button" data-id="<%=recipient.getID()%>" data-name="<%=recipient.getName()%>"
+                                                            data-password="<%=recipient.getPassword()%>" data-birthdate="<%=recipient.getBirth()%>"
+                                                            class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                     <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
                                         <%
+                                                }
+                                                catch (SQLException e) {
+                                                    e.printStackTrace();
+                                                }
                                             }
                                         %>
                                     </tbody>
@@ -179,17 +199,17 @@
                 <div class="modal-body">
                     <form id="form1" action="../../AddNewRec-Servlet" method="post">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
+                        <label  class="form-label">Password</label>
                         <input type="text" class="form-control" name="password">
                     </div>
                     <div class="deadline-form">
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
+                                <label  class="form-label">Name</label>
                                 <input type="text" class="form-control" name="name">
                               </div>
                               <div class="col-sm-6">
-                                <label for="abc" class="form-label">Birthdate</label>
+                                <label  class="form-label">Birthdate</label>
                                 <input type="date" class="form-control" name="birthdate">
                               </div>
                             </div>
@@ -215,36 +235,39 @@
                     <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="../../UpdateRep-Servlet" method="post">
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" name="password" id="password">
-                    </div>
                         <div class="mb-3">
-                            <label for="item" class="form-label">Id</label>
-                            <input type="text" class="form-control" id="item">
+                            <label  class="form-label">Id</label>
+                            <input type="text" class="form-control" id="id" name="id">
                         </div>
+                         <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="text" class="form-control" name="password" id="password">
+                        </div>
+
                         <div class="deadline-form">
-                            <form>
+
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
-                                        <label for="depone" class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="depone">
+                                        <label  class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="abc" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" birthdate="abc">
+                                        <label  class="form-label">Birthdate</label>
+                                        <input type="date" class="form-control" name="birthdate" id="birthdate">
                                     </div>
                                 </div>
 
-                            </form>
+
                         </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Save</button>
                 </div>
+                </form>
             </div>
             </div>
         </div>
@@ -279,6 +302,17 @@
                 .remove()
                 .draw();
 
+        } );
+        $('.editrow').on('click',function(){
+            var Id = $(this).data('id');
+            var name=$(this).data('name');
+            var birthdate=$(this).data('birthdate');
+            var password=$(this).data('password');
+            $(".modal-body #id").val( Id );
+            $(".modal-body #name").val( name );
+            $(".modal-body #birthdate").val( birthdate );
+            $(".modal-body #password").val( password );
+            console.log('5');
         } );
     });
 </script>
