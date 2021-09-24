@@ -179,23 +179,23 @@
                     <form id="form1" action="../../AddNewHcp-Servlet" method="post">
                     <div class="mb-3">
                         <label  class="form-label">Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password" required>
                     </div>
                     <div class="deadline-form">
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
                                 <label  class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" required>
                               </div>
                               <div class="col-sm-6">
                                 <label class="form-label">Type</label>
-                                  <input type="text" class="form-control" name="type">
+                                  <input type="text" class="form-control" name="type" required>
                               </div>
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
                                     <label  class="form-label">Postcode</label>
-                                    <input type="text" class="form-control" name="postcode">
+                                    <input type="text" class="form-control" name="postcode" required>
                                 </div>      
                             </div>
 
@@ -227,22 +227,22 @@
                     </div>
                     <div class="mb-3">
                         <label  class="form-label">Password</label>
-                        <input type="text" class="form-control" name="password" id="password">
+                        <input type="text" class="form-control" name="password" id="password" required>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label  class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="col-sm-6">
                             <label  class="form-label">Type</label>
-                            <input type="text" class="form-control" id="type" name="type">
+                            <input type="text" class="form-control" id="type" name="type" required>
                         </div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
                             <label class="form-label">Postcode</label>
-                            <input type="text" class="form-control" id="post" name="post">
+                            <input type="text" class="form-control" id="post" name="post" required>
                         </div>
                     </div>
                     </form>

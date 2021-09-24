@@ -164,7 +164,7 @@
                 <div class="modal-body">
                     <div class="mb-6">
                         <label  class="form-label">Vaccine Type</label>
-                        <input type="text" class="form-control" name="type">
+                        <input type="text" class="form-control" name="type" required>
                     </div>
                 </div>
                     <div class="modal-footer">

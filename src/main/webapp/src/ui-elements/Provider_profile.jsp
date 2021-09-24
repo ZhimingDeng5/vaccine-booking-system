@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="java.sql.SQLException" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -14,7 +16,19 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<%
+    long id= Long.parseLong(request.getParameter("id"));
+    String name="";
+    String type="";
+    HealthCareProvider hcp= null;
+    try {
+        hcp = HealthCareProvider.getMapper().find(id);
+        name=hcp.getName();
+        type=hcp.getType();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
 <div id="ihealth-layout" class="theme-tradewind">
     
    <!-- sidebar -->
@@ -29,10 +43,10 @@
         <!-- Menu: main ul -->
 
         <ul class="menu-list flex-grow-1 mt-3">
-            <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-            <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-            <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-            <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+            <li><a class="m-link" href="Provider_profile.jsp?id=<%=id%>"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+            <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+            <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+            <li><a class="m-link" href="timeslot_list.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
         </ul>
 
         <!-- Menu: menu collepce btn -->
@@ -54,7 +68,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%>></span></p>
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -66,8 +80,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=name%>></span></p>
+                                                <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
 
@@ -103,11 +117,11 @@
                                         <img src="../assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     </a>
                                     <div class="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                        <span class="text-muted small">ID : 0020392</span>
+                                        <span class="text-muted small">ID : <%=id%>></span>
                                     </div>
                                 </div>
                                 <div class="teacher-info border-start ps-xl-4 ps-md-4 ps-sm-4 ps-4 w-100">
-                                    <h6  class="mb-0 mt-2  fw-bold d-block fs-6">A hospital</h6>
+                                    <h6  class="mb-0 mt-2  fw-bold d-block fs-6"><%=name%></h6>
                                     <span class="py-1 fw-bold small-11 mb-0 mt-1 text-muted">Heart Surgeon,Sydney, Australia</span>
                                     <p class="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim. Aenean sed erat ut est commodo tristique ac a metus. Praesent efficitur congue orci. Fusce in mi condimentum mauris maximus sodales. Quisque dictum est augue, vitae cursus quam finibus in. Nulla at tempus enim. Fusce sed mi et nibh laoreet consectetur nec vitae lacus.</p>
                                     <div class="row g-2 pt-2">
@@ -120,7 +134,7 @@
                                         <div class="col-xl-5">
                                             <div class="d-flex align-items-center">
                                                 <i class="icofont-home"></i>
-                                                <span class="ms-2">Type A</span>
+                                                <span class="ms-2"><%=type%>></span>
                                             </div>
                                         </div>
                                         <div class="col-xl-5">

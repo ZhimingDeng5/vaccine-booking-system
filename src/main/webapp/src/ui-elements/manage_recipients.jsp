@@ -200,17 +200,17 @@
                     <form id="form1" action="../../AddNewRec-Servlet" method="post">
                     <div class="mb-3">
                         <label  class="form-label">Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password" required>
                     </div>
                     <div class="deadline-form">
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
                                 <label  class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" required>
                               </div>
                               <div class="col-sm-6">
                                 <label  class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" name="birthdate">
+                                <input type="date" class="form-control" name="birthdate" required>
                               </div>
                             </div>
 
@@ -239,11 +239,11 @@
                 <div class="modal-body">
                         <div class="mb-3">
                             <label  class="form-label">Id</label>
-                            <input type="text" class="form-control" id="id" name="id">
+                            <input type="text" class="form-control" id="id" name="id" readonly>
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <input type="text" class="form-control" name="password" id="password">
+                            <input type="text" class="form-control" name="password" id="password" required>
                         </div>
 
                         <div class="deadline-form">
@@ -251,11 +251,11 @@
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
                                         <label  class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name">
+                                        <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <label  class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" name="birthdate" id="birthdate">
+                                        <input type="date" class="form-control" name="birthdate" id="birthdate" required>
                                     </div>
                                 </div>
 
