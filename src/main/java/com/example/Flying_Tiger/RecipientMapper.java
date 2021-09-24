@@ -171,7 +171,9 @@ public class RecipientMapper extends UserMapper {
     public String getVaccineType(long id) throws SQLException{
         ResultSet rs = this.findRow(id);
         if(rs.next()){
-            String vaccineType = rs.getString("vacType");
+            long vaccineid = rs.getLong("vacID");
+            Vaccine vaccine=VaccineMapper.getInstance().find(id);
+            String vaccineType=vaccine.getType();
             return vaccineType;
         }
         return null;
