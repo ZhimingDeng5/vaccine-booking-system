@@ -173,8 +173,11 @@ public class RecipientMapper extends UserMapper {
         if(rs.next()){
             long vaccineid = rs.getLong("vacID");
             Vaccine vaccine=VaccineMapper.getInstance().find(id);
+            if (vaccine!=null)
+            {
             String vaccineType=vaccine.getType();
             return vaccineType;
+            }
         }
         return null;
     }
