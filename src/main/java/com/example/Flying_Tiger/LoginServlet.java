@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
         boolean v=false;
         long id;
         String script="";
-        System.out.println(usr);
         switch (option){
             case "1":
                 id=Long.parseLong(usr);
@@ -35,8 +34,11 @@ public class LoginServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                if(v)
-                    script="<script>location.href='src/ui-elements/Admin_Dashboard.jsp'</script>";
+                if(v) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", option);
+                    script = "<script>location.href='src/ui-elements/Admin_Dashboard.jsp'</script>";
+                }
                 else {
                     script = "<script>alert('userid or password incorrect!');location.href='src/ui-elements/auth-signin.jsp'</script>";
                 }
@@ -51,8 +53,11 @@ public class LoginServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                if(v)
-                    script = "<script>location.href='src/ui-elements/Provider_profile.jsp?id="+id+"'</script>";
+                if(v) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", option);
+                    script = "<script>location.href='src/ui-elements/Provider_profile.jsp?id=" + id + "'</script>";
+                }
                 else {
                     script = "<script>alert('userid or password incorrect!');location.href='src/ui-elements/auth-signin.jsp'</script>";
                 }
@@ -67,8 +72,11 @@ public class LoginServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                if(v)
-                    script = "<script>location.href='src/ui-elements/my_booking.jsp?id="+id+"'</script>";
+                if(v) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", option);
+                    script = "<script>location.href='src/ui-elements/my_booking.jsp?id=" + id + "'</script>";
+                }
                 else {
                     script = "<script>alert('userid or password incorrect!');location.href='src/ui-elements/auth-signin.jsp'</script>";
                 }

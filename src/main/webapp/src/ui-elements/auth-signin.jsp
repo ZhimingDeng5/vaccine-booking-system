@@ -1,3 +1,8 @@
+<%//Browser fallback force refresh
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires", 0);
+    response.setHeader("Pragma","no-cache");
+%>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
