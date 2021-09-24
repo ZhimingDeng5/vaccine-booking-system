@@ -30,7 +30,6 @@ public class AdministratorMapper extends UserMapper{
     }
 
     public void update(Administrator administrator) throws SQLException {
-        DBConn dbc=new DBConn();
         dbc.openDB();
         // update
         String query = "UPDATE " + this.table + " set \"password\" = ?, \"name\" = ?  WHERE  \"ID\" = ?; ";

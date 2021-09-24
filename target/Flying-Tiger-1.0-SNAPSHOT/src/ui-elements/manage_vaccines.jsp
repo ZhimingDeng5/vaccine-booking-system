@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.VaccineMapper" %>
+<%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -117,6 +119,9 @@
                   <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+                                    Vaccine[] vaccines=VaccineMapper.getInstance().findall();
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
@@ -125,26 +130,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% for(Vaccine vaccine:vaccines) {%>
                                         <tr>
                                             <td>
-                                                AstraZeneca
+                                                <%=vaccine.getType()%>
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"
+                                                            onclick="window.location='delete_vacType.jsp?id=<%=vaccine.getID()%>'"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                pdsaf
-                                            </td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -162,16 +160,18 @@
                     <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Vaccine Type</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="../../AddvcType-Servlet" method="post">
                 <div class="modal-body">
                     <div class="mb-6">
-                        <label for="item" class="form-label">Vaccine Type</label>
-                        <input type="text" class="form-control" Vaccine Type="item">
+                        <label  class="form-label">Vaccine Type</label>
+                        <input type="text" class="form-control" name="type" required>
                     </div>
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Add</button>
                     </div>
+                </form>
                 </div>
             </div>
             </div>
@@ -188,7 +188,7 @@
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
 <script>
-    
+
     $(document).ready(function() {
         $('#myProjectTable')
         .addClass( 'nowrap' )

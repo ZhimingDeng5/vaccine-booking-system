@@ -1,9 +1,3 @@
-/*
-* Admin Layout (I-Health)
-* @requires:jquery: 3.6.0 or later
-* 更多精品模板：http://www.bootstrapmb.com
-*/
-
 if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
@@ -170,20 +164,5 @@ $(function() {
     toggleSwitch.addEventListener('change', switchTheme, false);
     toggleHcSwitch.addEventListener('change', switchHc, false);
 });
-
-$(function() {
-    "use strict";
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6051a040f7ce18270930e55a/1f765qq8q';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })(); 
-});
-
-
 
  

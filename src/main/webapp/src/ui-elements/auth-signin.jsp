@@ -38,7 +38,7 @@
                     <div class="col-lg-6 d-flex justify-content-center align-items-center border-0 rounded-lg auth-h100">
                         <div class="w-100 p-3 p-md-5 card border-0 bg-dark text-light" style="max-width: 32rem;">
                             <!-- Form -->
-                            <form class="row g-1 p-3 p-md-4" action="login.jsp">
+                            <form class="row g-1 p-3 p-md-4" action="../../LoginServlet" method="post">
                                 <div class="col-12 text-center mb-5">
                                     <h1>Sign in</h1>
                                     <span>Free access to dashboard.</span>
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">ID</label>
-                                        <input type="text" class="form-control form-control-lg" name="username">
+                                        <input type="text" class="form-control form-control-lg" name="username" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -75,7 +75,7 @@
                                                 Password
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg" name="password">
+                                        <input type="password" class="form-control form-control-lg" name="password" required>
                                     </div>
                                 </div>
                                 <div class="col-12">

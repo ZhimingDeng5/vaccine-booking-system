@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.sql.Time" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -6,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Recipients List</title>
-    
+
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
     <link rel="stylesheet" href="../assets/plugin/datatables/dataTables.bootstrap5.min.css">
@@ -90,7 +94,7 @@
             </nav>
         </div>
 
-        <!-- Body: Body -->       
+        <!-- Body: Body -->
         <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
                 <div class="row align-items-center">
@@ -104,164 +108,172 @@
                     </div>
                 </div> <!-- Row end  -->
                 <div class="row clearfix g-3">
-                  <div class="col-sm-12">
+                    <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <%
+                                    Recipient[] recipients=Recipient.getMapper().findall();
+                                %>
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Health Care Provider</th>
-                                            <th>Vaccine Type</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Status</th>   
-                                            <th>Actions</th>  
-                                        </tr>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Health Care Provider</th>
+                                        <th>Vaccine Type</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                #EX-00002
-                                            </td>
-                                            <td>
-                                                Laundry 
-                                           </td>
-                                           <td>
-                                            <span class="fw-bold ms-1">A hospital</span>
-                                           </td>
-                                            <td>
-                                                AstraZeneca
-                                            </td>
-                                           <td>
-                                                12/03/2021
-                                           </td>
-                                           <td>9:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                #EX-00006
-                                            </td>
-                                            <td>
-                                                Julia
-                                            </td>
-                                            <td>
-                                               <span class="fw-bold ms-1">B hospital</span>
-                                            </td>
-                                            <td>
-                                                AstraZeneca
-                                            </td>
-                                            <td>
-                                                12/03/2021
-                                           </td>
-                                           <td>16:00</td>
-                                           <td><span class="badge bg-warning">In Progress</span></td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
+                                    <%
+                                        for (Recipient recipient:recipients){
+                                            String hcp= null;
+                                            try {
+                                                hcp = Recipient.getMapper().getHcpName(recipient.getID());
+                                                String vacType = Recipient.getMapper().getVaccineType(recipient.getID());
+                                                Date date = Recipient.getMapper().timeslotDate(recipient.getID());
+                                                Time time = Recipient.getMapper().timeslotTime(recipient.getID());
+                                                String injected = "In Progress";
+                                                System.out.println(recipients.length);
+                                                if(recipient.getInjected())
+                                                    injected="Completed";
+                                    %>
+                                    <tr>
+                                        <td>
+                                            <%=recipient.getID()%>
+                                        </td>
+                                        <td>
+                                            <%=recipient.getName()%>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold ms-1"><%=hcp%></span>
+                                        </td>
+                                        <td>
+                                            <%=vacType%>
+                                        </td>
+                                        <td >
+                                            <%=date%>
+                                        </td>
+                                        <td ><%=time%></td>
+                                        <td><span class="badge bg-warning"><%=injected%></span></td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                <button type="button" data-id="<%=recipient.getID()%>" data-name="<%=recipient.getName()%>"
+                                                        data-password="<%=recipient.getPassword()%>" data-birthdate="<%=recipient.getBirth()%>"
+                                                        class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <%
+                                            }
+                                            catch (SQLException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                  </div>
+                    </div>
                 </div><!-- Row End -->
             </div>
         </div>
 
+
         <!-- Add Recipients -->
+
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Recipients</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Recipients</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
-                    </div>
-                    <div class="deadline-form">
-                        <form>
-                            <div class="row g-3 mb-3">
-                              <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="abc" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" birthdate="abc">
-                              </div>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-            </div>
-            </div>
-        </div>
 
-         <!-- Edit Recipients-->
-        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="item" class="form-label">Id</label>
-                            <input type="text" class="form-control" id="item">
-                        </div>
-                        <div class="deadline-form">
-                            <form>
+                    <div class="modal-body">
+                        <form id="form1" action="../../AddNewRec-Servlet" method="post">
+                            <div class="mb-3">
+                                <label  class="form-label">Password</label>
+                                <input type="text" class="form-control" name="password" required>
+                            </div>
+                            <div class="deadline-form">
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
-                                        <label for="depone" class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="depone">
+                                        <label  class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="abc" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" birthdate="abc">
+                                        <label  class="form-label">Birthdate</label>
+                                        <input type="date" class="form-control" name="birthdate" required>
                                     </div>
                                 </div>
 
-                            </form>
-                        </div>
-                    
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                        <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
             </div>
         </div>
 
-    </div>     
+        <!-- Edit Recipients-->
+        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Recipients</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="../../UpdateRep-Servlet" method="post">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label  class="form-label">Id</label>
+                                <input type="text" class="form-control" id="id" name="id" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="text" class="form-control" name="password" id="password" required>
+                            </div>
+
+                            <div class="deadline-form">
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-sm-6">
+                                        <label  class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label  class="form-label">Birthdate</label>
+                                        <input type="date" class="form-control" name="birthdate" id="birthdate" required>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                            <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
- 
+
 <!-- Jquery Core Js -->
 <script src="../assets/bundles/libscripts.bundle.js"></script>
 
@@ -271,24 +283,34 @@
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
 <script>
-    
+
     $(document).ready(function() {
         $('#myProjectTable')
-        .addClass( 'nowrap' )
-        .dataTable( {
-            responsive: true,
-            columnDefs: [
-                { targets: [-1, -3], className: 'dt-body-right' }
-            ]
-        });
+            .addClass( 'nowrap' )
+            .dataTable( {
+                responsive: true,
+                columnDefs: [
+                    { targets: [-1, -3], className: 'dt-body-right' }
+                ]
+            });
         $('.deleterow').on('click',function(){
-        var tablename = $(this).closest('table').DataTable();  
-        tablename
+            var tablename = $(this).closest('table').DataTable();
+            tablename
                 .row( $(this)
-                .parents('tr') )
+                    .parents('tr') )
                 .remove()
                 .draw();
-
+        } );
+        $('.editrow').on('click',function(){
+            var Id = $(this).data('id');
+            var name=$(this).data('name');
+            var birthdate=$(this).data('birthdate');
+            var password=$(this).data('password');
+            $(".modal-body #id").val( Id );
+            $(".modal-body #name").val( name );
+            $(".modal-body #birthdate").val( birthdate );
+            $(".modal-body #password").val( password );
+            console.log('5');
         } );
     });
 </script>

@@ -85,7 +85,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-                </div>
+                 </div>
             </nav>
         </div>
 
@@ -165,7 +165,7 @@
                 </div><!-- Row End -->
             </div>
         </div>
-
+ 
         <!-- Add timeslot -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
@@ -177,7 +177,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="item" class="form-label">Number of Vaccine</label>
-                        <input type="text" class="form-control" Number of Vaccine="item">
+                        <input type="text" class="form-control"Number of Vaccine="item">
                     </div>
                     <div class="deadline-form">
                         <form>

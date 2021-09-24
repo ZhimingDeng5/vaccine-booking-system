@@ -14,25 +14,26 @@ public class QuestionaireMapper extends Mapper {
         // get the timeslot information from timeslot table
         ResultSet rs = super.findRow(id);
         try {
-            rs.next();
-            // look up the recipient and calculate the age of the recipient
-            long recID = rs.getLong("recID");
+            if(rs.next()) {
+                // look up the recipient and calculate the age of the recipient
+                long hcpID = rs.getLong("hcpID");
+                String vacType = rs.getString("vacType");
+                String q1 = rs.getString("q1");
+                String q2 = rs.getString("q2");
+                String q3 = rs.getString("q3");
+                String q4 = rs.getString("q4");
+                String q5 = rs.getString("q5");
 
-            RecipientMapper recipientMapper = new RecipientMapper();
-            Recipient recipient = recipientMapper.find(recID);
-            int age = recipientMapper.calculateAge(recID);
 
-            // get the questions information
-            QuestionMapper questionMapper = new QuestionMapper();
-            Question[] questions = questionMapper.findForQuestionaire(id);
-            Questionaire result = new Questionaire(id, recipient, age, questions);
-            return result;
+                Questionaire result = new Questionaire(id, vacType, hcpID, q1, q2, q3, q4, q5);
+                return result;
+            }
 
         }catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return new Questionaire(id, null, 0, new Question[0]);
+        return new Questionaire(id, null, 0, null,null,null,null,null);
 
     }
 }

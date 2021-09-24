@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -13,7 +16,20 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<%
+    long id= Long.parseLong(request.getParameter("id"));
+    String name="";
+    String type="";
+    HealthCareProvider hcp= null;
+    Vaccine[] vaccines=Vaccine.getMapper().findall();
+    try {
+        hcp = HealthCareProvider.getMapper().find(id);
+        name=hcp.getName();
+        type=hcp.getType();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -29,15 +45,9 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-<<<<<<< HEAD:src/main/webapp/src/ui-elements/Edit_questionnaire.html
-                <li><a class="m-link" href="Edit_questionnaire.html"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-                <li><a class="m-link" href="timeslot_list.html"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
-=======
                 <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
                 <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
                 <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
->>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Edit_questionnaire.jsp
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -79,11 +89,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-<<<<<<< HEAD:src/main/webapp/src/ui-elements/Edit_questionnaire.html
-                                        <a href="auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
-=======
                                         <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
->>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Edit_questionnaire.jsp
                                     </div>
                                 </div>
                             </div>
@@ -94,19 +100,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-<<<<<<< HEAD:src/main/webapp/src/ui-elements/Edit_questionnaire.html
 
-                    <!-- main menu Search-->
-                    <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
-                        <div class="input-group flex-nowrap input-group-lg">
-                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
-                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
-
-                        </div>
-                    </div>
-
-=======
->>>>>>> Frontend:target/Flying-Tiger-1.0-SNAPSHOT/src/ui-elements/Edit_questionnaire.jsp
                 </div>
             </nav>
         </div>
@@ -127,43 +121,51 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can edit questions.</h6>
+                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
                             </div>
                             <div class="card-body">
                                 <form>
                                     <div class="row g-3 align-items-center">
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Select Vaccine Type</label>
+                                            <select class="form-select" name="type">
+                                                <%for (Vaccine vaccine:vaccines){%>
+                                                <option value="<%=vaccine.getID()%>"><%=vaccine.getType()%> </option>
+                                                <%}%>
+                                            </select>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 1</label>
+                                                <label class="form-label">Question 1</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 2</label>
+                                                <label class="form-label">Question 2</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 3</label>
+                                                <label class="form-label">Question 3</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 4</label>
+                                                <label class="form-label">Question 4</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 5</label>
+                                                <label class="form-label">Question 5</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>

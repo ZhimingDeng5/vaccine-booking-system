@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -52,7 +53,9 @@
             </button>
         </div>
     </div>
-
+<%
+    HealthCareProvider[] hcps=HealthCareProvider.getMapper().findall();
+%>
     <!-- main body area -->
     <div class="main px-lg-4 px-md-4">
 
@@ -96,6 +99,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
+
                 </div>
             </nav>
         </div>
@@ -128,25 +132,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%for (HealthCareProvider hcp: hcps) {%>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                <%=hcp.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=hcp.getName()%>
                                            </td>
                                            <td>
-                                               <span class="fw-bold ms-1">A</span>
+                                               <span class="fw-bold ms-1"><%=hcp.getType()%></span>
                                            </td>
-                                           <td>
-                                                0000001
+                                           <td >
+                                                <%=hcp.getPost()%>
                                            </td>
+
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" data-id="<%=hcp.getID()%>" class="btn btn-outline-secondary editrow" data-password="<%=hcp.getPassword()%>"
+                                                            data-name="<%=hcp.getName()%>" data-type="<%=hcp.getType()%>" data-post="<%=hcp.getPost()%>"
+                                                            data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="submit" onclick="window.location='delete_hcp.jsp?id=<%=hcp.getID()%>'" class="btn btn-outline-secondary deleterow" ><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
+                                            <% } %>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -157,7 +166,8 @@
             </div>
         </div>
 
-        <!-- Add providers -->
+
+        <!-- Add Providers -->
         <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
@@ -166,39 +176,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <form id="form1" action="../../AddNewHcp-Servlet" method="post">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
-                    </div>
-                    <div class="mb-3">
-                        <label for="item" class="form-label">Password</label>
-                        <input type="text" class="form-control" password="item">
+                        <label  class="form-label">Password</label>
+                        <input type="text" class="form-control" name="password" required>
                     </div>
                     <div class="deadline-form">
-                        <form>
                             <div class="row g-3 mb-3">
                               <div class="col-sm-6">
-                                <label for="depone" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="depone">
+                                <label  class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" required>
                               </div>
                               <div class="col-sm-6">
-                                <label for="abc" class="form-label">Type</label>
-                                  <input type="text" class="form-control" type="depone">
+                                <label class="form-label">Type</label>
+                                  <input type="text" class="form-control" name="type" required>
                               </div>
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
-                                    <label for="depone" class="form-label">Postcode</label>
-                                    <input type="text" class="form-control" postcode="depone">
-                                </div>
+                                    <label  class="form-label">Postcode</label>
+                                    <input type="text" class="form-control" name="postcode" required>
+                                </div>      
                             </div>
-                        </form>
+
                     </div>
+                    </form>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form1').submit();">Add</button>
                 </div>
             </div>
             </div>
@@ -213,31 +220,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <form id="form2" action="../../UpdateHcp-Servlet" method="post">
                     <div class="mb-3">
-                        <label for="item" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="item">
+                        <label class="form-label">Id</label>
+                        <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Password</label>
+                        <input type="text" class="form-control" name="password" id="password" required>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
-                            <label for="depone" class="form-label">Name</label>
-                            <input type="text" class="form-control" Name="depone">
+                            <label  class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="col-sm-6">
-                            <label for="abc" class="form-label">Type</label>
-                            <input type="text" class="form-control" Type="depone">
+                            <label  class="form-label">Type</label>
+                            <input type="text" class="form-control" id="type" name="type" required>
                         </div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-sm-6">
-                            <label for="depone" class="form-label">Postcode</label>
-                            <input type="text" class="form-control" Postcode="depone">
+                            <label class="form-label">Postcode</label>
+                            <input type="text" class="form-control" id="post" name="post" required>
                         </div>
                     </div>
-                    
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('form2').submit();">Save</button>
                 </div>
             </div>
             </div>
@@ -266,6 +278,7 @@
             ]
         });
         $('.deleterow').on('click',function(){
+            console.log("1");
         var tablename = $(this).closest('table').DataTable();  
         tablename
                 .row( $(this)
@@ -274,7 +287,20 @@
                 .draw();
 
         } );
+        $('.editrow').on('click',function(){
+            var hcpId = $(this).data('id');
+            var name=$(this).data('name');
+            var type=$(this).data('type');
+            var post=$(this).data('post');
+            var password=$(this).data('password');
+            $(".modal-body #hcpId").val( hcpId );
+            $(".modal-body #name").val( name );
+            $(".modal-body #type").val( type );
+            $(".modal-body #post").val( post );
+            $(".modal-body #password").val( password );
+        } );
     });
+
 </script>
 </body>
 </html>

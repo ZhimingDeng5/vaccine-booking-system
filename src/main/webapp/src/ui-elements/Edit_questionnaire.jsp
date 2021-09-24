@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -13,7 +16,20 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<%
+    long id= Long.parseLong(request.getParameter("id"));
+    String name="";
+    String type="";
+    HealthCareProvider hcp= null;
+    Vaccine[] vaccines=Vaccine.getMapper().findall();
+    try {
+        hcp = HealthCareProvider.getMapper().find(id);
+        name=hcp.getName();
+        type=hcp.getType();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -84,6 +100,7 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
+
                 </div>
             </nav>
         </div>
@@ -104,43 +121,51 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can edit questions.</h6>
+                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
                             </div>
                             <div class="card-body">
                                 <form>
                                     <div class="row g-3 align-items-center">
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Select Vaccine Type</label>
+                                            <select class="form-select" name="type">
+                                                <%for (Vaccine vaccine:vaccines){%>
+                                                <option value="<%=vaccine.getID()%>"><%=vaccine.getType()%> </option>
+                                                <%}%>
+                                            </select>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 1</label>
+                                                <label class="form-label">Question 1</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 2</label>
+                                                <label class="form-label">Question 2</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 3</label>
+                                                <label class="form-label">Question 3</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 4</label>
+                                                <label class="form-label">Question 4</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 5</label>
+                                                <label class="form-label">Question 5</label>
                                                 <input type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>

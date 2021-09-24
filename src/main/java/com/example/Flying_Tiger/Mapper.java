@@ -8,13 +8,12 @@ import java.sql.SQLException;
  */
 public class Mapper {
     protected String table;
+    public static final DBConn dbc=new DBConn();
     public Mapper(String table){
         this.table = table;
     }
     // Find rows from table
     public ResultSet findRow(long id) throws SQLException {
-        DBConn dbc=new DBConn();
-        dbc.openDB();
         // get the row with this id
         String query = "SELECT * FROM " + this.table + " WHERE \"ID\" = ?";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
@@ -26,8 +25,6 @@ public class Mapper {
 
     public int getnum()
     {
-        DBConn dbc=new DBConn();
-        dbc.openDB();
         // get the row with this id
         String query = "SELECT COUNT (*) FROM " + this.table;
         ResultSet rs = dbc.execQuery(query);
