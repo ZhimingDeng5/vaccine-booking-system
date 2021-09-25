@@ -25,6 +25,29 @@ public class TimeslotMapper extends Mapper{
 
     }
 
+    public void insert(Long id, Date date, Time time) throws SQLException {
+        dbc.openDB();
+        String query = "INSERT INTO public." + super.table +
+                "(\"ID\", \"date\",\"time\") VALUES (?, ?, ?)";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, id);
+        myStmt.setDate(2, date);
+        myStmt.setTime(3, time);
+        myStmt.executeUpdate();
+    }
+
+    public void update(Timeslot timeslot) throws SQLException {
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set \"date\" = ?, \"time\"=?   WHERE  \"ID\" = ?; ";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setDate(1, timeslot.getDate());
+        myStmt.setTime(2, timeslot.getTime());
+        myStmt.setLong(3, timeslot.getTimeslotID());
+        myStmt.executeUpdate();
+    }
+
+
     /**
      * given timeslot date and timeslot time, return the ID
      * @param date, time
