@@ -1,5 +1,6 @@
 package com.example.Flying_Tiger;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +45,42 @@ public class HealthCareProviderMapper extends UserMapper {
         String query = "SELECT \"hcpID\" , \"timeslotID\"  FROM " + associationTable + " WHERE \"hcpID\" = ?";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, hcpID);
+        ResultSet rs = myStmt.executeQuery();
+        try {
+            int size = 0;
+            while (rs.next()) {
+                size++;
+            }
+            rs = myStmt.executeQuery();
+            Timeslot[] timeslots = new Timeslot[size];
+            TimeslotMapper timeslotMapper = new TimeslotMapper();
+            for (int i = 0; i < size; i++) {
+                rs.next();
+                timeslots[i] = timeslotMapper.find(rs.getLong("timeslotID"));
+            }
+            return timeslots;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Timeslot[0];
+    }
+
+    /**
+     * given hcpID and a specific date, return the timeslots which satisfy these
+     * @param hcpID
+     * @param date
+     * @return timeslot[]
+     * @throws SQLException
+     */
+    public Timeslot[] loadTimeslotsInDate(long hcpID, Date date) throws SQLException {
+        dbc.openDB();
+        String associationTable = "timeslot_healthcareprovider";
+        String query = "SELECT * FROM timeslot inner join timeslot_healthcareprovider on timeslot.\"ID\" = timeslot_healthcareprovider.\"timeslotID\"\n" +
+                "WHERE timeslot_healthcareprovider.\"hcpID\" = ? and \"date\"=?;";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, hcpID);
+        myStmt.setDate(2,date);
         ResultSet rs = myStmt.executeQuery();
         try {
             int size = 0;
