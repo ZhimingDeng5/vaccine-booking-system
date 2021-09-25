@@ -8,7 +8,11 @@ public class HealthCareProviderMapper extends UserMapper {
     public HealthCareProviderMapper() {
         super("healthcareprovider");
     }
-
+    private final static HealthCareProviderMapper instance=new HealthCareProviderMapper();
+    public static HealthCareProviderMapper getInstance()
+    {
+        return instance;
+    }
     @Override
     public HealthCareProvider find(long id) throws SQLException {
         ResultSet rs = this.findRow(id);

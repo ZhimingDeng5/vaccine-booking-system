@@ -102,6 +102,9 @@
                             <h3 class="fw-bold mb-0">Recipients List</h3>
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Recipients</button>
+                                <form action="../../submitChange-Servlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="confirm change">
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -29,12 +29,11 @@ public class AddNewRecServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        try {
-            Recipient.getMapper().insert(KeyTable.getKey("recipient"),
-                    password,name,birthdate);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            Recipient recipient=new Recipient(KeyTable.getKey("recipient"),password
+            ,name,birthdate);
+            Recipient.getMapper().getuow().registerNew(recipient);
+            //Recipient.getMapper().insert(KeyTable.getKey("recipient"),
+                    //password,name,birthdate);
         String script = "<script>location.href='src/ui-elements/manage_recipients.jsp'</script>";
         response.getWriter().println(script);
     }

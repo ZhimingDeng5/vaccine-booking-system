@@ -35,7 +35,7 @@ public class UpdateRepServlet extends HttpServlet {
             }
             Date birthdate=new java.sql.Date(birthdatedata.getTime());
             recipient.setBirth(birthdate);
-            Recipient.getMapper().update(recipient);
+            Recipient.getMapper().getuow().registerDirty(recipient);
         } catch (SQLException e) {
             e.printStackTrace();
         }

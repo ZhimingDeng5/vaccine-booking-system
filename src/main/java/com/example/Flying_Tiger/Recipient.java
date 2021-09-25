@@ -43,7 +43,7 @@ public class Recipient extends User {
     public boolean getInjected(){return injected;}
     public static RecipientMapper getMapper ()
     {
-        return new RecipientMapper();
+        return RecipientMapper.getInstance();
     }
 
 }
