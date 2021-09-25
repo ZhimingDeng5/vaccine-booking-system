@@ -70,8 +70,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
                                             </div>
                                         </div>
 

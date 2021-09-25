@@ -113,15 +113,14 @@
                                         <div class="card mb-3">
                                             <div class="card-body d-sm-flex justify-content-between">
                                                 <a href="javascript:void(0);" class="d-flex">
-                                                    <img class="avatar rounded-circle" src="../assets/images/xs/avatar1.jpg" alt="">
                                                     <div class="flex-fill ms-3 text-truncate">
-                                                        <h6 class="d-flex justify-content-between mb-0"><span>Dr.Ryan MacLeod</span></h6>
-                                                        <span class="text-muted">Recipient Id:0002230</span>
+                                                        <h6 class="d-flex justify-content-between mb-0"><span>Recipient Name: </span></h6>
+                                                        <span class="text-muted">Recipient Id: 0002230</span>
                                                     </div>
                                                 </a>
                                                 <div class="text-end d-none d-md-block">
-                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i> 2211 Jones Avenue,Winston Salem FL 27107</p>
-                                                    <span class="text-muted">03/09/2021 12:00</span>
+                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i>Provider: 2211 Jones Avenue,Winston Salem FL 27107</p>
+                                                    <span class="text-muted">Booking date&time: 03/09/2021 12:00</span>
                                                 </div>
                                             </div>
                                             <div class="card-footer justify-content-between d-flex align-items-center">

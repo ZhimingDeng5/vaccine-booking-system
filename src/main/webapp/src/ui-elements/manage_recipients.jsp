@@ -70,8 +70,7 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
                                             </div>
                                         </div>
 
@@ -102,8 +101,9 @@
                             <h3 class="fw-bold mb-0">Recipients List</h3>
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Recipients</button>
+
                                 <form action="../../submitChange-Servlet" method="post">
-                                <input type="submit" class="btn btn-primary" value="confirm change">
+                                    <input type="submit" class="btn btn-primary" style= "margin-left:10px" value="Confirm Change">
                                 </form>
                             </div>
                         </div>
