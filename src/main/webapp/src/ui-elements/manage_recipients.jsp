@@ -1,4 +1,16 @@
-﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+﻿<%//Browser fallback force refresh
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires", 0);
+    response.setHeader("Pragma","no-cache");
+%>
+<%
+    String script="";
+    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 1) {
+        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
+    }
+    response.getWriter().println(script);
+%>
+<%@ page import="com.example.Flying_Tiger.Recipient" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.sql.Time" %>
@@ -78,7 +90,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
