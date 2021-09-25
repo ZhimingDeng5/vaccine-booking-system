@@ -1,17 +1,17 @@
 ﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="com.example.Flying_Tiger.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Answer Questionnaire </title>
+    <title>Public Timeslot List</title>
     
     <!-- plugin css file  -->
-    <link rel="stylesheet" href="../assets/plugin/parsleyjs/css/parsley.css">
-
+    <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="../assets/plugin/datatables/dataTables.bootstrap5.min.css">
     <!-- project css file  -->
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
@@ -21,7 +21,6 @@
     String name="";
     String type="";
     HealthCareProvider hcp= null;
-    Vaccine[] vaccines=Vaccine.getMapper().findall();
     try {
         hcp = HealthCareProvider.getMapper().find(id);
         name=hcp.getName();
@@ -102,100 +101,105 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-
-                </div>
+                 </div>
             </nav>
         </div>
 
-
-        <!-- Body: Body -->
-        <div class="body d-flex py-3">
+        <!-- Body: Body -->       
+        <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">Public Timeslot List</h3>
+                            <div class="col-auto d-flex w-sm-100">
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" ></i>Add to my timeslot</button>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
-
-                <div class="row align-item-center">
-                    <div class="col-md-12">
+                <div class="row clearfix g-3">
+                    <div class="col-sm-12">
                         <div class="card mb-3">
-                            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
-                            </div>
                             <div class="card-body">
-                                <form action="../../AddQuestionnaire-Servlet?id=<%=id%>" method="post">
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-sm-6">
-                                            <label class="form-label">Select Vaccine Type</label>
-                                            <select class="form-select" name="type">
-                                                <%for (Vaccine vaccine:vaccines){%>
-                                                <option value="<%=vaccine.getID()%>"><%=vaccine.getType()%> </option>
-                                                <%}%>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 1</label>
-                                                <input type="text" class="form-control" name="question1" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 2</label>
-                                                <input type="text" class="form-control" name="question2">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 3</label>
-                                                <input type="text" class="form-control" name="question3">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 4</label>
-                                                <input type="text" class="form-control" name="question4">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 5</label>
-                                                <input type="text" class="form-control" name="question5">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <input type="submit" class="btn btn-primary mt-4" value="Submit">
-                                </form>
+                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                #EX-00002
+                                            </td>
+                                            <td>
+                                                12/03/2021
+                                            </td>
+                                            <td>
+                                                12:00
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                #EX-00005
+                                            </td>
+                                            <td>
+                                                12/05/2021
+                                            </td>
+                                            <td>
+                                                11:00
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><!-- Row End -->
             </div>
-        </div> 
-
-    </div> 
-  
+        </div>
+    </div>     
 </div>
-
+ 
 <!-- Jquery Core Js -->
 <script src="../assets/bundles/libscripts.bundle.js"></script>
 
 <!-- Plugin Js-->
-<script src="../assets/plugin/parsleyjs/js/parsley.js"></script>
-    
+<script src="../assets/bundles/dataTables.bundle.js"></script>
 
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
 <script>
-    $(function() {
-        // initialize after multiselect
-        $('#basic-form').parsley();
+    
+    $(document).ready(function() {
+        $('#myProjectTable')
+        .addClass( 'nowrap' )
+        .dataTable( {
+            responsive: true,
+            columnDefs: [
+                { targets: [-1, -3], className: 'dt-body-right' }
+            ]
+        });
+        $('.deleterow').on('click',function(){
+        var tablename = $(this).closest('table').DataTable();  
+        tablename
+                .row( $(this)
+                .parents('tr') )
+                .remove()
+                .draw();
+
+        } );
     });
 </script>
- 
 </body>
-</html> 
+</html>
