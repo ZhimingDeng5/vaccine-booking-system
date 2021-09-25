@@ -62,8 +62,7 @@
             <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
             <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
             <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
-            <li><a class="m-link" href="public_timeslot.jsp?id=<%=id%>"><i class="icofont-ui-timer fs-5"></i> <span>Public Timeslots</span></a></li>
-        </ul>
+            </ul>
 
         <!-- Menu: menu collepce btn -->
         <button type="button" class="btn btn-link sidebar-mini-btn text-light">

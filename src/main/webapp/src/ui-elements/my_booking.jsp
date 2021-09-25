@@ -140,6 +140,9 @@
                                                     <strong>Status:</strong>
                                                     <span>Completed</span>
                                                 </div>
+                                                <div class="card-hover-show">
+                                                    <a class="btn btn-sm btn-white border lift" href="#">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

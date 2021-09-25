@@ -61,8 +61,7 @@
                 <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
                 <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
                 <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
-                <li><a class="m-link" href="public_timeslot.jsp?id=<%=id%>"><i class="icofont-ui-timer fs-5"></i> <span>Public Timeslots</span></a></li>
-            </ul>
+              </ul>
 
             <!-- Menu: menu collepce btn -->
             <button type="button" class="btn btn-link sidebar-mini-btn text-light">
@@ -126,7 +125,7 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">Add Questionnaire</h3>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -135,7 +134,7 @@
                     <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
+                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and add questions.</h6>
                             </div>
                             <div class="card-body">
                                 <form action="../../AddQuestionnaire-Servlet?id=<%=id%>" method="post">
