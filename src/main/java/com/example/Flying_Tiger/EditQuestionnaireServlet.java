@@ -6,8 +6,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "AddQuestionnaireServlet", value = "/AddQuestionnaire-Servlet")
-public class AddQuestionnaireServlet extends HttpServlet {
+@WebServlet(name = "EditQuestionnaireServlet", value = "/EditQuestionnaire-Servlet")
+public class EditQuestionnaireServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,14 +22,15 @@ public class AddQuestionnaireServlet extends HttpServlet {
         String q3=request.getParameter("question3");
         String q4=request.getParameter("question4");
         String q5=request.getParameter("question5");
-        long id=KeyTable.getKey("questionaire");
-        //Questionaire questionnaire=new Questionaire(id,type,hcpid,question1,question2,question3,question4,question5);
+        long id= Long.parseLong((request.getParameter("qid")));
+        Questionaire questionnaire=new Questionaire(id,type,hcpid,q1,q2,q3,q4,q5);
         try {
-            Questionaire.getMapper().insert(id,type,hcpid,q1,q2,q3,q4,q5);
+            Questionaire.getMapper().update(questionnaire);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String script = "<script>location.href='src/ui-elements/Add_questionnaire.jsp?id="+hcpid+"'</script>";
+        String script = "<script>location.href='src/ui-elements/Edit_questionnaire.jsp?id="+hcpid+"'</script>";
         response.getWriter().println(script);
     }
+
 }

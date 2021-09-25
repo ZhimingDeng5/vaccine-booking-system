@@ -30,6 +30,18 @@ public class Questionaire {
         return questions;
     }
 
+    public long getHcpID() {
+        return hcpID;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public String getVacType() {
+        return vacType;
+    }
+
     public String getQ1(){return q1;}
     public String getQ2(){return q2;}
     public String getQ3(){return q3;}
