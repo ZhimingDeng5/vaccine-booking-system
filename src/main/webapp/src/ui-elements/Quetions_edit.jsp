@@ -1,26 +1,15 @@
-﻿<%//Browser fallback force refresh
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires", 0);
-    response.setHeader("Pragma","no-cache");
-%>
-<%
-    String script="";
-    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 3) {
-        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
-    }
-    response.getWriter().println(script);
-%>
 <%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Questionaire" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Answer Questionnaire </title>
-    
+    <title>Edit Questionnaire </title>
+
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/parsleyjs/css/parsley.css">
 
@@ -29,15 +18,16 @@
 </head>
 <body>
 <%
-    long id= Long.parseLong(request.getParameter("id"));
+    long qid= Long.parseLong(request.getParameter("id"));
+    long id=Long.parseLong(request.getParameter("hcpid"));
+    String qtype=request.getParameter("type");
     String name="";
-    String type="";
     HealthCareProvider hcp= null;
-    Vaccine[] vaccines=Vaccine.getMapper().findall();
+    String[] questions={"","","","",""};
     try {
+        questions=Questionaire.getMapper().find(qid).getQuestions();
         hcp = HealthCareProvider.getMapper().find(id);
         name=hcp.getName();
-        type=hcp.getType();
     } catch (SQLException e) {
         e.printStackTrace();
     }
@@ -83,7 +73,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%></span></p>
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -103,7 +93,7 @@
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +116,10 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">Edit Questionnaire</h3>
+                            <div class="col-auto d-flex w-sm-100">
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" ></i>Back</button>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -138,48 +131,44 @@
                                 <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
                             </div>
                             <div class="card-body">
-                                <form action="../../AddQuestionnaire-Servlet?id=<%=id%>" method="post">
+                                <form action="../../EditQuestionnaire-Servlet?id=<%=id%>&qid=<%=qid%>" method="post">
                                     <div class="row g-3 align-items-center">
                                         <div class="col-sm-6">
                                             <label class="form-label">Select Vaccine Type</label>
-                                            <select class="form-select" name="type">
-                                                <%for (Vaccine vaccine:vaccines){%>
-                                                <option value="<%=vaccine.getType()%>"><%=vaccine.getType()%> </option>
-                                                <%}%>
-                                            </select>
+                                            <input type="text" class="form-control" name="type" value="<%=qtype%>" readonly="readonly">
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Question 1</label>
-                                                <input type="text" class="form-control" name="question1" required>
+                                                <input type="text" class="form-control" name="question1" value="<%=questions[0]%>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Question 2</label>
-                                                <input type="text" class="form-control" name="question2" required>
+                                                <input type="text" class="form-control" name="question2" value="<%=questions[1]%>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Question 3</label>
-                                                <input type="text" class="form-control" name="question3" required>
+                                                <input type="text" class="form-control" name="question3" value="<%=questions[2]%>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Question 4</label>
-                                                <input type="text" class="form-control" name="question4" required>
+                                                <input type="text" class="form-control" name="question4" value="<%=questions[3]%>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label">Question 5</label>
-                                                <input type="text" class="form-control" name="question5" required>
+                                                <input type="text" class="form-control" name="question5" value="<%=questions[4]%>" required>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <input type="submit" class="btn btn-primary mt-4" value="Submit">
                                 </form>
                             </div>
@@ -187,10 +176,10 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
-    </div> 
-  
+    </div>
+
 </div>
 
 <!-- Jquery Core Js -->
@@ -198,7 +187,7 @@
 
 <!-- Plugin Js-->
 <script src="../assets/plugin/parsleyjs/js/parsley.js"></script>
-    
+
 
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
@@ -208,6 +197,7 @@
         $('#basic-form').parsley();
     });
 </script>
- 
+
 </body>
-</html> 
+</html>
+

@@ -130,15 +130,6 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label class="form-label">Select Vaccine Type</label>
-                                                <select class="form-select">
-                                                    <option selected>A </option>
-                                                    <option value="1">B </option>
-                                                    <option value="2">C </option>
-                                                    <option value="3">D </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
                                                 <label for="abc" class="form-label">Select Date</label>
                                                 <input type="date" class="form-control" id="abc">
                                             </div>

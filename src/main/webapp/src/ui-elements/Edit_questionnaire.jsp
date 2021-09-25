@@ -13,6 +13,7 @@
 <%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Questionaire" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -119,7 +120,9 @@
             </nav>
         </div>
 
-
+<%
+    Questionaire[] questionaires=Questionaire.getMapper().findall(id);
+%>
         <!-- Body: Body -->
         <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
@@ -144,25 +147,32 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%for (Questionaire questionaire:questionaires) {%>
                                     <tr>
                                         <td>
-                                            00111
+                                            <%=questionaire.getID()%>
                                         </td>
                                         <td>
-                                            2323
+                                            <%=questionaire.getHcpID()%>
                                         </td>
                                         <td>
-                                            type
+                                            <%=questionaire.getVacType()%>
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" data-id="00" data-name="00"
-                                                        data-password="00" data-birthdate="00"
-                                                        class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                <button type="button" onclick="window.location='00'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                <button type="button" data-id="00"
+                                                        class="btn btn-outline-secondary editrow"
+                                                        onclick="window.location='Quetions_edit.jsp?id=<%=questionaire.getID()%>&hcpid=<%=id%>&type=<%=questionaire.getVacType()%>'
+                                                                ">
+                                                    <i class="icofont-edit text-success"></i></button>
+                                                <button type="button" onclick="window.location='delete_questionnaire.jsp?id=<%=questionaire.getID()%>&hcpid=<%=id%>'"
+                                                        class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                             </div>
                                         </td>
                                     </tr>
+                                    <%
+                                    }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
@@ -171,62 +181,8 @@
                 </div><!-- Row End -->
             </div>
         </div>
-        <!-- Edit Recipients-->
-        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Questionnaire</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+        <!-- Edit Questions-->
 
-                    <form id="form2" action="../../UpdateHcp-Servlet" method="post">
-                        <div class="modal-body">
-
-<%--                            <div class="mb-3">--%>
-<%--                                <label class="form-label">Questionnaire Id</label>--%>
-<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
-<%--                            </div>--%>
-<%--                            <div class="mb-3">--%>
-<%--                                <label class="form-label">Provider Id</label>--%>
-<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
-<%--                            </div>--%>
-<%--                            <div class="mb-3">--%>
-<%--                                <label class="form-label">Vaccine Type</label>--%>
-<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
-<%--                            </div>--%>
-                            <div class="mb-3">
-                                <label  class="form-label">Question 1</label>
-                                <input type="text" class="form-control" name="question1" id="question1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label  class="form-label">Question 2</label>
-                                <input type="text" class="form-control" name="question1" id="question1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label  class="form-label">Question 3</label>
-                                <input type="text" class="form-control" name="question1" id="question1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label  class="form-label">Question 4</label>
-                                <input type="text" class="form-control" name="question1" id="question1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label  class="form-label">Question 5</label>
-                                <input type="text" class="form-control" name="question1" id="question1" required>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                            <input type="submit" class="btn btn-primary" value="Save">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- Jquery Core Js -->
@@ -242,6 +198,35 @@
     $(function() {
         // initialize after multiselect
         $('#basic-form').parsley();
+    });
+    $(document).ready(function() {
+        $('#myProjectTable')
+            .addClass( 'nowrap' )
+            .dataTable( {
+                responsive: true,
+                columnDefs: [
+                    { targets: [-1, -3], className: 'dt-body-right' }
+                ]
+            });
+        $('.deleterow').on('click',function(){
+            var tablename = $(this).closest('table').DataTable();
+            tablename
+                .row( $(this)
+                    .parents('tr') )
+                .remove()
+                .draw();
+        } );
+        $('.editrow').on('click',function(){
+            var Id = $(this).data('id');
+            var name=$(this).data('name');
+            var birthdate=$(this).data('birthdate');
+            var password=$(this).data('password');
+            $(".modal-body #id").val( Id );
+            $(".modal-body #name").val( name );
+            $(".modal-body #birthdate").val( birthdate );
+            $(".modal-body #password").val( password );
+            console.log('5');
+        } );
     });
 </script>
  

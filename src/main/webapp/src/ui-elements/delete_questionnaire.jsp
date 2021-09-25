@@ -22,10 +22,10 @@
 
 <body>
 <%
-    Long id=Long.parseLong(request.getParameter("id"));
     Long hcpid=Long.parseLong(request.getParameter("hcpid"));
-    Recipient.getMapper().deletebooking(id,hcpid);
-    String script = "<script>location.href='view_booking.jsp'</script>";
+    Long id=Long.parseLong(request.getParameter("id"));
+    Questionaire.getMapper().delete(id);
+    String script = "<script>location.href='Edit_questionnaire.jsp?id="+hcpid.toString()+"'</script>";
     response.getWriter().println(script);
 %>
 </body>
