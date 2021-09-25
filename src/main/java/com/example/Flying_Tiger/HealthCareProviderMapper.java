@@ -57,8 +57,8 @@ public class HealthCareProviderMapper extends UserMapper {
             for (int i = 0; i < size; i++) {
                 rs.next();
                 timeslots[i] = timeslotMapper.find(rs.getLong("timeslotID"));
+                return timeslots;
             }
-            return timeslots;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,6 +81,40 @@ public class HealthCareProviderMapper extends UserMapper {
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, hcpID);
         myStmt.setDate(2,date);
+        ResultSet rs = myStmt.executeQuery();
+        try {
+            int size = 0;
+            while (rs.next()) {
+                size++;
+            }
+            rs = myStmt.executeQuery();
+            Timeslot[] timeslots = new Timeslot[size];
+            TimeslotMapper timeslotMapper = new TimeslotMapper();
+            for (int i = 0; i < size; i++) {
+                rs.next();
+                timeslots[i] = timeslotMapper.find(rs.getLong("timeslotID"));
+            }
+            return timeslots;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Timeslot[0];
+    }
+
+    /**
+     * given hcpID , return the timeslots which don't satisfy this hcp
+     * @param hcpID
+     * @return timeslot[]
+     * @throws SQLException
+     */
+    public Timeslot[] loadTimeslotsNotMine(long hcpID) throws SQLException {
+        dbc.openDB();
+        String associationTable = "timeslot_healthcareprovider";
+        String query = "SELECT * FROM timeslot inner join timeslot_healthcareprovider on timeslot.\"ID\" = timeslot_healthcareprovider.\"timeslotID\"\n" +
+                "WHERE timeslot_healthcareprovider.\"hcpID\" != ?;";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, hcpID);
         ResultSet rs = myStmt.executeQuery();
         try {
             int size = 0;
