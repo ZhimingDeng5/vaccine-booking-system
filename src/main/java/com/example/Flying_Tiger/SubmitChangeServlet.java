@@ -15,7 +15,7 @@ public class SubmitChangeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Recipient.getMapper().getuow().commit();
-        String script = "<script>location.href='manage_recipients.jsp'</script>";
+        String script = "<script>location.href='src/ui-elements/manage_recipients.jsp'</script></script>";
         response.getWriter().println(script);
     }
 }
