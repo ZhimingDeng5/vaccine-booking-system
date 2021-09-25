@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="java.sql.SQLException" %>
+<!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
 <head>
@@ -14,7 +16,19 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-
+<%
+    long id= Long.parseLong(request.getParameter("id"));
+    String name="";
+    String type="";
+    HealthCareProvider hcp= null;
+    try {
+        hcp = HealthCareProvider.getMapper().find(id);
+        name=hcp.getName();
+        type=hcp.getType();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -29,10 +43,10 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-                <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-                <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+                <li><a class="m-link" href="Provider_profile.jsp?id=<%=id%>"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+                <li><a class="m-link" href="Add_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+                <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+                <li><a class="m-link" href="timeslot_list.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->

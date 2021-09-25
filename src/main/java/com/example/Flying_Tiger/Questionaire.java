@@ -45,4 +45,8 @@ public class Questionaire {
     public void setQ5(String q5) {
         this.q5 = q5;
     }
+    public static QuestionaireMapper getMapper()
+    {
+        return new QuestionaireMapper();
+    }
 }

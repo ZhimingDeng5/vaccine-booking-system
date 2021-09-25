@@ -1,5 +1,6 @@
 package com.example.Flying_Tiger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -35,5 +36,21 @@ public class QuestionaireMapper extends Mapper {
 
         return new Questionaire(id, null, 0, null,null,null,null,null);
 
+    }
+    public void insert(long id, String type, long hcpid, String q1,String q2,String q3,
+                       String q4,String q5) throws SQLException {
+        dbc.openDB();
+        String query = "INSERT INTO public." + super.table +
+                "(\"ID\", \"vacType\", \"hcpID\", q1, q2,q3,q4,q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, id);
+        myStmt.setString(2, type);
+        myStmt.setLong(3, hcpid);
+        myStmt.setString(4, q1);
+        myStmt.setString(5, q2);
+        myStmt.setString(6, q3);
+        myStmt.setString(7, q4);
+        myStmt.setString(8, q5);
+        myStmt.executeUpdate();
     }
 }
