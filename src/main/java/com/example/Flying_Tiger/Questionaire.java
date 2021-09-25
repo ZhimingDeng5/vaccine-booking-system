@@ -1,5 +1,7 @@
 package com.example.Flying_Tiger;
 
+import java.sql.SQLException;
+
 public class Questionaire {
     private long ID;
     private String vacType;
@@ -20,6 +22,14 @@ public class Questionaire {
         this.q5 = q5;
 
     }
+    public String[] getQuestions() throws SQLException {
+        if(this.q1 == null || this.q2 == null || this.q3 == null || this.q4 == null || this.q5 == null){
+            load();
+        }
+        String[] questions = {this.q1, this.q2, this.q3, this.q4, this.q5};
+        return questions;
+    }
+
     public String getQ1(){return q1;}
     public String getQ2(){return q2;}
     public String getQ3(){return q3;}
@@ -44,6 +54,19 @@ public class Questionaire {
 
     public void setQ5(String q5) {
         this.q5 = q5;
+    }
+
+    /**
+     * lazy load
+     * @throws SQLException
+     */
+    void load() throws SQLException {
+        Questionaire q = this.getMapper().find(this.ID);
+        if(this.q1 == null) this.q1 = q.getQ1();
+        if(this.q2 == null) this.q2 = q.getQ2();
+        if(this.q3 == null) this.q3 = q.getQ3();
+        if(this.q4 == null) this.q4 = q.getQ4();
+        if(this.q5 == null) this.q5 = q.getQ5();
     }
     public static QuestionaireMapper getMapper()
     {
