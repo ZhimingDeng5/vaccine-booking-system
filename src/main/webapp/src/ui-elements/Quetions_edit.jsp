@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Answer Questionnaire </title>
+    <title>Edit Questionnaire </title>
 
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/parsleyjs/css/parsley.css">
@@ -77,13 +77,13 @@
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av3.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
                                                 <small class="">ID:0020392</small>
@@ -116,7 +116,10 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">Edit Questionnaire</h3>
+                            <div class="col-auto d-flex w-sm-100">
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" ></i>Back</button>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
