@@ -128,7 +128,7 @@
                             <div class="card-body d-flex teacher-fulldeatil">
                                 <div class="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
                                     <a href="#">
-                                        <img src="../assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                        <img src="../assets/images/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     </a>
                                 </div>
                                 <div class="teacher-info border-start ps-xl-4 ps-md-4 ps-sm-4 ps-4 w-100">

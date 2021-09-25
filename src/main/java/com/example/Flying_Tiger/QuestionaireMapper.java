@@ -12,11 +12,10 @@ public class QuestionaireMapper extends Mapper {
         super("questionaire");
     }
     public Questionaire find(long id) throws SQLException {
-        // get the timeslot information from timeslot table
+        // find questionaire by id
         ResultSet rs = super.findRow(id);
         try {
             if(rs.next()) {
-                // look up the recipient and calculate the age of the recipient
                 long hcpID = rs.getLong("hcpID");
                 String vacType = rs.getString("vacType");
                 String q1 = rs.getString("q1");
