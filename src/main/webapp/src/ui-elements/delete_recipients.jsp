@@ -23,7 +23,7 @@
 <body>
 <%
   Long id=Long.parseLong(request.getParameter("id"));
-  Recipient.getMapper().delete(id);
+  Recipient.getMapper().getuow().registerDeleted(id);
   String script = "<script>location.href='manage_recipients.jsp'</script>";
   response.getWriter().println(script);
 %>

@@ -7,6 +7,14 @@ public class RecipientMapper extends UserMapper {
     public RecipientMapper(){
         super("recipient");
     }
+    private final static RecipientMapper instance=new RecipientMapper();
+    private final static UnitOfWorkOfRecipient uow=new UnitOfWorkOfRecipient();
+    public static RecipientMapper getInstance()
+    {
+        return instance;
+    }
+    public UnitOfWorkOfRecipient getuow()
+    {return uow;}
     @Override
     public Recipient find(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
