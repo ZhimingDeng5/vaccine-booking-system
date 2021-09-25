@@ -44,10 +44,12 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li><a class="m-link" href="Provider_profile.jsp"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-                <li><a class="m-link" href="Edit_questionnaire.jsp"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
-                <li><a class="m-link" href="booking_list.jsp"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-                <li><a class="m-link" href="timeslot_list.jsp"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+                <li><a class="m-link" href="Provider_profile.jsp?id=<%=id%>"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+                <li><a class="m-link" href="Add_questionnaire.jsp?id=<%=id%>"><i class="icofont-paper fs-5"></i> <span>Add questionnaire</span></a></li>
+                <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+                <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
+                <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
+                <li><a class="m-link" href="public_timeslot.jsp?id=<%=id%>"><i class="icofont-ui-timer fs-5"></i> <span>Public Timeslots</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -107,77 +109,113 @@
 
 
         <!-- Body: Body -->
-        <div class="body d-flex py-3">
+        <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Questionnaire</h3>
+                            <h3 class="fw-bold mb-0">My Questionnaires List</h3>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
-
-                <div class="row align-item-center">
-                    <div class="col-md-12">
+                <div class="row clearfix g-3">
+                    <div class="col-sm-12">
                         <div class="card mb-3">
-                            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">You can select a vaccine type and edit questions.</h6>
-                            </div>
                             <div class="card-body">
-                                <form>
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-sm-6">
-                                            <label class="form-label">Select Vaccine Type</label>
-                                            <select class="form-select" name="type">
-                                                <%for (Vaccine vaccine:vaccines){%>
-                                                <option value="<%=vaccine.getID()%>"><%=vaccine.getType()%> </option>
-                                                <%}%>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 1</label>
-                                                <input type="text" class="form-control" required>
+                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Questionnaire Id</th>
+                                        <th>Provider Id</th>
+                                        <th>Vaccine Type</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            00111
+                                        </td>
+                                        <td>
+                                            2323
+                                        </td>
+                                        <td>
+                                            type
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                <button type="button" data-id="00" data-name="00"
+                                                        data-password="00" data-birthdate="00"
+                                                        class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                <button type="button" onclick="window.location='00'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 2</label>
-                                                <input type="text" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 3</label>
-                                                <input type="text" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 4</label>
-                                                <input type="text" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Question 5</label>
-                                                <input type="text" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                                </form>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                </div><!-- Row End -->
+            </div>
+        </div>
+        <!-- Edit Recipients-->
+        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Questionnaire</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form id="form2" action="../../UpdateHcp-Servlet" method="post">
+                        <div class="modal-body">
+
+<%--                            <div class="mb-3">--%>
+<%--                                <label class="form-label">Questionnaire Id</label>--%>
+<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
+<%--                            </div>--%>
+<%--                            <div class="mb-3">--%>
+<%--                                <label class="form-label">Provider Id</label>--%>
+<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
+<%--                            </div>--%>
+<%--                            <div class="mb-3">--%>
+<%--                                <label class="form-label">Vaccine Type</label>--%>
+<%--                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">--%>
+<%--                            </div>--%>
+                            <div class="mb-3">
+                                <label  class="form-label">Question 1</label>
+                                <input type="text" class="form-control" name="question1" id="question1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Question 2</label>
+                                <input type="text" class="form-control" name="question1" id="question1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Question 3</label>
+                                <input type="text" class="form-control" name="question1" id="question1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Question 4</label>
+                                <input type="text" class="form-control" name="question1" id="question1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Question 5</label>
+                                <input type="text" class="form-control" name="question1" id="question1" required>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div> 
-
-    </div> 
-  
+        </div>
+    </div>
 </div>
+
 
 <!-- Jquery Core Js -->
 <script src="../assets/bundles/libscripts.bundle.js"></script>

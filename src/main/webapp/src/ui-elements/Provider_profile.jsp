@@ -20,11 +20,13 @@
     long id= Long.parseLong(request.getParameter("id"));
     String name="";
     String type="";
+    int postcode=0;
     HealthCareProvider hcp= null;
     try {
         hcp = HealthCareProvider.getMapper().find(id);
         name=hcp.getName();
         type=hcp.getType();
+        postcode=hcp.getPost();
     } catch (SQLException e) {
         e.printStackTrace();
     }
@@ -44,9 +46,11 @@
 
         <ul class="menu-list flex-grow-1 mt-3">
             <li><a class="m-link" href="Provider_profile.jsp?id=<%=id%>"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
+            <li><a class="m-link" href="Add_questionnaire.jsp?id=<%=id%>"><i class="icofont-paper fs-5"></i> <span>Add questionnaire</span></a></li>
             <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
             <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-            <li><a class="m-link" href="timeslot_list.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+            <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
+            <li><a class="m-link" href="public_timeslot.jsp?id=<%=id%>"><i class="icofont-ui-timer fs-5"></i> <span>Public Timeslots</span></a></li>
         </ul>
 
         <!-- Menu: menu collepce btn -->
@@ -99,7 +103,6 @@
                     <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
                         <span class="fa fa-bars"></span>
                     </button>
-
                 </div>
             </nav>
         </div>
@@ -107,7 +110,6 @@
         <!-- Body: Body -->
         <div class="body d-flex py-3">
             <div class="container-xxl">
-
                 <div class="row g-3">
                     <div class="col-xl-12 col-lg-12 col-md-12">
                         <div class="card teacher-card  mb-3">
@@ -116,31 +118,26 @@
                                     <a href="#">
                                         <img src="../assets/images/lg/avatar3.jpg" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     </a>
-                                    <div class="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                        <span class="text-muted small">ID : <%=id%></span>
-                                    </div>
                                 </div>
                                 <div class="teacher-info border-start ps-xl-4 ps-md-4 ps-sm-4 ps-4 w-100">
-                                    <h6  class="mb-0 mt-2  fw-bold d-block fs-6"><%=name%></h6>
-                                    <span class="py-1 fw-bold small-11 mb-0 mt-1 text-muted">Heart Surgeon,Sydney, Australia</span>
-                                    <p class="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim. Aenean sed erat ut est commodo tristique ac a metus. Praesent efficitur congue orci. Fusce in mi condimentum mauris maximus sodales. Quisque dictum est augue, vitae cursus quam finibus in. Nulla at tempus enim. Fusce sed mi et nibh laoreet consectetur nec vitae lacus.</p>
-                                    <div class="row g-2 pt-2">
-                                        <div class="col-xl-5">
-                                            <div class="d-flex align-items-center">
-                                                <i class="icofont-ui-touch-phone"></i>
-                                                <span class="ms-2">202-555-0174 </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5">
+                                    <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Name: <%=name%></h6>
+                                     <div class="row g-2 pt-2">
+                                         <div class="col-xl-12">
+                                             <div class="d-flex align-items-center">
+                                                 <i class="icofont-teacher"></i>
+                                                 <span class="ms-2">Provider ID: <%=id%></span>
+                                             </div>
+                                         </div>
+                                         <div class="col-xl-12">
                                             <div class="d-flex align-items-center">
                                                 <i class="icofont-home"></i>
-                                                <span class="ms-2"><%=type%></span>
+                                                <span class="ms-2">Type of provider: <%=type%></span>
                                             </div>
                                         </div>
-                                        <div class="col-xl-5">
+                                        <div class="col-xl-12">
                                             <div class="d-flex align-items-center">
                                                 <i class="icofont-address-book"></i>
-                                                <span class="ms-2">2734  West Fork Street,EASTON.</span>
+                                                <span class="ms-2">Postcode: <%=postcode%></span>
                                             </div>
                                         </div>
                                     </div>
