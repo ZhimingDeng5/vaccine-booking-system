@@ -23,7 +23,8 @@
 <body>
 <%
     Long id=Long.parseLong(request.getParameter("id"));
-    Recipient.getMapper().deletebooking(id);
+    Long hcpid=Long.parseLong(request.getParameter("hcpid"));
+    Recipient.getMapper().deletebooking(id,hcpid);
     String script = "<script>location.href='view_booking.jsp'</script>";
     response.getWriter().println(script);
 %>

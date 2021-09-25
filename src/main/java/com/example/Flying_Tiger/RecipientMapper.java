@@ -63,7 +63,7 @@ public class RecipientMapper extends UserMapper {
             e.printStackTrace();
         }
     }
-    public void deletebooking(long id) {
+    public void deletebooking(long id,long hcpid) {
 
         dbc.openDB();
         // update
@@ -71,11 +71,18 @@ public class RecipientMapper extends UserMapper {
         try {
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, id);
+
+        System.out.println(hcpid+" "+this.getTimeslotID(id));
+        String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"+1 WHERE \"hcpID\"="+hcpid+
+                " AND \"timeslotID\"="+this.getTimeslotID(id);
+        PreparedStatement myStmt2=dbc.setPreparedStatement(query2);
+        myStmt2.executeUpdate();
         myStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public int getnumOfBooking()
     {
         String query = "SELECT COUNT (*) FROM " + this.table+" WHERE \"timeslotID\" is not null";
@@ -226,6 +233,21 @@ public class RecipientMapper extends UserMapper {
 
         }
         return null;
+    }
+    public long getTimeslotID(long id)throws SQLException{
+        ResultSet rs=this.findRow(id);
+        if(rs.next())
+        {
+            return rs.getLong("timeslotID");
+        }
+        return 0;
+    }
+    public long getHcpID(long id)throws SQLException {
+        ResultSet rs = this.findRow(id);
+        if (rs.next()) {
+            return rs.getLong("hcpID");
+        }
+        return 0;
     }
     public String getHcpName(long id) throws SQLException {
         ResultSet rs = this.findRow(id);
