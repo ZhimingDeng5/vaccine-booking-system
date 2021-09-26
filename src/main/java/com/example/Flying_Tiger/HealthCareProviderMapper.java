@@ -125,7 +125,6 @@ public class HealthCareProviderMapper extends UserMapper {
         }
         return new Timeslot[0];
     }
-
     /**
      * given health care provider name, return the ID
      *
@@ -192,7 +191,26 @@ public class HealthCareProviderMapper extends UserMapper {
             e.printStackTrace();
         }
         return new HealthCareProvider[0];
+    }
+    public Questionaire findquestionnaire(Long hcpid,String type){
+        dbc.openDB();
+        // update
+        String query = "SELECT * FROM " + this.table + " WHERE \"hcpID\" = ?, \"vacType\"=?; ";
+        PreparedStatement myStmt = null;
+        try {
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, hcpid);
+            myStmt.setString(2, type);
+            ResultSet rs = myStmt.executeQuery();
+            if (rs.next())
+            {
 
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public HealthCareProvider[] findallWithTimeslot(Date date)
     {
