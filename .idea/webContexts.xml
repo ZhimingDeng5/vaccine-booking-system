@@ -7,6 +7,8 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/sign.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/Admin_Dashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/Edit_questionnaire.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/booking_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements/manage_providers.jsp" value="file://$PROJECT_DIR$/src/main/webapp/src/ui-elements" />
       </map>
     </option>
   </component>

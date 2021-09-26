@@ -127,9 +127,6 @@
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                             <h3 class="fw-bold mb-0">Booking List</h3>
-                            <div class="col-auto d-flex w-sm-100">
-                                <button type="submit" class="btn btn-primary btn-set-task w-sm-100" ></i>Save</button>
-                            </div>
                         </div>
                     </div>
                 </div> <!-- Row end  -->
@@ -167,21 +164,11 @@
                                            <td>
                                                <%=Recipient.getMapper().timeslotTime(recipient.getID())%>>
                                            </td>
-                                            <td>
-                                                <select class="form-select" name="status<%=recipient.getID()%>">
-                                                    <%if(recipient.getInjected()==false) {%>
-                                                    <option value="0" selected>In Progress</option>
-                                                    <option value="1">Completed</option>
-                                                    <%}
-                                                    else{%>
-                                                    <option value="0">In Progress</option>
-                                                    <option value="1" selected>Completed</option>
-                                                    <%}%>
-                                                </select>
-                                           </td>
+                                            <td><span class="badge bg-warning">injected</span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-blood-test text-vaccine"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
