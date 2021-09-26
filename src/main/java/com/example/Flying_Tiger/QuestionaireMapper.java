@@ -11,6 +11,8 @@ public class QuestionaireMapper extends Mapper {
     public QuestionaireMapper(){
         super("questionaire");
     }
+    private static QuestionaireMapper instance=new QuestionaireMapper();
+    public static QuestionaireMapper getInstance(){return instance;};
     public Questionaire find(long id) throws SQLException {
         // find questionaire by id
         ResultSet rs = super.findRow(id);
@@ -33,7 +35,38 @@ public class QuestionaireMapper extends Mapper {
             e.printStackTrace();
         }
 
-        return new Questionaire(id, null, 0, null,null,null,null,null);
+        return null;
+
+    }
+    public Questionaire find(long hcpid,String type) throws SQLException {
+        // find questionaire by id
+        dbc.openDB();
+        // update
+        String query = "SELECT * FROM " + this.table + " WHERE \"hcpID\" = ? AND \"vacType\" = ?; ";
+        PreparedStatement myStmt = null;
+        try {
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, hcpid);
+            myStmt.setString(2, type);
+            System.out.println(myStmt.toString());
+            ResultSet rs = myStmt.executeQuery();
+            if(rs.next()) {
+                long ID = rs.getLong("ID");
+                String vacType = rs.getString("vacType");
+                String q1 = rs.getString("q1");
+                String q2 = rs.getString("q2");
+                String q3 = rs.getString("q3");
+                String q4 = rs.getString("q4");
+                String q5 = rs.getString("q5");
+                Questionaire result = new Questionaire(ID, vacType, hcpid, q1, q2, q3, q4, q5);
+                return result;
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
 
     }
     public Questionaire[] findall(long hcpid)

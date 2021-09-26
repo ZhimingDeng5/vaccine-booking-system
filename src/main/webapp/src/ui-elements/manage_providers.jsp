@@ -1,16 +1,4 @@
-﻿<%//Browser fallback force refresh
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires", 0);
-    response.setHeader("Pragma","no-cache");
-%>
-<%
-    String script="";
-    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 1) {
-        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
-    }
-    response.getWriter().println(script);
-%>
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -83,22 +71,23 @@
                                 <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av1.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +148,7 @@
 
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" data-id="<%=hcp.getID()%>" class="btn btn-outline-secondary editrow" data-password="<%=hcp.getPassword()%>"
+                                                    <button type="button" data-id="<%=hcp.getID()%>" class="btn btn-outline-secondary editrow"
                                                             data-name="<%=hcp.getName()%>" data-type="<%=hcp.getType()%>" data-post="<%=hcp.getPost()%>"
                                                             data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                     <button type="submit" onclick="window.location='delete_hcp.jsp?id=<%=hcp.getID()%>'" class="btn btn-outline-secondary deleterow" ><i class="icofont-ui-delete text-danger"></i></button>
@@ -312,7 +301,6 @@
             $(".modal-body #name").val( name );
             $(".modal-body #type").val( type );
             $(".modal-body #post").val( post );
-            $(".modal-body #password").val( password );
         } );
     });
 

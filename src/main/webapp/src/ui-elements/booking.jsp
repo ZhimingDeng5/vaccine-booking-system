@@ -14,6 +14,7 @@
 <%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="com.example.Flying_Tiger.Timeslot" %>
+<%@ page import="com.example.Flying_Tiger.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -203,9 +204,12 @@
                                         <td>
                                             <%=numLeft%>
                                         </td>
-                                        <%if(numLeft>0) {%>
+                                        <%if(numLeft>0&&!recipient.getSuitable()) {%>
                                         <td>
-                                            <button type="button" class="btn btn-outline-secondary checkrow" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-ui-check text-success"></i></button>
+                                            <button type="button"  data-bs-toggle="modal" data-bs-target="#expadd"
+                                            data-hcpid="<%=hcp2.getID()%>" data-tid="<%=timeslot.getTimeslotID()%>"
+                                                    class="btn btn-outline-secondary editrow">
+                                                <i class="icofont-ui-check text-success"></i></button>
                                         </td>
                                         <%}%>
                                     </tr>
@@ -228,21 +232,24 @@
                         <h5 class="modal-title  fw-bold" id="expaddLabel"> Choose Vaccine Type</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="form1" action="../../AddNewHcp-Servlet" method="post">
+                    <form id="form1" action="Recipients_questionnaire.jsp?id=<%=id%>" method="post">
                         <div class="modal-body">
 
                             <div class="col-sm-12">
                                 <label  class="form-label">Health Care Provider Id</label>
-                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">
+                                <input type="text" class="form-control"  id="hcpid" name="hcpid" readonly="readonly">
                             </div>
                             <div class="col-sm-12">
                                 <label  class="form-label">Timeslot Id</label>
-                                <input type="text" class="form-control"  id="Id" name="Id" readonly="readonly">
+                                <input type="text" class="form-control"  id="tid" name="tid" readonly="readonly">
                             </div>
                             <div class="col-sm-12">
                                 <label class="form-label">Select the Vaccine Type</label>
                                 <select class="form-select" id="type" name="type" required>
-                                    <option value=""></option>
+                                    <%  Vaccine[] vaccines=Vaccine.getMapper().findall();
+                                        for (Vaccine vaccine:vaccines) {%>
+                                    <option value="<%=vaccine.getType()%>"><%=vaccine.getType()%></option>
+                                    <%}%>
                                 </select>
                             </div>
 
@@ -265,15 +272,37 @@
 <script src="../assets/bundles/libscripts.bundle.js"></script>
 
 <!-- Plugin Js-->
+<script src="../assets/bundles/dataTables.bundle.js"></script>
 <script src="../assets/plugin/parsleyjs/js/parsley.js"></script>
     
 
 <!-- Jquery Page Js -->
 <script src="../js/template.js"></script>
 <script>
-    $(function() {
-        // initialize after multiselect
-        $('#basic-form').parsley();
+    $(document).ready(function() {
+        $('#myProjectTable')
+            .addClass( 'nowrap' )
+            .dataTable( {
+                responsive: true,
+                columnDefs: [
+                    { targets: [-1, -3], className: 'dt-body-right' }
+                ]
+            });
+        $('.deleterow').on('click',function(){
+            var tablename = $(this).closest('table').DataTable();
+            tablename
+                .row( $(this)
+                    .parents('tr') )
+                .remove()
+                .draw();
+        } );
+        $('.editrow').on('click',function(){
+            var tid = $(this).data('tid');
+            var hcpid=$(this).data('hcpid');
+            $(".modal-body #hcpid").val( hcpid );
+            $(".modal-body #tid").val( tid );
+            console.log('5');
+        } );
     });
 </script>
  

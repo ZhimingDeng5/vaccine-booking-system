@@ -1,16 +1,4 @@
-﻿<%//Browser fallback force refresh
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires", 0);
-    response.setHeader("Pragma","no-cache");
-%>
-<%
-    String script="";
-    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 1) {
-        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
-    }
-    response.getWriter().println(script);
-%>
-<%@ page import="com.example.Flying_Tiger.Recipient" %>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.sql.Time" %>
@@ -74,22 +62,23 @@
                                 <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av1.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,9 +102,8 @@
                             <h3 class="fw-bold mb-0">Recipients List</h3>
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Recipients</button>
-
                                 <form action="../../submitChange-Servlet" method="post">
-                                    <input type="submit" class="btn btn-primary" style= "margin-left:10px" value="Confirm Change">
+                                <input type="submit" class="btn btn-primary" value="confirm change">
                                 </form>
                             </div>
                         </div>
@@ -175,7 +163,7 @@
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" data-id="<%=recipient.getID()%>" data-name="<%=recipient.getName()%>"
-                                                        data-password="<%=recipient.getPassword()%>" data-birthdate="<%=recipient.getBirth()%>"
+                                                        data-birthdate="<%=recipient.getBirth()%>"
                                                         class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                 <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                             </div>
@@ -323,7 +311,6 @@
             $(".modal-body #id").val( Id );
             $(".modal-body #name").val( name );
             $(".modal-body #birthdate").val( birthdate );
-            $(".modal-body #password").val( password );
             console.log('5');
         } );
     });

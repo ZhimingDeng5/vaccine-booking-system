@@ -1,16 +1,5 @@
-﻿<%//Browser fallback force refresh
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires", 0);
-    response.setHeader("Pragma","no-cache");
-%>
-<%
-    String script="";
-    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 2) {
-        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
-    }
-    response.getWriter().println(script);
-%>
-<%@ page import="com.example.Flying_Tiger.Recipient" %>
+﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Questionaire" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -26,8 +15,20 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-<% String id=request.getParameter("id");
-    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id)); %>
+<%
+    long id= Long.parseLong(request.getParameter("id"));
+    Recipient recipient=Recipient.getMapper().find(id);
+    long hcpid= Long.parseLong(request.getParameter("hcpid"));
+    String type=request.getParameter("type");
+    Questionaire questionaire=Questionaire.getMapper().find(hcpid,type);
+    String tid=request.getParameter("tid");
+    if (questionaire==null)
+    {
+        String script = "<script>alert('This vaccine type is not available!');location.href='booking.jsp?id="+id+"&hcpid=&date='</script>";
+        response.getWriter().println(script);
+    }
+        String[] Questions = questionaire.getQuestions();
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -65,27 +66,27 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=recipient.getName()%></span></p>
                                 <small>Vaccine Recipient</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av2.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av2.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=recipient.getName()%></span></p>
+                                                <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
 
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -119,83 +120,29 @@
                                 <h6 class="mb-0 fw-bold ">Please answer the questionnaire before completing your booking.</h6>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="../../AnswerJudge-Servlet?tid=<%=tid%>&recid=<%=id%>&hcpid=<%=hcpid%>" method="post">
                                     <div class="row g-3 align-items-center">
+                                        <%
+                                            int index=0;
+                                            for (String question:Questions){
+                                                index++;
+                                        %>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label">Qestion 1</label>
+                                                <label class="form-label"><%=question%></label>
                                                 <br />
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q1" value="Yes" required data-parsley-errors-container="#error-radio">
+                                                    <input class="form-check-input" type="radio" name="Q<%=index%>" value="Yes" required data-parsley-errors-container="#error-radio">
                                                     <span><i></i>Yes</span>
                                                 </label>
                                                 <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q1" value="No">
+                                                    <input class="form-check-input" type="radio" name="Q<%=index%>" value="No">
                                                     <span><i></i>No</span>
                                                 </label>
                                                 <p id="error-radio"></p>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 2</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q2" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q2" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 3</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q3" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q3" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 4</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q4" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q4" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qestion 5</label>
-                                                <br />
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q5" value="Yes" required data-parsley-errors-container="#error-radio">
-                                                    <span><i></i>Yes</span>
-                                                </label>
-                                                <label class="fancy-radio form-check-label">
-                                                    <input class="form-check-input" type="radio" name="Q5" value="No">
-                                                    <span><i></i>No</span>
-                                                </label>
-                                                <p id="error-radio"></p>
-                                            </div>
-                                        </div>
+                                        <%}%>
                                     </div>
                                     
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
