@@ -118,7 +118,8 @@
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                             <h3 class="fw-bold mb-0">Edit Questionnaire</h3>
                             <div class="col-auto d-flex w-sm-100">
-                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" ></i>Back</button>
+                                <button type="button" class="btn btn-primary btn-set-task w-sm-100"
+                                onclick="window.location='Edit_questionnaire.jsp?id=<%=id%>'"></i>Back</button>
                             </div>
                         </div>
                     </div>
