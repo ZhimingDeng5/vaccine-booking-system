@@ -62,16 +62,15 @@
                                 <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av1.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
                                             </div>
                                         </div>
 
@@ -103,7 +102,7 @@
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Recipients</button>
                                 <form action="../../submitChange-Servlet" method="post">
-                                <input type="submit" class="btn btn-primary" value="confirm change">
+                                <input type="submit" class="btn btn-primary" style= "margin-left:10px" value="Confirm Change">
                                 </form>
                             </div>
                         </div>
