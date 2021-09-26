@@ -165,7 +165,7 @@
                                                 <button type="button" data-id="<%=recipient.getID()%>" data-name="<%=recipient.getName()%>"
                                                         data-birthdate="<%=recipient.getBirth()%>"
                                                         class="btn btn-outline-secondary editrow"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                <button type="button" onclick="window.location='delete_recipients.jsp?id=<%=recipient.getID()%>'" class="btn btn-outline-secondary "><i class="icofont-ui-delete text-danger"></i></button>
                                             </div>
                                         </td>
                                     </tr>

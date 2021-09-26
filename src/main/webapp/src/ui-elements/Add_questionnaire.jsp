@@ -150,13 +150,13 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Maximum age for vaccination</label>
-                                                <input type="text" class="form-control" name="maxage" required>
+                                                <input type="number" class="form-control" name="maxAge" required>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Minimum age for vaccination</label>
-                                                <input type="text" class="form-control" name="minage" required>
+                                                <input type="number" class="form-control" name="minAge" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

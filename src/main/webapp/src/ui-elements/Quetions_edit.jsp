@@ -24,6 +24,7 @@
     String name="";
     HealthCareProvider hcp= null;
     String[] questions={"","","","",""};
+    int[] minmax=Questionaire.getMapper().findminmax(qid);
     try {
         questions=Questionaire.getMapper().find(qid).getQuestions();
         hcp = HealthCareProvider.getMapper().find(id);
@@ -51,7 +52,6 @@
                 <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
                 <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
                 <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
-                <li><a class="m-link" href="public_timeslot.jsp?id=<%=id%>"><i class="icofont-ui-timer fs-5"></i> <span>Public Timeslots</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -140,13 +140,13 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Maximum age for vaccination</label>
-                                                <input type="text" class="form-control" name="maxage" required>
+                                                <input type="text" class="form-control" name="maxAge" value="<%=minmax[1]%>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Minimum age for vaccination</label>
-                                                <input type="text" class="form-control" name="minage" required>
+                                                <input type="text" class="form-control" name="minAge" value="<%=minmax[0]%>"required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

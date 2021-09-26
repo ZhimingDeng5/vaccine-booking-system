@@ -25,9 +25,10 @@ public class QuestionaireMapper extends Mapper {
                 String q3 = rs.getString("q3");
                 String q4 = rs.getString("q4");
                 String q5 = rs.getString("q5");
+                int minAge=rs.getInt("minAge");
+                int maxAge=rs.getInt("maxAge");
 
-
-                Questionaire result = new Questionaire(id, vacType, hcpID, q1, q2, q3, q4, q5);
+                Questionaire result = new Questionaire(id, vacType, hcpID, minAge,maxAge,q1, q2, q3, q4, q5);
                 return result;
             }
 
@@ -48,7 +49,6 @@ public class QuestionaireMapper extends Mapper {
             myStmt = dbc.setPreparedStatement(query);
             myStmt.setLong(1, hcpid);
             myStmt.setString(2, type);
-            System.out.println(myStmt.toString());
             ResultSet rs = myStmt.executeQuery();
             if(rs.next()) {
                 long ID = rs.getLong("ID");
@@ -58,7 +58,9 @@ public class QuestionaireMapper extends Mapper {
                 String q3 = rs.getString("q3");
                 String q4 = rs.getString("q4");
                 String q5 = rs.getString("q5");
-                Questionaire result = new Questionaire(ID, vacType, hcpid, q1, q2, q3, q4, q5);
+                int minAge=rs.getInt("minAge");
+                int maxAge=rs.getInt("maxAge");
+                Questionaire result = new Questionaire(ID, vacType, hcpid,minAge,maxAge, q1, q2, q3, q4, q5);
                 return result;
             }
 
@@ -67,6 +69,24 @@ public class QuestionaireMapper extends Mapper {
         }
 
         return null;
+
+    }
+    public int[] findminmax(long id) throws SQLException {
+        // find questionaire by id
+        ResultSet rs = super.findRow(id);
+        try {
+            if(rs.next()) {
+                int minAge=rs.getInt("minAge");
+                int maxAge=rs.getInt("maxAge");
+                int[] minmax= {minAge,maxAge};
+                return minmax;
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new int[0];
 
     }
     public Questionaire[] findall(long hcpid)
@@ -87,7 +107,8 @@ public class QuestionaireMapper extends Mapper {
             for(int i =0; i< size; i++){
                 rs.next();
                 questionaires[i] = new Questionaire(rs.getLong("ID"), rs.getString("vacType"),
-                        rs.getLong("hcpID"), rs.getString("q1"),rs.getString("q2"),
+                        rs.getLong("hcpID"), rs.getInt("minAge"),rs.getInt("maxAge"),
+                        rs.getString("q1"),rs.getString("q2"),
                         rs.getString("q3"),rs.getString("q4"),rs.getString("q5"));
             }
             return questionaires;
@@ -97,11 +118,11 @@ public class QuestionaireMapper extends Mapper {
         }
         return new Questionaire[0];
     }
-    public void insert(long id, String type, long hcpid, String q1,String q2,String q3,
+    public void insert(long id, String type, long hcpid,int minAge,int maxAge, String q1,String q2,String q3,
                        String q4,String q5) throws SQLException {
         dbc.openDB();
         String query = "INSERT INTO public." + super.table +
-                "(\"ID\", \"vacType\", \"hcpID\", q1, q2,q3,q4,q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "(\"ID\", \"vacType\", \"hcpID\", q1, q2,q3,q4,q5,\"minAge\",\"maxAge\") VALUES (?, ?, ?,?,?,?, ?, ?, ?, ?)";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, id);
         myStmt.setString(2, type);
@@ -111,6 +132,8 @@ public class QuestionaireMapper extends Mapper {
         myStmt.setString(6, q3);
         myStmt.setString(7, q4);
         myStmt.setString(8, q5);
+        myStmt.setInt(9,minAge);
+        myStmt.setInt(10,maxAge);
         myStmt.executeUpdate();
     }
     public void delete(long id) {
@@ -127,8 +150,8 @@ public class QuestionaireMapper extends Mapper {
     public void update(Questionaire questionaire) throws SQLException {
         dbc.openDB();
         // update
-        String query = "UPDATE " + this.table + " set \"ID\" = ?, \"vacType\" = ?, \"hcpID\"=?, \"q1\"=?, " +
-                "\"q2\"=?, \"q3\"=?, \"q4\"=?, \"q5\"=?  WHERE  \"ID\" = ?; ";
+        String query = "UPDATE " + this.table + " set \"ID\" = ?, \"vacType\" = ?, \"hcpID\"=?, " +
+                "\"q1\"=?, \"q2\"=?, \"q3\"=?, \"q4\"=?, \"q5\"=?,\"minAge\"=?,\"maxAge\"=?,  WHERE  \"ID\" = ?; ";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, questionaire.getID());
         myStmt.setString(2, questionaire.getVacType());
@@ -138,7 +161,9 @@ public class QuestionaireMapper extends Mapper {
         myStmt.setString(6, questionaire.getQ3());
         myStmt.setString(7, questionaire.getQ4());
         myStmt.setString(8, questionaire.getQ5());
-        myStmt.setLong(9, questionaire.getID());
+        myStmt.setInt(9,questionaire.getMinAge());
+        myStmt.setInt(10,questionaire.getMaxAge());
+        myStmt.setLong(11, questionaire.getID());
         myStmt.executeUpdate();
     }
 }

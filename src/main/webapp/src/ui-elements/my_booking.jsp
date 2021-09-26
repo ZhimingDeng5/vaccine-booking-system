@@ -159,6 +159,7 @@
                                 </div>  <!-- Row end  -->
                             </div> <!-- tab end  -->
                             <%}%>
+                            <% if(recipient.getInjected()) {%>
                             <div class="tab-pane fade" id="View-Proof">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8 col-md-12">
@@ -178,7 +179,7 @@
                                                                     <table>
                                                                         <tr>
                                                                             <td>
-                                                                                This is to certify that XXX has completed the COVID-19 vaccination, on date.<br>
+                                                                                This is to certify that <%=recipient.getName()%> has completed the COVID-19 vaccination, on date.<br>
                                                                                 *This statement is true and valid.<br>
                                                                             </td>
                                                                         </tr>
@@ -187,7 +188,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="pt-2 pb-2 text-end">
-                                                                    <a href="#">A hospital</a><br>
+                                                                    <a href="#"><%=hcpName%></a><br>
                                                                     <button type="button" class="btn btn-outline-secondary btn-lg my-1"><i class="fa fa-print"></i> Print</button>
                                                                 </td>
                                                             </tr>
@@ -199,7 +200,8 @@
                                     </div>
                                 </div> <!-- Row end  -->
                             </div> <!-- tab end  -->
-                         </div>
+                        <%}%>
+                        </div>
                     </div>
                 </div> <!-- Row end  -->
             </div>

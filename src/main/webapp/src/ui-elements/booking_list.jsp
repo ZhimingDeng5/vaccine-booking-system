@@ -156,19 +156,26 @@
                                                 <%=recipient.getName()%>
                                             </td>
                                             <td>
-                                                <%=Recipient.getMapper().getVaccineType(recipient.getID())%>>
+                                                <%=Recipient.getMapper().getVaccineType(recipient.getID())%>
                                             </td>
                                            <td>
-                                                <%=Recipient.getMapper().timeslotDate(recipient.getID())%>>
+                                                <%=Recipient.getMapper().timeslotDate(recipient.getID())%>
                                            </td>
                                            <td>
-                                               <%=Recipient.getMapper().timeslotTime(recipient.getID())%>>
+                                               <%=Recipient.getMapper().timeslotTime(recipient.getID())%>
                                            </td>
-                                            <td><span class="badge bg-warning">injected</span></td>
+                                            <%
+                                                String mes="In Progress";
+                                                if (recipient.getInjected())
+                                                    mes="Completed";
+                                            %>
+                                            <td><span class="badge bg-warning"><%=mes%></span></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-blood-test text-vaccine"></i></button>
+                                                    <button type="button" onclick="window.location='book_handle.jsp?id=<%=id%>&rid=<%=recipient.getID()%>&edit=1'"
+                                                            class="btn btn-outline-secondary"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" onclick="window.location='book_handle.jsp?id=<%=id%>&rid=<%=recipient.getID()%>&edit=0'"
+                                                            class="btn btn-outline-secondary deleterow"><i class="icofont-blood-test text-vaccine"></i></button>
                                                 </div>
                                             </td>
                                         </tr>

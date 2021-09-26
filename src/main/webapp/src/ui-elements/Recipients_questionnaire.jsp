@@ -19,6 +19,7 @@
 <%
     long id= Long.parseLong(request.getParameter("id"));
     Recipient recipient=Recipient.getMapper().find(id);
+    int age=Recipient.getMapper().calculateAge(id);
     long hcpid= Long.parseLong(request.getParameter("hcpid"));
     long vacid= Long.parseLong(request.getParameter("type"));
     String type= Vaccine.getMapper().find(vacid).getType();
@@ -27,6 +28,16 @@
     if (questionaire==null)
     {
         String script = "<script>alert('This vaccine type is not available!');location.href='booking.jsp?id="+id+"&hcpid=&date='</script>";
+        response.getWriter().println(script);
+    }
+    else if(age<questionaire.getMinAge())
+    {
+        String script = "<script>alert('the vaccine is not suitable since you are too young!');location.href='booking.jsp?id="+id+"&hcpid=&date='</script>";
+        response.getWriter().println(script);
+    }
+    else if(age>questionaire.getMaxAge())
+    {
+        String script = "<script>alert('the vaccine is not suitable since you are too old!');location.href='booking.jsp?id="+id+"&hcpid=&date='</script>";
         response.getWriter().println(script);
     }
         String[] Questions = questionaire.getQuestions();
