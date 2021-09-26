@@ -11,6 +11,9 @@
     response.getWriter().println(script);
 %>
 <%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="com.example.Flying_Tiger.Timeslot" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -27,7 +30,31 @@
 </head>
 <body>
 <% String id=request.getParameter("id");
-    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id)); %>
+    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id));
+    String hcpid=request.getParameter("hcpid");
+    String datestr=request.getParameter("date");
+    HealthCareProvider[] hcps;
+    if(!hcpid.equals("")) {
+        hcps = new HealthCareProvider[1];
+        long longHcpid= Long.parseLong(hcpid);
+        hcps[0]=HealthCareProvider.getMapper().find(longHcpid);
+        if(!datestr.equals(""))
+        {
+            Date date= Date.valueOf(datestr);
+            hcps[0]=HealthCareProvider.getMapper().find(longHcpid,date);
+        }
+    }
+    else if(!datestr.equals(""))
+    {
+        Date date= Date.valueOf(datestr);
+        hcps=HealthCareProvider.getMapper().findallWithTimeslot(date);
+    }
+    else
+    {
+        hcps=HealthCareProvider.getMapper().findallWithTimeslot();
+    }
+
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -43,7 +70,7 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="my_booking.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="booking.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+                <li><a class="m-link" href="booking.jsp?id=<%=id%>&hcpid=&date="><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
             </ul>
 
             <!-- Menu: menu collepce btn -->
@@ -65,7 +92,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=recipient.getName()%></span></p>
                                 <small>Vaccine Recipient</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -77,8 +104,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av2.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=recipient.getName()%></span></p>
+                                                <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
 
@@ -118,23 +145,26 @@
                                 <h6 class="mb-0 fw-bold ">Please choose the option that suits you.</h6>
                             </div>
                             <div class="card-body">
-                                <form id="basic-form" method="post" novalidate>
+                                <form id="basic-form" action="booking.jsp?id=<%=id%>" method="post" novalidate>
                                     <div class="row g-3 align-items-center">
                                             <div class="col-sm-6">
+                                                <%
+                                                    HealthCareProvider[] hcpslist=HealthCareProvider.getMapper().findall();
+                                                %>
                                                 <label class="form-label">Select the Health Care Provider</label>
-                                                <select class="form-select">
-                                                    <option selected>A hospital</option>
-                                                    <option value="1">B hospital</option>
-                                                    <option value="2">C hospital</option>
-                                                    <option value="3">D hospital</option>
+                                                <select class="form-select" name="hcpid">
+                                                    <option value=""></option>
+                                                    <%for (HealthCareProvider hcp:hcpslist) {%>
+                                                    <option value=<%=hcp.getID()%>><%=hcp.getName()%></option>
+                                                    <%}%>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label for="abc" class="form-label">Select Date</label>
-                                                <input type="date" class="form-control" id="abc">
+                                                <label for="date_info" class="form-label">Select Date</label>
+                                                <input type="date" class="form-control"  name="date" id="date_info" >
                                             </div>
                                     </div>
-                                    <button type="sreach" class="btn btn-primary mt-4">Search</button>
+                                    <button type="submit" class="btn btn-primary mt-4">Search</button>
                                 </form>
                             </div>
                         </div>
@@ -147,7 +177,6 @@
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
                                         <th>Providers Name</th>
                                         <th>Date</th>
                                         <th>Time</th>
@@ -157,46 +186,31 @@
                                     </thead>
                                     <tbody>
                                     <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <% for(HealthCareProvider hcp2:hcps){
+                                            for (Timeslot timeslot:hcp2.getTimeslots()){
+                                        %>
                                     <tr>
                                         <td>
-                                            #EX-00002
+                                            <%=hcp2.getName()%>
                                         </td>
                                         <td>
-                                            A hospital
+                                            <%=timeslot.getDate()%>
                                         </td>
                                         <td>
-                                            12/03/2021
+                                            <%=timeslot.getTime()%>
                                         </td>
+                                        <% int numLeft=Timeslot.getMapper().getNumLeft(hcp2.getID(),timeslot.getTimeslotID());%>
                                         <td>
-                                            12:00
+                                            <%=numLeft%>
                                         </td>
-                                        <td>
-                                            10
-                                        </td>
+                                        <%if(numLeft>0) {%>
                                         <td>
                                             <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
                                         </td>
+                                        <%}%>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            #EX-00005
-                                        </td>
-                                        <td>
-                                            B hospital
-                                        </td>
-                                        <td>
-                                            12/05/2021
-                                        </td>
-                                        <td>
-                                            11:00
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
-                                        </td>
-                                    </tr>
+                                        <%}
+                                            }%>
                                     </div>
                                     </tbody>
                                 </table>

@@ -38,6 +38,29 @@ public class HealthCareProviderMapper extends UserMapper {
         }
         return null;
     }
+    public HealthCareProvider find(long id,Date date) throws SQLException {
+        ResultSet rs = this.findRow(id);
+        String password;
+        String name;
+        String type;
+        int postcode;
+        Timeslot[] timeslots;
+        HealthCareProvider result;
+        try {
+            if (rs.next()) {
+                password = rs.getString("password");
+                name = rs.getString("name");
+                type = rs.getString("hcpType");
+                postcode = rs.getInt("postcode");
+                timeslots = loadTimeslots(id,date);
+                result = new HealthCareProvider(id, password, name, type, postcode, timeslots);
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public Timeslot[] loadTimeslots(long hcpID) throws SQLException {
         dbc.openDB();
@@ -45,42 +68,6 @@ public class HealthCareProviderMapper extends UserMapper {
         String query = "SELECT \"hcpID\" , \"timeslotID\"  FROM " + associationTable + " WHERE \"hcpID\" = ?";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, hcpID);
-        ResultSet rs = myStmt.executeQuery();
-        try {
-            int size = 0;
-            while (rs.next()) {
-                size++;
-            }
-            rs = myStmt.executeQuery();
-            Timeslot[] timeslots = new Timeslot[size];
-            TimeslotMapper timeslotMapper = new TimeslotMapper();
-            for (int i = 0; i < size; i++) {
-                rs.next();
-                timeslots[i] = timeslotMapper.find(rs.getLong("timeslotID"));
-                return timeslots;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return new Timeslot[0];
-    }
-
-    /**
-     * given hcpID and a specific date, return the timeslots which satisfy these
-     * @param hcpID
-     * @param date
-     * @return timeslot[]
-     * @throws SQLException
-     */
-    public Timeslot[] loadTimeslotsInDate(long hcpID, Date date) throws SQLException {
-        dbc.openDB();
-        String associationTable = "timeslot_healthcareprovider";
-        String query = "SELECT * FROM timeslot inner join timeslot_healthcareprovider on timeslot.\"ID\" = timeslot_healthcareprovider.\"timeslotID\"\n" +
-                "WHERE timeslot_healthcareprovider.\"hcpID\" = ? and \"date\"=?;";
-        PreparedStatement myStmt = dbc.setPreparedStatement(query);
-        myStmt.setLong(1, hcpID);
-        myStmt.setDate(2,date);
         ResultSet rs = myStmt.executeQuery();
         try {
             int size = 0;
@@ -102,19 +89,22 @@ public class HealthCareProviderMapper extends UserMapper {
         return new Timeslot[0];
     }
 
+
     /**
-     * given hcpID , return the timeslots which don't satisfy this hcp
+     * given hcpID and a specific date, return the timeslots which satisfy these
      * @param hcpID
+     * @param date
      * @return timeslot[]
      * @throws SQLException
      */
-    public Timeslot[] loadTimeslotsNotMine(long hcpID) throws SQLException {
+    public Timeslot[] loadTimeslots(long hcpID, Date date) throws SQLException {
         dbc.openDB();
         String associationTable = "timeslot_healthcareprovider";
         String query = "SELECT * FROM timeslot inner join timeslot_healthcareprovider on timeslot.\"ID\" = timeslot_healthcareprovider.\"timeslotID\"\n" +
-                "WHERE timeslot_healthcareprovider.\"hcpID\" != ?;";
+                "WHERE timeslot_healthcareprovider.\"hcpID\" = ? and \"date\"=?;";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, hcpID);
+        myStmt.setDate(2,date);
         ResultSet rs = myStmt.executeQuery();
         try {
             int size = 0;
@@ -180,7 +170,54 @@ public class HealthCareProviderMapper extends UserMapper {
         return new HealthCareProvider[0];
 
     }
+    public HealthCareProvider[] findallWithTimeslot()
+    {
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table;
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            int size = 0;
+            while (rs.next()) {
+                size++;
+            }
+            rs = dbc.execQuery(query);
+            HealthCareProvider[] hcps = new HealthCareProvider[size];
+            for (int i = 0; i < size; i++) {
+                rs.next();
+                hcps[i] = this.find(rs.getLong("ID"));
+            }
+            return hcps;
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new HealthCareProvider[0];
+
+    }
+    public HealthCareProvider[] findallWithTimeslot(Date date)
+    {
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table;
+        ResultSet rs = dbc.execQuery(query);
+        try {
+            int size = 0;
+            while (rs.next()) {
+                size++;
+            }
+            rs = dbc.execQuery(query);
+            HealthCareProvider[] hcps = new HealthCareProvider[size];
+            for (int i = 0; i < size; i++) {
+                rs.next();
+                hcps[i] = this.find(rs.getLong("ID"),date);
+            }
+            return hcps;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new HealthCareProvider[0];
+
+    }
     public void update(HealthCareProvider healthCareProvider) throws SQLException {
         dbc.openDB();
         // update

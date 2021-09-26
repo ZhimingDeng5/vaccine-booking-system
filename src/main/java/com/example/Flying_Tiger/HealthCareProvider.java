@@ -31,7 +31,6 @@ public class HealthCareProvider extends User {
         this.postcode = postcode;
     }
     public Timeslot[] getTimeslots(){return this.timeslots;}
-
     public static HealthCareProviderMapper getMapper ()
     {
         return HealthCareProviderMapper.getInstance();

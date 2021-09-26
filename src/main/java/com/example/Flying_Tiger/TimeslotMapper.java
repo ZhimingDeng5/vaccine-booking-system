@@ -6,6 +6,11 @@ public class TimeslotMapper extends Mapper{
     public TimeslotMapper(){
         super("timeslot");
     }
+    private final static TimeslotMapper instance=new TimeslotMapper();
+    public static TimeslotMapper getInstance()
+    {
+        return instance;
+    }
     public Timeslot find(long id) throws SQLException {
         // get the timeslot information from timeslot table
         ResultSet rs = super.findRow(id);
@@ -104,7 +109,26 @@ public class TimeslotMapper extends Mapper{
         }
         return null;
     }
-
+    public int getNumLeft(long hcpid,long timeslotId) {
+        try {
+            dbc.openDB();
+            String associationTable = "timeslot_healthcareprovider";
+            String query = "SELECT \"numLeft\" FROM timeslot_healthcareprovider Where \"hcpID\" = ? and \"timeslotID\"=?;";
+            PreparedStatement myStmt = null;
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, hcpid);
+            myStmt.setLong(2, timeslotId);
+            ResultSet rs = myStmt.executeQuery();
+            if (rs.next())
+            {
+                return rs.getInt("numLeft");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 
 }

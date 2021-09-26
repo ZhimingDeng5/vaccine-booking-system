@@ -42,8 +42,8 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="my_booking.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>My Booking</span></a></li>
-                <li><a class="m-link" href="booking.jsp?id=<%=id%>"><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
-                 </ul>
+                <li><a class="m-link" href="booking.jsp?id=<%=id%>&hcpid=&date="><i class="icofont-meeting-add fs-5"></i> <span>Online Booking</span></a></li>
+            </ul>
 
             <!-- Menu: menu collepce btn -->
             <button type="button" class="btn btn-link sidebar-mini-btn text-light">
