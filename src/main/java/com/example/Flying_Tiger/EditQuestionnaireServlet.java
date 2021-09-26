@@ -23,7 +23,9 @@ public class EditQuestionnaireServlet extends HttpServlet {
         String q4=request.getParameter("question4");
         String q5=request.getParameter("question5");
         long id= Long.parseLong((request.getParameter("qid")));
-        Questionaire questionnaire=new Questionaire(id,type,hcpid,q1,q2,q3,q4,q5);
+        int minAge= Integer.parseInt(request.getParameter("minAge"));
+        int maxAge= Integer.parseInt(request.getParameter("maxAge"));
+        Questionaire questionnaire=new Questionaire(id,type,hcpid,minAge,maxAge,q1,q2,q3,q4,q5);
         try {
             Questionaire.getMapper().update(questionnaire);
         } catch (SQLException e) {
