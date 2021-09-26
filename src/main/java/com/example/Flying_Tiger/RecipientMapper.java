@@ -282,20 +282,18 @@ public class RecipientMapper extends UserMapper {
         return null;
     }
     // calculate the age of the recipients when timeslot
-    public int calculateAge(long id) throws SQLException {
+    public int calculateAge(long id,Date timeslotDate) throws SQLException {
+        System.out.println(id);
         ResultSet rs = this.findRow(id);
         Date birthDate = null;
         long timeslotID = 0;
         try {
             rs.next();
             birthDate = rs.getDate("birthDate");
-            timeslotID = rs.getLong("timeslotID");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        TimeslotMapper tm = new TimeslotMapper();
-        Date timeslotDate =  tm.timeslotDate(timeslotID);
         LocalDate timeslotDateLocal = timeslotDate.toLocalDate();
         LocalDate birthDateLocal = birthDate.toLocalDate();
         int age = Period.between(birthDateLocal, timeslotDateLocal).getYears();

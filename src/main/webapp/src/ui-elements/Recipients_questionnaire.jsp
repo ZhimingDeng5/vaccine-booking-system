@@ -1,6 +1,8 @@
 ﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
 <%@ page import="com.example.Flying_Tiger.Questionaire" %>
 <%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Timeslot" %>
+<%@ page import="java.sql.Date" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -19,12 +21,13 @@
 <%
     long id= Long.parseLong(request.getParameter("id"));
     Recipient recipient=Recipient.getMapper().find(id);
-    int age=Recipient.getMapper().calculateAge(id);
     long hcpid= Long.parseLong(request.getParameter("hcpid"));
     long vacid= Long.parseLong(request.getParameter("type"));
     String type= Vaccine.getMapper().find(vacid).getType();
     Questionaire questionaire=Questionaire.getMapper().find(hcpid,type);
     String tid=request.getParameter("tid");
+    Date date= Timeslot.getMapper().timeslotDate(Long.parseLong(tid));
+    int age=Recipient.getMapper().calculateAge(id,date);
     if (questionaire==null)
     {
         String script = "<script>alert('This vaccine type is not available!');location.href='booking.jsp?id="+id+"&hcpid=&date='</script>";
