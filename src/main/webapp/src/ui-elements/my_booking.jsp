@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
 </head>
 <body>
-<% String id=request.getParameter("id");
-    Recipient recipient=Recipient.getMapper().find(Long.parseLong(id)); %>
+<% long id= Long.parseLong(request.getParameter("id"));
+    Recipient recipient=Recipient.getMapper().find(id);
+    String hcpName=Recipient.getMapper().getHcpName(id);
+    long hcpid=Recipient.getMapper().getHcpID(id);
+%>
 <div id="ihealth-layout" class="theme-tradewind">
 
     <!-- sidebar -->
@@ -76,8 +79,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av2.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=recipient.getName()%></span></p>
+                                                <small class="">ID:<%=recipient.getID()%></small>
                                             </div>
                                         </div>
                                         
@@ -118,6 +121,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-lg-12 col-md-12">
+                        <%if(recipient.getSuitable()) {%>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="Booking-Detail">
                                 <div class="row justify-content-center">
@@ -126,28 +130,35 @@
                                             <div class="card-body d-sm-flex justify-content-between">
                                                 <a href="javascript:void(0);" class="d-flex">
                                                     <div class="flex-fill ms-3 text-truncate">
-                                                        <h6 class="d-flex justify-content-between mb-0"><span>Recipient Name: </span></h6>
-                                                        <span class="text-muted">Recipient Id: 0002230</span>
+                                                        <h6 class="d-flex justify-content-between mb-0"><span>Recipient Name:<%=recipient.getName()%> </span></h6>
+                                                        <span class="text-muted">Recipient Id: <%=recipient.getID()%></span>
                                                     </div>
                                                 </a>
                                                 <div class="text-end d-none d-md-block">
-                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i>Provider: 2211 Jones Avenue,Winston Salem FL 27107</p>
-                                                    <span class="text-muted">Booking date&time: 03/09/2021 12:00</span>
+                                                    <p class="mb-1"><i class="icofont-location-pin ps-1"></i><%=hcpName%></p>
+                                                    <span class="text-muted">Booking date&time: <%=Recipient.getMapper().timeslotDate(id)%> <%=Recipient.getMapper().timeslotTime(id)%></span>
                                                 </div>
                                             </div>
                                             <div class="card-footer justify-content-between d-flex align-items-center">
                                                 <div class="d-none d-md-block">
                                                     <strong>Status:</strong>
-                                                    <span>Completed</span>
+                                                    <%
+                                                        String statu="In Progress";
+                                                        if (recipient.getInjected())
+                                                            statu="Completed";
+                                                    %>
+                                                    <span><%=statu%></span>
                                                 </div>
                                                 <div class="card-hover-show">
-                                                    <a class="btn btn-sm btn-white border lift" href="#">Delete</a>
+                                                    <a class="btn btn-sm btn-white border lift" href="delete_booking_rec.jsp?id=<%=id%>&hcpid=<%=hcpid%>">
+                                                        Delete</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>  <!-- Row end  -->
                             </div> <!-- tab end  -->
+                            <%}%>
                             <div class="tab-pane fade" id="View-Proof">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8 col-md-12">

@@ -71,8 +71,6 @@ public class RecipientMapper extends UserMapper {
         try {
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, id);
-
-        System.out.println(hcpid+" "+this.getTimeslotID(id));
         String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"+1 WHERE \"hcpID\"="+hcpid+
                 " AND \"timeslotID\"="+this.getTimeslotID(id);
         PreparedStatement myStmt2=dbc.setPreparedStatement(query2);
@@ -299,7 +297,23 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(6, recipient.getID());
         myStmt.executeUpdate();
     }
-
+    public void book(long recid,long hcpid, long tid,long vacid) throws SQLException{
+        dbc.openDB();
+        // update
+        String query = "UPDATE " + this.table + " set  \"suitable\"=true, \"timeslotID\"=?, \"hcpID\"=?, \"vacID\"=?  " +
+                "WHERE  \"ID\" = ?; ";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, tid);
+        myStmt.setLong(2, hcpid);
+        myStmt.setLong(3,vacid);
+        myStmt.setLong(4, recid);
+        myStmt.executeUpdate();
+        String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"-1 WHERE \"hcpID\"="+hcpid+
+                " AND \"timeslotID\"="+getTimeslotID(recid);
+        PreparedStatement myStmt2=dbc.setPreparedStatement(query2);
+        myStmt2.executeUpdate();
+        myStmt.executeUpdate();
+    }
     /**
      * update the row about timeslotID and hcpID given the contents submitted by web
      * @param ID,timeslotDate,timeslotTime,hcpName
