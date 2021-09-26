@@ -1,5 +1,6 @@
 ﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
 <%@ page import="com.example.Flying_Tiger.Questionaire" %>
+<%@ page import="com.example.Flying_Tiger.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -19,7 +20,8 @@
     long id= Long.parseLong(request.getParameter("id"));
     Recipient recipient=Recipient.getMapper().find(id);
     long hcpid= Long.parseLong(request.getParameter("hcpid"));
-    String type=request.getParameter("type");
+    long vacid= Long.parseLong(request.getParameter("type"));
+    String type= Vaccine.getMapper().find(vacid).getType();
     Questionaire questionaire=Questionaire.getMapper().find(hcpid,type);
     String tid=request.getParameter("tid");
     if (questionaire==null)
@@ -120,7 +122,7 @@
                                 <h6 class="mb-0 fw-bold ">Please answer the questionnaire before completing your booking.</h6>
                             </div>
                             <div class="card-body">
-                                <form action="../../AnswerJudge-Servlet?tid=<%=tid%>&recid=<%=id%>&hcpid=<%=hcpid%>" method="post">
+                                <form action="../../AnswerJudge-Servlet?tid=<%=tid%>&recid=<%=id%>&hcpid=<%=hcpid%>&vacid=<%=vacid%>" method="post">
                                     <div class="row g-3 align-items-center">
                                         <%
                                             int index=0;

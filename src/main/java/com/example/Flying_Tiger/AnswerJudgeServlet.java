@@ -19,6 +19,7 @@ public class AnswerJudgeServlet extends HttpServlet {
         long recid= Long.parseLong(request.getParameter("recid"));
         long hcpid= Long.parseLong(request.getParameter("hcpid"));
         long tid= Long.parseLong(request.getParameter("tid"));
+        long vacid=Long.parseLong(request.getParameter("vacid"));
         for (int i=1;i<=5;i++)
         {
             String para="Q"+i;
@@ -39,7 +40,7 @@ public class AnswerJudgeServlet extends HttpServlet {
         else
         {
             try {
-                Recipient.getMapper().book(recid,hcpid,tid);
+                Recipient.getMapper().book(recid,hcpid,tid,vacid);
                 String script = "<script>location.href='src/ui-elements/my_booking.jsp?id="+recid+ "'</script>";
                 response.getWriter().println(script);
             } catch (SQLException e) {

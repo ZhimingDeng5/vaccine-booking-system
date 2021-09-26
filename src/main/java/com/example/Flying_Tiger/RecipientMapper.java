@@ -297,14 +297,16 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(6, recipient.getID());
         myStmt.executeUpdate();
     }
-    public void book(long recid,long hcpid, long tid) throws SQLException{
+    public void book(long recid,long hcpid, long tid,long vacid) throws SQLException{
         dbc.openDB();
         // update
-        String query = "UPDATE " + this.table + " set  \"suitable\"=true, \"timeslotID\"=?,\"hcpID\"=?  WHERE  \"ID\" = ?; ";
+        String query = "UPDATE " + this.table + " set  \"suitable\"=true, \"timeslotID\"=?, \"hcpID\"=?, \"vacID\"=?  " +
+                "WHERE  \"ID\" = ?; ";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, tid);
         myStmt.setLong(2, hcpid);
-        myStmt.setLong(3, recid);
+        myStmt.setLong(3,vacid);
+        myStmt.setLong(4, recid);
         myStmt.executeUpdate();
         String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"-1 WHERE \"hcpID\"="+hcpid+
                 " AND \"timeslotID\"="+getTimeslotID(recid);

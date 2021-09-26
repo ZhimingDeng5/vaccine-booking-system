@@ -248,7 +248,7 @@
                                 <select class="form-select" id="type" name="type" required>
                                     <%  Vaccine[] vaccines=Vaccine.getMapper().findall();
                                         for (Vaccine vaccine:vaccines) {%>
-                                    <option value="<%=vaccine.getType()%>"><%=vaccine.getType()%></option>
+                                    <option value="<%=vaccine.getID()%>"><%=vaccine.getType()%></option>
                                     <%}%>
                                 </select>
                             </div>
