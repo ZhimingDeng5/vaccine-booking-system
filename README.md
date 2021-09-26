@@ -12,7 +12,7 @@
 │         ├── Part1
               └── Part1.pdf
 │         ├── Part2
-              └── SADreport.pdf
+              └── P2 report.pdf
 │         └── data samples
 │             └── datasamples.txt
 ├── src
