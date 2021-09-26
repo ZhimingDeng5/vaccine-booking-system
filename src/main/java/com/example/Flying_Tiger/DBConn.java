@@ -13,24 +13,31 @@ public class DBConn {
     Connection conn;
     Statement stmt;
     ResultSet rs;
+    public DBConn()
+    {
+        openDB();
+    }
     public void openDB(){
-        try {
-            //String url="jdbc:postgresql://localhost:5432/myDB";
-
-            DriverManager.registerDriver(new org.postgresql.Driver());
-            conn= DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if(conn==null) {
+            try {
+                //String url="jdbc:postgresql://localhost:5432/myDB";
+                DriverManager.registerDriver(new org.postgresql.Driver());
+                conn = DriverManager.getConnection(url, user, password);
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
     public void connect() {
-        try {
-            DriverManager.registerDriver(new org.postgresql.Driver());
-            conn = DriverManager.getConnection(url, user, password);
+        if(conn==null) {
+            try {
+                DriverManager.registerDriver(new org.postgresql.Driver());
+                conn = DriverManager.getConnection(url, user, password);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -45,6 +52,11 @@ public class DBConn {
             e.printStackTrace();
         }
         return rs;
+    }
+    // prepared statement
+    public PreparedStatement setPreparedStatement(String sql) throws SQLException {
+        PreparedStatement myStmt = conn.prepareStatement(sql);
+        return myStmt;
     }
 
     //增删改
