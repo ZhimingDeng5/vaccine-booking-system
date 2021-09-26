@@ -30,13 +30,13 @@ https://flying-tiger.herokuapp.com
 
 We have provided some data for you test, you can also find them in the docs/data samples/datasample.txt
 
-<administrator> ID: 1000 Password:abcd
+administrator ID: 1000 Password:abcd
                 ID: 7    Password:abcd
 
-<vaccine recipient> ID: 2000 Password:abcd
+vaccine recipient ID: 2000 Password:abcd
                     ID: 16   Password:abcd
 
-<health care provider> ID: 200000000 Password:abcd
+health care provider ID: 200000000 Password:abcd
                        ID: 200000001 Password:abcd
 
 # Changelog
