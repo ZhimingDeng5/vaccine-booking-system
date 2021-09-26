@@ -19,7 +19,8 @@ public class UpdateRepServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id= Long.parseLong(request.getParameter("id"));
-        String password=request.getParameter("password");
+        LoginServlet log= new LoginServlet();
+        String password= log.toUserPwd(request.getParameter("password"));
         String name=request.getParameter("name");
         String birthdatestr=request.getParameter("birthdate");
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
