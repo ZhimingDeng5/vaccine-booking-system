@@ -12,6 +12,8 @@
 %>
 <%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.Flying_Tiger.Timeslot" %>
+<%@ page import="java.sql.DatabaseMetaData" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -33,13 +35,11 @@
     String name="";
     String type="";
     HealthCareProvider hcp= null;
-    try {
-        hcp = HealthCareProvider.getMapper().find(id);
-        name=hcp.getName();
-        type=hcp.getType();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+    hcp = HealthCareProvider.getMapper().find(id);
+    name=hcp.getName();
+    type=hcp.getType();
+    Timeslot[] timeslots=HealthCareProvider.getMapper().loadTimeslots(id);
+
 %>
 <div id="ihealth-layout" class="theme-tradewind">
 
@@ -93,8 +93,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
+                                                <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
 
@@ -144,46 +144,35 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <% for(Timeslot timeslot:timeslots) {
+                                        long tid=timeslot.getTimeslotID();
+                                        int numLeft=Timeslot.getMapper().getNumLeft(id,tid);
+                                    %>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                <%=tid%>
                                             </td>
                                             <td>
-                                                12/03/2021
+                                                <%=timeslot.getDate()%>
                                            </td>
                                            <td>
-                                                15:00
+                                                <%=timeslot.getTime()%>
                                            </td>
                                            <td>
-                                               10
+                                               <%=numLeft%>
                                            </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary editrow"
+                                                            data-nl="<%=numLeft%>" data-date="<%=timeslot.getDate()%>"
+                                                            data-time="<%=timeslot.getTime()%>" data-tid="<%=tid%>"
+                                                            data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="button" onclick="window.location='delete_timeslot.jsp?id=<%=id%>&tid=<%=tid%>'"
+                                                            class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                #EX-00006
-                                            </td>
-                                            <td>
-                                                12/03/2021
-                                            </td>
-                                            <td>
-                                                16:00
-                                            </td>
-                                            <td>
-                                                5
-                                           </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -201,32 +190,35 @@
                     <h5 class="modal-title  fw-bold" id="expaddLabel"> Add timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="../../UpdateTimeslot-Servlet?id=<%=id%>&edit=no" method="post">
                 <div class="modal-body">
+
                     <div class="mb-3">
-                        <label for="item" class="form-label">Number of Vaccine</label>
-                        <input type="text" class="form-control"Number of Vaccine="item">
+                        <label class="form-label">Number of Vaccine</label>
+                        <input type="number" class="form-control" name="numLeft" required>
                     </div>
                     <div class="deadline-form">
-                        <form>
+
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
-                                    <label for="depone" class="form-label">Date</label>
-                                    <input type="date" class="form-control" id="abc">
+                                    <label  class="form-label">Date</label>
+                                    <input type="date" class="form-control" name="date" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="abc" class="form-label">time</label>
-                                    <input type="time" class="form-control" id="abc">
+                                    <label class="form-label">time</label>
+                                    <input type="time" class="form-control" name="time" required>
                                 </div>
                             </div>
 
-                        </form>
+
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
+                </form>
             </div>
             </div>
         </div>
@@ -239,32 +231,40 @@
                     <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="../../UpdateTimeslot-Servlet?id=<%=id%>&edit=yes"
+                      method="post">
                 <div class="modal-body">
                         <div class="mb-3">
-                            <label for="item" class="form-label">Number of Vaccine</label>
-                            <input type="text" class="form-control" Number of Vaccine="item">
+                            <label class="form-label">Timeslot id</label>
+                            <input type="text" class="form-control" id="tid" name="tid" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Vaccine</label>
+                            <input type="number" class="form-control" id="numLeft" name="numLeft" required>
                         </div>
                         <div class="deadline-form">
-                            <form>
+
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
-                                        <label for="depone" class="form-label">Date</label>
-                                        <input type="date" class="form-control" id="abc">
+                                        <label class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="date" name="date" readonly required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="abc" class="form-label">time</label>
-                                        <input type="time" class="form-control" id="depone">
+                                        <label class="form-label">time</label>
+                                        <input type="time" class="form-control" id="time" name="time" readonly required>
                                     </div>
                                 </div>
 
-                            </form>
+
                         </div>
+
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
+                </form>
             </div>
             </div>
         </div>
@@ -299,6 +299,16 @@
                 .remove()
                 .draw();
 
+        } );
+        $('.editrow').on('click',function(){
+            var numLeft = $(this).data('nl');
+            var date=$(this).data('date');
+            var time=$(this).data('time');
+            var tid=$(this).data('tid');
+            $(".modal-body #numLeft").val( numLeft );
+            $(".modal-body #date").val( date );
+            $(".modal-body #time").val( time )
+            $(".modal-body #tid").val(tid);
         } );
     });
 </script>
