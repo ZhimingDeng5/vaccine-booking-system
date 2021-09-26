@@ -25,10 +25,11 @@ public class Timeslot{
     public Date getDate() {
         return date;
     }
-
+    public void SetDate(Date date) {this.date=date;}
     public Time getTime() {
         return time;
     }
+    public void SetTime(Time time){this.time=time;}
     public Recipient[] getRecipients(){
         return recipients;
     }

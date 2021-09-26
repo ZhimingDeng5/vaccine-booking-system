@@ -12,6 +12,7 @@
 %>
 <%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.Flying_Tiger.Recipient" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -40,6 +41,7 @@
     } catch (SQLException e) {
         e.printStackTrace();
     }
+    Recipient[] recipients=Recipient.getMapper().findForHcp(id);
 %>
 <div id="ihealth-layout" class="theme-tradewind">
 
@@ -81,7 +83,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%></span></p>
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -93,8 +95,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
-                                                <small class="">ID:0020392</small>
+                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
+                                                <small class="">ID:<%=id%></small>
                                             </div>
                                         </div>
 
@@ -119,13 +121,14 @@
 
         <!-- Body: Body -->       
         <div class="body d-flex py-lg-3 py-md-2">
+            <form action="../../BookEdit-Servlet" method="post">
             <div class="container-xxl">
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                             <h3 class="fw-bold mb-0">Booking List</h3>
                             <div class="col-auto d-flex w-sm-100">
-                                <button type="button" class="btn btn-primary btn-set-task w-sm-100" ></i>Save</button>
+                                <button type="submit" class="btn btn-primary btn-set-task w-sm-100" ></i>Save</button>
                             </div>
                         </div>
                     </div>
@@ -137,7 +140,7 @@
                                 <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Recipients Id</th>
                                             <th>Recipients Name</th>
                                             <th>Vaccine Type</th>
                                             <th>Date</th>
@@ -147,26 +150,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%for(Recipient recipient:recipients) {%>
                                         <tr>
                                             <td>
-                                                #EX-00002
+                                                <%=recipient.getID()%>
                                             </td>
                                             <td>
-                                                Laundry 
+                                                <%=recipient.getName()%>
                                             </td>
                                             <td>
-                                                AstraZeneca
+                                                <%=Recipient.getMapper().getVaccineType(recipient.getID())%>>
                                             </td>
                                            <td>
-                                                12/03/2021
+                                                <%=Recipient.getMapper().timeslotDate(recipient.getID())%>>
                                            </td>
                                            <td>
-                                               12:00
+                                               <%=Recipient.getMapper().timeslotTime(recipient.getID())%>>
                                            </td>
                                             <td>
-                                                <select class="form-select">
-                                                    <option selected>In Progress</option>
+                                                <select class="form-select" name="status<%=recipient.getID()%>">
+                                                    <%if(recipient.getInjected()==false) {%>
+                                                    <option value="0" selected>In Progress</option>
                                                     <option value="1">Completed</option>
+                                                    <%}
+                                                    else{%>
+                                                    <option value="0">In Progress</option>
+                                                    <option value="1" selected>Completed</option>
+                                                    <%}%>
                                                 </select>
                                            </td>
                                             <td>
@@ -175,6 +185,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -182,6 +193,7 @@
                   </div>
                 </div><!-- Row End -->
             </div>
+            </form>
         </div>
     </div>
 </div>

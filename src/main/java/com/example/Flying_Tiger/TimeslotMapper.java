@@ -29,7 +29,15 @@ public class TimeslotMapper extends Mapper{
         return new Timeslot(id, null, null, new Recipient[0]);
 
     }
-
+    public void insert(Date date, Time time)
+    {
+        Long id=KeyTable.getKey("timeslot");
+        try {
+            insert(id,date,time);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void insert(Long id, Date date, Time time) throws SQLException {
         dbc.openDB();
         String query = "INSERT INTO public." + super.table +
@@ -127,8 +135,58 @@ public class TimeslotMapper extends Mapper{
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return -100;
     }
-
+    public void insertTimeslotAssociation(long hcpId,long timeslotId,int numLeft)
+    {
+        try {
+            dbc.openDB();
+            String associationTable = "timeslot_healthcareprovider";
+            String query = "INSERT INTO public."+associationTable+
+                    "(\"timeslotID\",\"hcpID\",\"numLeft\") VALUES (?, ?, ?);";
+            PreparedStatement myStmt = null;
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, timeslotId);
+            myStmt.setLong(2, hcpId);
+            myStmt.setInt(3,numLeft);
+            myStmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteTimeslotAssociation(long hcpId,long timeslotId)
+    {
+        try {
+            dbc.openDB();
+            String associationTable = "timeslot_healthcareprovider";
+            String query = "DELETE FROM public."+associationTable+" Where \"hcpID\" = ? and \"timeslotID\"=?;";
+            PreparedStatement myStmt = null;
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, hcpId);
+            myStmt.setLong(2, timeslotId);
+            myStmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void editTimeslotAssociation(long hcpId,long timeslotId,int numLeft)
+    {
+        try {
+            dbc.openDB();
+            String associationTable = "timeslot_healthcareprovider";
+            String query = "UPDATE "+associationTable+" SET \"numLeft\"=? Where \"hcpID\" = ? and \"timeslotID\"=?;";
+            PreparedStatement myStmt = null;
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setInt(1, numLeft);
+            myStmt.setLong(2, hcpId);
+            myStmt.setLong(3, timeslotId);
+            myStmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -174,7 +174,31 @@ public class RecipientMapper extends UserMapper {
         return new Recipient[0];
 
     }
+    public Recipient[] findForHcp(long hcpID) throws SQLException {
+        // get the row with this id
+        String query = "SELECT * FROM " + super.table + " WHERE \"hcpID\" = ?";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setLong(1, hcpID);
+        ResultSet rs = myStmt.executeQuery();
+        try {
+            int size = 0;
+            while(rs.next()){
+                size++;
+            }
+            rs = myStmt.executeQuery();
+            Recipient[] recipients= new Recipient[size];
+            for(int i =0; i< size; i++){
+                rs.next();
+                recipients[i] = new Recipient(rs.getLong("ID"), rs.getString("password"), rs.getString("name"), rs.getDate("birthDate"), rs.getBoolean("suitable"),rs.getBoolean("injected"));
+            }
+            return recipients;
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Recipient[0];
+
+    }
     /**
      * get the vaccineType the recipient book
      * @param id
