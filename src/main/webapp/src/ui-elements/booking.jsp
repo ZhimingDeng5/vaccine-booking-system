@@ -205,7 +205,7 @@
                                         </td>
                                         <%if(numLeft>0) {%>
                                         <td>
-                                            <button type="button" class="btn btn-outline-secondary checkrow"><i class="icofont-ui-check text-success"></i></button>
+                                            <button type="button" class="btn btn-outline-secondary checkrow" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-ui-check text-success"></i></button>
                                         </td>
                                         <%}%>
                                     </tr>
@@ -219,8 +219,44 @@
                     </div>
                 </div><!-- Row End -->
             </div>
-        </div> 
+        </div>
+        <!-- Choose Type -->
+        <div class="modal fade" id="expadd" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="expaddLabel"> Choose Vaccine Type</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="form1" action="../../AddNewHcp-Servlet" method="post">
+                        <div class="modal-body">
 
+                            <div class="col-sm-12">
+                                <label  class="form-label">Health Care Provider Id</label>
+                                <input type="text" class="form-control"  id="hcpId" name="hcpId" readonly="readonly">
+                            </div>
+                            <div class="col-sm-12">
+                                <label  class="form-label">Timeslot Id</label>
+                                <input type="text" class="form-control"  id="Id" name="Id" readonly="readonly">
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="form-label">Select the Vaccine Type</label>
+                                <select class="form-select" id="type" name="type" required>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
     </div> 
   
 </div>
