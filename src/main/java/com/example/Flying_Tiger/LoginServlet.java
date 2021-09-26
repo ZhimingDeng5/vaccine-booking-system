@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
         }
         response.getWriter().println(script);
     }
-    private String toUserPwd(final String password) {
+    protected String toUserPwd(final String password) {
         try {
             if (password == null) {
                 return null;

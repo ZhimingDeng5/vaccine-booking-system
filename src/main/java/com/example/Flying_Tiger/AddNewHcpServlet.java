@@ -6,6 +6,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 @WebServlet(name = "AddNewHcpServlet", value = "/AddNewHcp-Servlet")
 public class AddNewHcpServlet extends HttpServlet {
     @Override
@@ -15,7 +16,8 @@ public class AddNewHcpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String password=request.getParameter("password");
+        LoginServlet log= new LoginServlet();
+        String password= log.toUserPwd(request.getParameter("password"));
         String name=request.getParameter("name");
         String type=request.getParameter("type");
         int postcode=Integer.parseInt(request.getParameter("postcode"));

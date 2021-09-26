@@ -16,7 +16,8 @@ public class UpdateHcpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id= Long.parseLong(request.getParameter("hcpId"));
-        String password=request.getParameter("password");
+        LoginServlet log= new LoginServlet();
+        String password= log.toUserPwd(request.getParameter("password"));
         String name=request.getParameter("name");
         String type=request.getParameter("type");
         int postcode=Integer.parseInt(request.getParameter("post"));
