@@ -62,80 +62,35 @@ public class Questionaire {
         return vacType;
     }
 
-    public String getQ1() {
-        if(q1!=null)
-            return q1.getQuestionContent();
-            else
-        {
-            try {
-                Questionaire q = this.getMapper().find(this.ID);
-                this.setQ1(q.getQ1());
-                return this.q1.getQuestionContent();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public String getQ1() throws SQLException {
+        if(this.q1 == null){
+            load();
         }
-            return null;
+        return q1.getQuestionContent();
     }
-    public String getQ2() {
-        if(q2!=null)
-            return q2.getQuestionContent();
-        else
-        {
-            try {
-                Questionaire q = this.getMapper().find(this.ID);
-                this.setQ2(q.getQ2());
-                return this.q2.getQuestionContent();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public String getQ2() throws SQLException {
+        if(this.q2 == null){
+            load();
         }
-        return null;
+        return q2.getQuestionContent();
     }
-    public String getQ3() {
-        if(q3!=null)
-            return q3.getQuestionContent();
-        else
-        {
-            try {
-                Questionaire q = this.getMapper().find(this.ID);
-                this.setQ3(q.getQ3());
-                return this.q3.getQuestionContent();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public String getQ3() throws SQLException {
+        if(this.q3 == null){
+            load();
         }
-        return null;
+        return q3.getQuestionContent();
     }
-    public String getQ4() {
-        if(q4!=null)
-            return q4.getQuestionContent();
-        else
-        {
-            try {
-                Questionaire q = this.getMapper().find(this.ID);
-                this.setQ4(q.getQ4());
-                return this.q4.getQuestionContent();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public String getQ4() throws SQLException {
+        if(this.q4 == null){
+            load();
         }
-        return null;
+        return q4.getQuestionContent();
     }
-    public String getQ5() {
-        if(q5!=null)
-            return q5.getQuestionContent();
-        else
-        {
-            try {
-                Questionaire q = this.getMapper().find(this.ID);
-                this.setQ5(q.getQ5());
-                return this.q5.getQuestionContent();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public String getQ5() throws SQLException {
+        if(this.q5 == null){
+            load();
         }
-        return null;
+        return q5.getQuestionContent();
     }
     public void setQ1(String q1) {
         this.q1 = new Question(q1);
