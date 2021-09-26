@@ -32,7 +32,7 @@ public class Timeslot{
     public Recipient[] getRecipients(){
         return recipients;
     }
-
+    public static TimeslotMapper getMapper() {return TimeslotMapper.getInstance();}
 
 //    public static Set<Timeslot> getall()
 //    {
