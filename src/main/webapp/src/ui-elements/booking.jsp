@@ -204,13 +204,17 @@
                                         <td>
                                             <%=numLeft%>
                                         </td>
-                                        <%if(numLeft>0&&!recipient.getSuitable()) {%>
+                                        <%if(numLeft<100&&!recipient.getSuitable()) {%>
                                         <td>
                                             <button type="button"  data-bs-toggle="modal" data-bs-target="#expadd"
+                                                    class="btn btn-outline-secondary editrow"
                                             data-hcpid="<%=hcp2.getID()%>" data-tid="<%=timeslot.getTimeslotID()%>"
-                                                    class="btn btn-outline-secondary editrow">
+                                                    >
                                                 <i class="icofont-ui-check text-success"></i></button>
                                         </td>
+                                        <%}
+                                        else{;%>
+                                        <td></td>
                                         <%}%>
                                     </tr>
                                         <%}
