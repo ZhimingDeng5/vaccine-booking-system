@@ -1,6 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.example.Flying_Tiger.*" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

@@ -1,4 +1,7 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+
+import com.example.Flying_Tiger.Class.User;
+import com.example.Flying_Tiger.Class.Vaccine;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.example.Flying_Tiger.*" %>
-<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.Timeslot" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -23,10 +23,10 @@
 
 <body>
 <%
-    Long id=Long.parseLong(request.getParameter("id"));
-    Long hcpid=Long.parseLong(request.getParameter("hcpid"));
-    Recipient.getMapper().deletebooking(id,hcpid);
-    String script = "<script>location.href='my_booking.jsp?id="+id+"'</script>";
+    Long hcpId=Long.parseLong(request.getParameter("id"));
+    Long tId=Long.parseLong(request.getParameter("tid"));
+    Timeslot.getMapper().deleteTimeslotAssociation(hcpId,tId);
+    String script = "<script>location.href='my_timeslot.jsp?id="+hcpId+"'</script>";
     response.getWriter().println(script);
 %>
 </body>

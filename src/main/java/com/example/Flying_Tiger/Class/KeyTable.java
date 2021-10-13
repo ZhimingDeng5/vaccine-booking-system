@@ -1,5 +1,4 @@
-package com.example.Flying_Tiger;
-import java.util.*;
+package com.example.Flying_Tiger.Class;
 import java.sql.*;
 /**
  * Identity field pattern

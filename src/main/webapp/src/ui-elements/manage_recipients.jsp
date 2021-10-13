@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+﻿<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.sql.Time" %>

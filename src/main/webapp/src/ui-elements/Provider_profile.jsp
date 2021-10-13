@@ -10,7 +10,7 @@
     }
     response.getWriter().println(script);
 %>
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">

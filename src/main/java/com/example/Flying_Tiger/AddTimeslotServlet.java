@@ -1,5 +1,8 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.KeyTable;
+import com.example.Flying_Tiger.Class.Timeslot;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -19,7 +22,7 @@ public class AddTimeslotServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Time time= Time.valueOf(request.getParameter("time"));
         Date date= Date.valueOf(request.getParameter("date"));
-        Long id=KeyTable.getKey("timeslot");
+        Long id= KeyTable.getKey("timeslot");
         try {
             Timeslot.getMapper().insert(id,date,time);
         } catch (SQLException e) {

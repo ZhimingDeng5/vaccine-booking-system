@@ -1,5 +1,7 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.Recipient;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

@@ -1,8 +1,12 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+
+import com.example.Flying_Tiger.Class.KeyTable;
+import com.example.Flying_Tiger.Class.Recipient;
+import com.example.Flying_Tiger.Class.Timeslot;
 
 import java.sql.*;
 
-public class TimeslotMapper extends Mapper{
+public class TimeslotMapper extends Mapper {
     public TimeslotMapper(){
         super("timeslot");
     }
@@ -31,7 +35,7 @@ public class TimeslotMapper extends Mapper{
     }
     public void insert(Date date, Time time)
     {
-        Long id=KeyTable.getKey("timeslot");
+        Long id= KeyTable.getKey("timeslot");
         try {
             insert(id,date,time);
         } catch (SQLException e) {
@@ -136,6 +140,26 @@ public class TimeslotMapper extends Mapper{
             e.printStackTrace();
         }
         return -100;
+    }
+    public int getVersion(long hcpid,long timeslotId) {
+        try {
+            dbc.openDB();
+            String associationTable = "timeslot_healthcareprovider";
+            String query = "SELECT \"version\" FROM timeslot_healthcareprovider Where \"hcpID\" = ? and \"timeslotID\"=?;";
+            PreparedStatement myStmt = null;
+            myStmt = dbc.setPreparedStatement(query);
+            myStmt.setLong(1, hcpid);
+            myStmt.setLong(2, timeslotId);
+            ResultSet rs = myStmt.executeQuery();
+            if (rs.next())
+            {
+                return rs.getInt("version");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     public void insertTimeslotAssociation(long hcpId,long timeslotId,int numLeft)
     {

@@ -10,7 +10,7 @@
     }
     response.getWriter().println(script);
 %>
-<%@ page import="com.example.Flying_Tiger.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 

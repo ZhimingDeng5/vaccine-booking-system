@@ -10,11 +10,11 @@
     }
     response.getWriter().println(script);
 %>
-<%@ page import="com.example.Flying_Tiger.Recipient" %>
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="java.sql.Date" %>
-<%@ page import="com.example.Flying_Tiger.Timeslot" %>
-<%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Class.Timeslot" %>
+<%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -247,6 +247,9 @@
                                 <label  class="form-label">Timeslot Id</label>
                                 <input type="text" class="form-control"  id="tid" name="tid" readonly="readonly">
                             </div>
+                            <%
+                                System.out.println("11111");
+                            %>
                             <div class="col-sm-12">
                                 <label class="form-label">Select the Vaccine Type</label>
                                 <select class="form-select" id="type" name="type" required>
@@ -303,6 +306,7 @@
         $('.editrow').on('click',function(){
             var tid = $(this).data('tid');
             var hcpid=$(this).data('hcpid');
+            console.log(tid);
             $(".modal-body #hcpid").val( hcpid );
             $(".modal-body #tid").val( tid );
             console.log('5');

@@ -1,4 +1,6 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+
+import com.example.Flying_Tiger.Class.Administrator;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

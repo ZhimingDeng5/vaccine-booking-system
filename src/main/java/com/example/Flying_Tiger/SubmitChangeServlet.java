@@ -1,5 +1,7 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.Recipient;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -15,7 +17,7 @@ public class SubmitChangeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Recipient.getMapper().getuow().commit();
-        String script = "<script>location.href='src/ui-elements/manage_recipients.jsp'</script></script>";
+        String script = "<script>location.href='manage_recipients.jsp'</script>";
         response.getWriter().println(script);
     }
 }

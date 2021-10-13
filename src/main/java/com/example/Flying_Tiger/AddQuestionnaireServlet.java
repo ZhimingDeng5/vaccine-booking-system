@@ -1,5 +1,8 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.KeyTable;
+import com.example.Flying_Tiger.Class.Questionaire;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

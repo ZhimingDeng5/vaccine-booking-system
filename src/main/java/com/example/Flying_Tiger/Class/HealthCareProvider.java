@@ -1,4 +1,6 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
+
+import com.example.Flying_Tiger.Mapper.HealthCareProviderMapper;
 
 public class HealthCareProvider extends User {
     private String name;

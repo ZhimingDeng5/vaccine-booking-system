@@ -1,7 +1,7 @@
-﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
-<%@ page import="com.example.Flying_Tiger.Questionaire" %>
-<%@ page import="com.example.Flying_Tiger.Vaccine" %>
-<%@ page import="com.example.Flying_Tiger.Timeslot" %>
+﻿<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.Questionaire" %>
+<%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Class.Timeslot" %>
 <%@ page import="java.sql.Date" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -86,7 +86,7 @@
                                 <small>Vaccine Recipient</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av2.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">

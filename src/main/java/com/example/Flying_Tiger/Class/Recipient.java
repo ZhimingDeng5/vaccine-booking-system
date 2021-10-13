@@ -1,4 +1,6 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
+import com.example.Flying_Tiger.Mapper.RecipientMapper;
+
 import java.sql.Date;
 public class Recipient extends User {
     private String name;

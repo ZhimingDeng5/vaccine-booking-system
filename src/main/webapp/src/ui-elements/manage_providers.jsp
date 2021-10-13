@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+﻿<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 

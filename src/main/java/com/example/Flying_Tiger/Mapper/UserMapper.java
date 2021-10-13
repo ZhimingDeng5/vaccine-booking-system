@@ -1,6 +1,7 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
 
-import java.sql.PreparedStatement;
+import com.example.Flying_Tiger.Class.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 /**

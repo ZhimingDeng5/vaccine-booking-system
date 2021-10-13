@@ -10,9 +10,9 @@
     }
     response.getWriter().println(script);
 %>
-<%@ page import="com.example.Flying_Tiger.Recipient" %>
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
-<%@ page import="com.example.Flying_Tiger.Administrator" %>
+<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Class.Administrator" %>
 
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -68,21 +68,22 @@
                 <div class="container-xxl">
 
                     <!-- header rightbar icon -->
-                    <div class="h-right d-flex align-items-end mr-5 mr-lg-0 order-1" >
+                    <div class="h-right d-flex align-items-end mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
                                <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av1.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 

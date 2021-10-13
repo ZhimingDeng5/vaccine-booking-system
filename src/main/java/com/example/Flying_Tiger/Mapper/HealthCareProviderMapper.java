@@ -1,4 +1,8 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+
+import com.example.Flying_Tiger.Class.HealthCareProvider;
+import com.example.Flying_Tiger.Class.Questionaire;
+import com.example.Flying_Tiger.Class.Timeslot;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -192,7 +196,7 @@ public class HealthCareProviderMapper extends UserMapper {
         }
         return new HealthCareProvider[0];
     }
-    public Questionaire findquestionnaire(Long hcpid,String type){
+    public Questionaire findquestionnaire(Long hcpid, String type){
         dbc.openDB();
         // update
         String query = "SELECT * FROM " + this.table + " WHERE \"hcpID\" = ?, \"vacType\"=?; ";

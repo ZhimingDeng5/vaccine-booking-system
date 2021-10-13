@@ -1,7 +1,7 @@
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="com.example.Flying_Tiger.Vaccine" %>
-<%@ page import="com.example.Flying_Tiger.Questionaire" %>
+<%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Class.Questionaire" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -85,8 +85,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
-                                                <small class="">ID:<%=id%></small>
+                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 

@@ -1,4 +1,6 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
+
+import com.example.Flying_Tiger.Mapper.VaccineMapper;
 
 public class Vaccine {
     private long ID;

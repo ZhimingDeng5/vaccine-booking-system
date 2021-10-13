@@ -1,4 +1,6 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+
+import com.example.Flying_Tiger.Class.Questionaire;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,7 +153,7 @@ public class QuestionaireMapper extends Mapper {
         dbc.openDB();
         // update
         String query = "UPDATE " + this.table + " set \"ID\" = ?, \"vacType\" = ?, \"hcpID\"=?, " +
-                "\"q1\"=?, \"q2\"=?, \"q3\"=?, \"q4\"=?, \"q5\"=?,\"minAge\"=?,\"maxAge\"=? WHERE  \"ID\" = ?; ";
+                "\"q1\"=?, \"q2\"=?, \"q3\"=?, \"q4\"=?, \"q5\"=?,\"minAge\"=?,\"maxAge\"=? WHERE \"ID\" = ?; ";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
         myStmt.setLong(1, questionaire.getID());
         myStmt.setString(2, questionaire.getVacType());

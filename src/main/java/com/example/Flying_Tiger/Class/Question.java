@@ -1,4 +1,4 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
 
 public class Question {
     private String questionContent;

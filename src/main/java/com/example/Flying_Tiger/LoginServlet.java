@@ -1,10 +1,13 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.Administrator;
+import com.example.Flying_Tiger.Class.HealthCareProvider;
+import com.example.Flying_Tiger.Class.Recipient;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.security.MessageDigest;
 

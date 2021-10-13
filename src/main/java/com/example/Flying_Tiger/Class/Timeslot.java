@@ -1,9 +1,8 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
+import com.example.Flying_Tiger.Mapper.TimeslotMapper;
+
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.ResultSet;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class Timeslot{
@@ -11,7 +10,7 @@ public class Timeslot{
     private Date date;
     private Time time;
     private Recipient[] recipients;
-    Timeslot(long ID,Date date,Time time,Recipient[] recipients)
+    public Timeslot(long ID, Date date, Time time, Recipient[] recipients)
     {
         this.ID=ID;
         this.date=date;

@@ -1,5 +1,8 @@
 package com.example.Flying_Tiger;
 
+import com.example.Flying_Tiger.Class.HealthCareProvider;
+import com.example.Flying_Tiger.Class.KeyTable;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -27,7 +30,7 @@ public class AddNewHcpServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String script = "<script>location.href='src/ui-elements/manage_providers.jsp'</script>";
-        response.getWriter().println(script);
+/*        String script = "<script>location.href='src/ui-elements/manage_providers.jsp'</script>";
+        response.getWriter().println(script);*/
     }
 }

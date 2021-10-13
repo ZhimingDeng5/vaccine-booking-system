@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.Recipient" %>
+﻿<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.sql.Time" %>
@@ -62,15 +62,16 @@
                                <small>Administrator</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av1.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av1.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">Administrator</span></p>
+                                                <p class="mb-0"><span class="font-weight-bold">John	Quinn</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 

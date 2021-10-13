@@ -1,4 +1,9 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Mapper;
+import com.example.Flying_Tiger.Class.HealthCareProvider;
+import com.example.Flying_Tiger.Class.Recipient;
+import com.example.Flying_Tiger.Class.UnitOfWorkOfRecipient;
+import com.example.Flying_Tiger.Class.Vaccine;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.Period;

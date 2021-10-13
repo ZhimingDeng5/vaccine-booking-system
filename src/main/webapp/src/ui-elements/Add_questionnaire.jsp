@@ -10,9 +10,9 @@
     }
     response.getWriter().println(script);
 %>
-<%@ page import="com.example.Flying_Tiger.HealthCareProvider" %>
+<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="com.example.Flying_Tiger.Vaccine" %>
+<%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -82,7 +82,7 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><%=name%></span></p>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">A hospital</span></p>
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -94,8 +94,8 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
-                                                <small class="">ID:<%=id%></small>
+                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 

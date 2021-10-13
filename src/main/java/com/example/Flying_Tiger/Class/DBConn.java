@@ -1,4 +1,4 @@
-package com.example.Flying_Tiger;
+package com.example.Flying_Tiger.Class;
 import java.sql.*;
 import java.sql.Connection;
 

@@ -1,19 +1,5 @@
-﻿<%//Browser fallback force refresh
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires", 0);
-    response.setHeader("Pragma","no-cache");
-%>
-<%
-    String script="";
-    if(session.getAttribute("user")==null||Integer.parseInt(session.getAttribute("user").toString()) != 3) {
-        script = "<script>alert('permission denied!');location.href='auth-signin.jsp'</script>";
-    }
-    response.getWriter().println(script);
-%>
-<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
+﻿<%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="com.example.Flying_Tiger.Class.Timeslot" %>
-<%@ page import="java.sql.DatabaseMetaData" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -21,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My Timeslot List</title>
+    <title>Timeslot List</title>
     
     <!-- plugin css file  -->
     <link rel="stylesheet" href="../assets/plugin/datatables/responsive.dataTables.min.css">
@@ -35,11 +21,13 @@
     String name="";
     String type="";
     HealthCareProvider hcp= null;
-    hcp = HealthCareProvider.getMapper().find(id);
-    name=hcp.getName();
-    type=hcp.getType();
-    Timeslot[] timeslots=HealthCareProvider.getMapper().loadTimeslots(id);
-
+    try {
+        hcp = HealthCareProvider.getMapper().find(id);
+        name=hcp.getName();
+        type=hcp.getType();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 %>
 <div id="ihealth-layout" class="theme-tradewind">
 
@@ -56,11 +44,10 @@
 
             <ul class="menu-list flex-grow-1 mt-3">
                 <li><a class="m-link" href="Provider_profile.jsp?id=<%=id%>"><i class="icofont-student-alt fs-5"></i> <span>My profile</span></a></li>
-                <li><a class="m-link" href="Add_questionnaire.jsp?id=<%=id%>"><i class="icofont-paper fs-5"></i> <span>Add questionnaire</span></a></li>
-                <li><a class="m-link" href="Edit_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
+                <li><a class="m-link" href="Add_questionnaire.jsp?id=<%=id%>"><i class="icofont-pen-alt-2 fs-5"></i> <span>Edit questionnaire</span></a></li>
                 <li><a class="m-link" href="booking_list.jsp?id=<%=id%>"><i class="icofont-prescription fs-5"></i> <span>Booking list</span></a></li>
-                <li><a class="m-link" href="my_timeslot.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>My Timeslots</span></a></li>
-               </ul>
+                <li><a class="m-link" href="timeslot_list.jsp?id=<%=id%>"><i class="icofont-clock-time fs-5"></i> <span>Timeslots list</span></a></li>
+            </ul>
 
             <!-- Menu: menu collepce btn -->
             <button type="button" class="btn btn-link sidebar-mini-btn text-light">
@@ -85,23 +72,23 @@
                                 <small>Health Care Provider</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av3.png" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../assets/images/profile_av.png" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../assets/images/profile_av3.png" alt="profile">
+                                            <img class="avatar rounded-circle" src="../assets/images/profile_av.png" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold"><%=name%></span></p>
-                                                <small class="">ID:<%=id%></small>
+                                                <p class="mb-0"><span class="font-weight-bold">A hospital</span></p>
+                                                <small class="">ID:0020392</small>
                                             </div>
                                         </div>
 
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="logout.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <a href="auth-signin.jsp" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +109,7 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">My Timeslot List</h3>
+                            <h3 class="fw-bold mb-0">Timeslot List</h3>
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add Timeslot</button>
                             </div>
@@ -144,37 +131,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <% for(Timeslot timeslot:timeslots) {
-                                        long tid=timeslot.getTimeslotID();
-                                        int numLeft=Timeslot.getMapper().getNumLeft(id,tid);
-                                        int version=Timeslot.getMapper().getVersion(id,tid);
-                                    %>
                                         <tr>
                                             <td>
-                                                <%=tid%>
+                                                #EX-00002
                                             </td>
                                             <td>
-                                                <%=timeslot.getDate()%>
+                                                12/03/2021
                                            </td>
                                            <td>
-                                                <%=timeslot.getTime()%>
+                                                15:00
                                            </td>
                                            <td>
-                                               <%=numLeft%>
+                                               10
                                            </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary editrow"
-                                                            data-nl="<%=numLeft%>" data-date="<%=timeslot.getDate()%>"
-                                                            data-time="<%=timeslot.getTime()%>" data-tid="<%=tid%>"
-                                                            data-version="<%=version%>" data-bs-toggle="modal" data-bs-target="#expedit">
-                                                        <i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" onclick="window.location='delete_timeslot.jsp?id=<%=id%>&tid=<%=tid%>'"
-                                                            class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
-                                    <%}%>
+                                        <tr>
+                                            <td>
+                                                #EX-00006
+                                            </td>
+                                            <td>
+                                                12/03/2021
+                                            </td>
+                                            <td>
+                                                16:00
+                                            </td>
+                                            <td>
+                                                5
+                                           </td>
+                                             <td>
+                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                                 </div>
+                                             </td>
+                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -192,35 +188,32 @@
                     <h5 class="modal-title  fw-bold" id="expaddLabel"> Add timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="../../UpdateTimeslot-Servlet?id=<%=id%>&edit=no" method="post">
                 <div class="modal-body">
-
                     <div class="mb-3">
-                        <label class="form-label">Number of Vaccine</label>
-                        <input type="number" class="form-control" name="numLeft" required>
+                        <label for="item" class="form-label">Number of Vaccine</label>
+                        <input type="text" class="form-control"Number of Vaccine="item">
                     </div>
                     <div class="deadline-form">
-
+                        <form>
                             <div class="row g-3 mb-3">
                                 <div class="col-sm-6">
-                                    <label  class="form-label">Date</label>
-                                    <input type="date" class="form-control" name="date" required>
+                                    <label for="depone" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="abc">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="form-label">time</label>
-                                    <input type="time" class="form-control" name="time" required>
+                                    <label for="abc" class="form-label">time</label>
+                                    <input type="time" class="form-control" id="abc">
                                 </div>
                             </div>
 
-
+                        </form>
                     </div>
-
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
-                </form>
             </div>
             </div>
         </div>
@@ -233,44 +226,32 @@
                     <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit timeslot</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="../../UpdateTimeslot-Servlet?id=<%=id%>&edit=yes"
-                      method="post">
                 <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label">Timeslot id</label>
-                            <input type="text" class="form-control" id="tid" name="tid" readonly>
-                        </div>
-                    <div class="mb-3">
-                        <label class="form-label">version</label>
-                        <input type="text" class="form-control" id="version" name="version" readonly>
-                    </div>
-                        <div class="mb-3">
-                            <label class="form-label">Number of Vaccine</label>
-                            <input type="number" class="form-control" id="numLeft" name="numLeft" required>
+                            <label for="item" class="form-label">Number of Vaccine</label>
+                            <input type="text" class="form-control" Number of Vaccine="item">
                         </div>
                         <div class="deadline-form">
-
+                            <form>
                                 <div class="row g-3 mb-3">
                                     <div class="col-sm-6">
-                                        <label class="form-label">Date</label>
-                                        <input type="date" class="form-control" id="date" name="date" readonly required>
+                                        <label for="depone" class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="abc">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="form-label">time</label>
-                                        <input type="time" class="form-control" id="time" name="time" readonly required>
+                                        <label for="abc" class="form-label">time</label>
+                                        <input type="time" class="form-control" id="depone">
                                     </div>
                                 </div>
 
-
+                            </form>
                         </div>
-
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-                </form>
             </div>
             </div>
         </div>
@@ -305,18 +286,6 @@
                 .remove()
                 .draw();
 
-        } );
-        $('.editrow').on('click',function(){
-            var numLeft = $(this).data('nl');
-            var date=$(this).data('date');
-            var time=$(this).data('time');
-            var tid=$(this).data('tid');
-            var version=$(this).data('version');
-            $(".modal-body #numLeft").val( numLeft );
-            $(".modal-body #date").val( date );
-            $(".modal-body #time").val( time )
-            $(".modal-body #tid").val(tid);
-            $(".modal-body #version").val(version);
         } );
     });
 </script>
