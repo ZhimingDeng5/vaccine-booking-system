@@ -2,6 +2,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <%@ page import="com.example.Flying_Tiger.Class.Questionaire" %>
+<%@ page import="com.example.Flying_Tiger.Mapper.ExclusiveWriteLockManager" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -20,6 +21,14 @@
 <%
     long qid= Long.parseLong(request.getParameter("id"));
     long id=Long.parseLong(request.getParameter("hcpid"));
+    boolean acquireLockResult = ExclusiveWriteLockManager.getInstance().acquireLock(qid,id);
+    if(!acquireLockResult) {
+        String script = "<script>alert('Others are editing this questionnaire now! please wait a moment!');" +
+                "location.href='src/ui-elements/Edit_questionnaire.jsp?id=" +
+                id +"'</script>";
+        response.getWriter().println(script);
+    }
+
     String qtype=request.getParameter("type");
     String name="";
     HealthCareProvider hcp= null;

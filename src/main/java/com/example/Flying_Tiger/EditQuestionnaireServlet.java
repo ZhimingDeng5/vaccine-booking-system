@@ -1,6 +1,7 @@
 package com.example.Flying_Tiger;
 
 import com.example.Flying_Tiger.Class.Questionaire;
+import com.example.Flying_Tiger.Mapper.ExclusiveWriteLockManager;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -33,6 +34,7 @@ public class EditQuestionnaireServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        ExclusiveWriteLockManager.getInstance().releaseLock(id, hcpid);
         String script = "<script>location.href='src/ui-elements/Edit_questionnaire.jsp?id="+hcpid+"'</script>";
         response.getWriter().println(script);
     }
