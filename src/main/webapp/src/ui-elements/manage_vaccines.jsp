@@ -136,6 +136,8 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" data-id="<%=vaccine.getID()%>"  data-type="<%=vaccine.getType()%>" class="btn btn-outline-secondary editrow"
+                                                            data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                     <button type="button" class="btn btn-outline-secondary deleterow"
                                                             onclick="window.location='delete_vacType.jsp?id=<%=vaccine.getID()%>'"><i class="icofont-ui-delete text-danger"></i></button>
                                                 </div>
@@ -175,6 +177,30 @@
             </div>
             </div>
         </div>
+
+        <!-- Edit Vaccine-->
+        <div class="modal fade" id="expedit" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="expeditLabel"> Edit Vaccine</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="form2" action="../../UpdatevcType-Servlet" method="post">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label  class="form-label">Vaccine Type</label>
+                                <input type="text" class="form-control" id="type" name="type" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>     
 </div>
  
@@ -204,9 +230,16 @@
                 .parents('tr') )
                 .remove()
                 .draw();
-
+        } );
+        $('.editrow').on('click',function(){
+            var Id = $(this).data('id');
+            var type=$(this).data('type');
+            $(".modal-body #id").val( Id );
+            $(".modal-body #type").val( type );
+            console.log(type);
         } );
     });
+
 </script>
 </body>
 </html>
