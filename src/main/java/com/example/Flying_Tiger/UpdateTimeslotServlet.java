@@ -1,6 +1,7 @@
 package com.example.Flying_Tiger;
 
 
+
 import com.example.Flying_Tiger.Class.Timeslot;
 
 import javax.servlet.*;
@@ -25,18 +26,25 @@ public class UpdateTimeslotServlet extends HttpServlet {
         long hcpid= Long.parseLong(request.getParameter("id"));
         Date date= Date.valueOf(request.getParameter("date"));
         String timestr=request.getParameter("time");
+        //add optimistic lock
+
         if(timestr.length()<8) {
             timestr += ":00";
         }
         Time time= Time.valueOf(timestr);
         if(edit.equals("yes")) {
+            int version= Integer.parseInt(request.getParameter("version"));
             long tid = Long.parseLong(request.getParameter("tid"));
             try {
                 Timeslot temp=Timeslot.getMapper().find(tid);
                 temp.SetTime(time);
                 temp.SetDate(date);
                 Timeslot.getMapper().update(temp);
-                Timeslot.getMapper().editTimeslotAssociation(hcpid,tid,numLeft);
+                String alert=Timeslot.getMapper().editTimeslotAssociation(hcpid,tid,numLeft,version);
+                String script = "<script>alert('" +alert+"');"+
+                        "location.href='src/ui-elements/my_timeslot.jsp?id=" +
+                        hcpid+"'</script>";
+                response.getWriter().println(script);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -67,13 +75,15 @@ public class UpdateTimeslotServlet extends HttpServlet {
                     tid=Timeslot.getMapper().getIDByDateTime(date,time);
                     Timeslot.getMapper().insertTimeslotAssociation(hcpid,tid,numLeft);
                 }
+                String script = "<script>alert('Add timeslot successfully');" +
+                        "location.href='src/ui-elements/my_timeslot.jsp?id=" +
+                        hcpid+"'</script>";
+                response.getWriter().println(script);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        String script = "<script>location.href='src/ui-elements/my_timeslot.jsp?id=" +
-                hcpid+"'</script>";
-        response.getWriter().println(script);
+
     }
 }

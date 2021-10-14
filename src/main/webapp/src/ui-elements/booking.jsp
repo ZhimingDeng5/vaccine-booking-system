@@ -204,7 +204,7 @@
                                         <td>
                                             <%=numLeft%>
                                         </td>
-                                        <%if(numLeft<100&&!recipient.getSuitable()) {%>
+                                        <%if(!recipient.getSuitable()) {%>
                                         <td>
                                             <button type="button"  data-bs-toggle="modal" data-bs-target="#expadd"
                                                     class="btn btn-outline-secondary editrow"
@@ -247,9 +247,6 @@
                                 <label  class="form-label">Timeslot Id</label>
                                 <input type="text" class="form-control"  id="tid" name="tid" readonly="readonly">
                             </div>
-                            <%
-                                System.out.println("11111");
-                            %>
                             <div class="col-sm-12">
                                 <label class="form-label">Select the Vaccine Type</label>
                                 <select class="form-select" id="type" name="type" required>
@@ -262,7 +259,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
                     </form>
@@ -306,10 +303,8 @@
         $('.editrow').on('click',function(){
             var tid = $(this).data('tid');
             var hcpid=$(this).data('hcpid');
-            console.log(tid);
             $(".modal-body #hcpid").val( hcpid );
             $(".modal-body #tid").val( tid );
-            console.log('5');
         } );
     });
 </script>

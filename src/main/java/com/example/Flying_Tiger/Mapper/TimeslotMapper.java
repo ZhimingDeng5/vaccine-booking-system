@@ -3,6 +3,8 @@ package com.example.Flying_Tiger.Mapper;
 import com.example.Flying_Tiger.Class.KeyTable;
 import com.example.Flying_Tiger.Class.Recipient;
 import com.example.Flying_Tiger.Class.Timeslot;
+import com.example.Flying_Tiger.Mapper.Mapper;
+import com.example.Flying_Tiger.Mapper.RecipientMapper;
 
 import java.sql.*;
 
@@ -167,12 +169,13 @@ public class TimeslotMapper extends Mapper {
             dbc.openDB();
             String associationTable = "timeslot_healthcareprovider";
             String query = "INSERT INTO public."+associationTable+
-                    "(\"timeslotID\",\"hcpID\",\"numLeft\") VALUES (?, ?, ?);";
+                    "(\"timeslotID\",\"hcpID\",\"numLeft\",\"version\") VALUES (?, ?, ?, ?);";
             PreparedStatement myStmt = null;
             myStmt = dbc.setPreparedStatement(query);
             myStmt.setLong(1, timeslotId);
             myStmt.setLong(2, hcpId);
             myStmt.setInt(3,numLeft);
+            myStmt.setInt(4,1);
             myStmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -195,22 +198,59 @@ public class TimeslotMapper extends Mapper {
             e.printStackTrace();
         }
     }
-    public void editTimeslotAssociation(long hcpId,long timeslotId,int numLeft)
+    public String editTimeslotAssociation(long hcpId,long timeslotId,int numLeft,int version)
     {
         try {
             dbc.openDB();
             String associationTable = "timeslot_healthcareprovider";
-            String query = "UPDATE "+associationTable+" SET \"numLeft\"=? Where \"hcpID\" = ? and \"timeslotID\"=?;";
+            String query = "UPDATE "+associationTable+" SET \"numLeft\"=?,\"version\"=? Where \"hcpID\" = ? and \"timeslotID\"=? " +
+                    "and \"version\"=?;";
             PreparedStatement myStmt = null;
             myStmt = dbc.setPreparedStatement(query);
             myStmt.setInt(1, numLeft);
-            myStmt.setLong(2, hcpId);
-            myStmt.setLong(3, timeslotId);
-            myStmt.executeUpdate();
+            myStmt.setInt(2,version+1);
+            myStmt.setLong(3, hcpId);
+            myStmt.setLong(4, timeslotId);
+            myStmt.setInt(5,version);
+            int rowcount= myStmt.executeUpdate();
+            System.out.println(rowcount);
+            if (rowcount==0)
+            {
+                String checkquery="SELECT version From "+associationTable+" Where \"hcpID\" = ? and \"timeslotID\"=? ";
+                return throwConcurrencyException(checkquery,version,hcpId,timeslotId);
+            }
+
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+        return "the number of seats successfully modified!";
     }
+    public String throwConcurrencyException(String checksql,int version,long hcpId,long timeslotId)
+    {
 
+        try {
+            PreparedStatement myStmt = null;
+            myStmt=dbc.setPreparedStatement(checksql);
+            myStmt.setLong(1,hcpId);
+            myStmt.setLong(2,timeslotId);
+            ResultSet rs=myStmt.executeQuery();
+            if(rs.next())
+            {
+                if(rs.getInt("version")>version)
+                {
+                    return "fail to modify the timeslot because before your modification " +
+                            "it has been modified by another health care provider!" +
+                            " Back to timeslot page!";
+                }
+            }
+            else
+            {
+                return "The timeslot has been deleted!";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "unexpected error!";
+    }
 }
