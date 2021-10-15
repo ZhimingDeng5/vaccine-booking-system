@@ -42,9 +42,8 @@ public class AnswerJudgeServlet extends HttpServlet {
         else
         {
             try {
-                String alert=Recipient.getMapper().book(recid,hcpid,tid,vacid);
-                String script= "<script>alert('" +alert+"');";
-                script += "location.href='src/ui-elements/my_booking.jsp?id="+recid+ "'</script>";
+                Recipient.getMapper().book(recid,hcpid,tid,vacid);
+                String script = "<script>location.href='src/ui-elements/my_booking.jsp?id="+recid+ "'</script>";
                 response.getWriter().println(script);
             } catch (SQLException e) {
                 e.printStackTrace();
