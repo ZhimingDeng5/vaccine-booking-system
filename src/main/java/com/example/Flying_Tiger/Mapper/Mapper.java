@@ -10,10 +10,12 @@ import java.sql.SQLException;
  */
 public class Mapper {
     protected String table;
-    public static final DBConn dbc=new DBConn();
-    public Mapper(String table){
+    public static final DBConn dbc = new DBConn();
+
+    public Mapper(String table) {
         this.table = table;
     }
+
     // Find rows from table
     public ResultSet findRow(long id) throws SQLException {
         // get the row with this id
@@ -25,8 +27,7 @@ public class Mapper {
 
     }
 
-    public int getnum()
-    {
+    public int getnum() {
         // get the row with this id
         String query = "SELECT COUNT (*) FROM " + this.table;
         ResultSet rs = dbc.execQuery(query);
@@ -41,4 +42,13 @@ public class Mapper {
         return 0;
     }
 
+    public ResultSet findRow2(String type) throws SQLException {
+        // get the row with this id
+        String query = "SELECT * FROM " + this.table + " WHERE \"vacType\" = ?";
+        PreparedStatement myStmt = dbc.setPreparedStatement(query);
+        myStmt.setString(1, type);
+        ResultSet rs = myStmt.executeQuery();
+        return rs;
+
+    }
 }
