@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
+<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -179,6 +179,10 @@
                     </div>
                     <form id="form2" action="../../UpdatevcType-Servlet" method="post">
                         <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Id</label>
+                                <input type="text" class="form-control"  id="id" name="id" readonly="readonly">
+                            </div>
                             <div class="mb-3">
                                 <label  class="form-label">Vaccine Type</label>
                                 <input type="text" class="form-control" id="type" name="type" required>
