@@ -1,4 +1,4 @@
-package com.example.Flying_Tiger.Mapper;
+package com.example.Flying_Tiger.mapper;
 import com.example.Flying_Tiger.Class.HealthCareProvider;
 import com.example.Flying_Tiger.Class.Recipient;
 import com.example.Flying_Tiger.Class.UnitOfWorkOfRecipient;
@@ -324,8 +324,9 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(6, recipient.getID());
         myStmt.executeUpdate();
     }
-    public String book(long recid,long hcpid, long tid,long vacid) throws SQLException{
+    public String book(long recid,long hcpid, long tid,long vacid,String booktype) throws SQLException{
         dbc.openDB();
+
         // update
         String query = "UPDATE " + this.table + " set  \"suitable\"=true, \"timeslotID\"=?, \"hcpID\"=?, \"vacID\"=?  " +
                 "WHERE  \"ID\" = ?; ";
@@ -334,6 +335,20 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(2, hcpid);
         myStmt.setLong(3,vacid);
         myStmt.setLong(4, recid);
+
+        //check type
+        String query0= "SELECT \"version\"  From vaccine Where \"ID\" =? AND \"vacType\"=?" ;
+        PreparedStatement myStmt0 = dbc.setPreparedStatement(query0);
+        myStmt0.setLong(1, vacid);
+        myStmt0.setString(2,booktype);
+        ResultSet rs=myStmt0.executeQuery();
+        //System.out.println(rs.next());
+        if(rs.next() == false)
+        {
+            return throwConcurrencyExcept(vacid,booktype);
+        }
+
+
         String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"-1 WHERE \"hcpID\"="+hcpid+
                 " AND \"timeslotID\"="+tid+" AND \"numLeft\">0;";
         PreparedStatement myStmt2=dbc.setPreparedStatement(query2);
@@ -343,6 +358,7 @@ public class RecipientMapper extends UserMapper {
             String checkquery="SELECT \"numLeft\" From timeslot_healthcareprovider Where \"hcpID\" = ? and \"timeslotID\"=? ";
             return throwConcurrencyException(checkquery,hcpid,tid);
         }
+
         else
         {
         myStmt.executeUpdate();
@@ -394,6 +410,20 @@ public class RecipientMapper extends UserMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return "unexpected error!";
+    }
+    public String throwConcurrencyExcept(long vacid,String booktype) throws SQLException {
+        String query3= "SELECT \"vacType\" From vaccine Where \"ID\" = ?; ";
+        PreparedStatement myStmt3 = dbc.setPreparedStatement(query3);
+        myStmt3.setLong(1,vacid);
+        ResultSet rs = myStmt3.executeQuery();
+        if(rs.next()) {
+            String type = rs.getString(1);
+            if (booktype != type) return "The type has been changed!";
+        }
+        else{
+            return "The type has been deleted!";
         }
         return "unexpected error!";
     }
