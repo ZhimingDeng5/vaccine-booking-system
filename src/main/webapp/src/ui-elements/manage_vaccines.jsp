@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
+<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
