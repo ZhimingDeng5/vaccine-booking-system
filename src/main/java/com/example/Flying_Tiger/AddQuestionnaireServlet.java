@@ -2,6 +2,7 @@ package com.example.Flying_Tiger;
 
 import com.example.Flying_Tiger.Class.KeyTable;
 import com.example.Flying_Tiger.Class.Questionaire;
+import com.example.Flying_Tiger.Class.Recipient;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -39,12 +40,14 @@ public class AddQuestionnaireServlet extends HttpServlet {
             }
             else {
                 long id = KeyTable.getKey("questionaire");
-                Questionaire.getMapper().insert(id, type, hcpid, minAge, maxAge, q1, q2, q3, q4, q5);
+                String alert = Questionaire.getMapper().insert(id, type, hcpid, minAge, maxAge, q1, q2, q3, q4, q5);
+                String script = "<script>alert('" + alert + "');";
+                script += "location.href='src/ui-elements/Add_questionnaire.jsp?id=" + hcpid + "'</script>";
+                response.getWriter().println(script);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String script = "<script>location.href='src/ui-elements/Add_questionnaire.jsp?id="+hcpid+"'</script>";
-        response.getWriter().println(script);
+
     }
 }
