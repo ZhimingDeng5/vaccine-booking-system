@@ -1,4 +1,4 @@
-package com.example.Flying_Tiger.Mapper;
+package com.example.Flying_Tiger.mapper;
 
 import com.example.Flying_Tiger.Class.Questionaire;
 
@@ -120,9 +120,16 @@ public class QuestionaireMapper extends Mapper {
         }
         return new Questionaire[0];
     }
-    public void insert(long id, String type, long hcpid,int minAge,int maxAge, String q1,String q2,String q3,
+    public String insert(long id, String type, long hcpid,int minAge,int maxAge, String q1,String q2,String q3,
                        String q4,String q5) throws SQLException {
         dbc.openDB();
+        String query0="SELECT \"ID\"  From vaccine Where \"vacType\" =? " ;
+        PreparedStatement myStmt0 = dbc.setPreparedStatement(query0);
+        myStmt0.setString(1,type);
+        ResultSet rs= myStmt0.executeQuery();
+        if(rs.next()== false){
+            return ("The vaccine type has been changed!");
+        }
         String query = "INSERT INTO public." + super.table +
                 "(\"ID\", \"vacType\", \"hcpID\", q1, q2,q3,q4,q5,\"minAge\",\"maxAge\") VALUES (?, ?, ?,?,?,?, ?, ?, ?, ?)";
         PreparedStatement myStmt = dbc.setPreparedStatement(query);
@@ -137,7 +144,10 @@ public class QuestionaireMapper extends Mapper {
         myStmt.setInt(9,minAge);
         myStmt.setInt(10,maxAge);
         myStmt.executeUpdate();
+        return ("add successfully");
     }
+
+
     public void delete(long id) {
 
         String query = "DELETE FROM public."+this.table+" WHERE \"ID\"=? " ;
