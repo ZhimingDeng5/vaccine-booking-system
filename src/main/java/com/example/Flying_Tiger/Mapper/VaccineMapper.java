@@ -59,23 +59,7 @@ public class VaccineMapper extends Mapper {
         }
         return null;
     }
-    public Vaccine findt(String type) throws SQLException {
-        ResultSet rs = super.findRow2(type);
-        int version;
-        User result;
-        try {
-            if (rs.next()) {
-                long id = rs.getLong("ID");
-                type = rs.getString("vacType");
-                version=rs.getInt("version");
-                return new Vaccine(id, type,version);
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public void insert(Long id, String vaccine) {
         dbc.openDB();
