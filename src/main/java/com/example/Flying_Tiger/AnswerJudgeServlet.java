@@ -1,6 +1,7 @@
 package com.example.Flying_Tiger;
 
 import com.example.Flying_Tiger.Class.Recipient;
+import com.example.Flying_Tiger.Class.Vaccine;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,6 +23,7 @@ public class AnswerJudgeServlet extends HttpServlet {
         long hcpid= Long.parseLong(request.getParameter("hcpid"));
         long tid= Long.parseLong(request.getParameter("tid"));
         long vacid=Long.parseLong(request.getParameter("vacid"));
+        String booktype=request.getParameter("booktype");
         for (int i=1;i<=5;i++)
         {
             String para="Q"+i;
@@ -39,12 +41,12 @@ public class AnswerJudgeServlet extends HttpServlet {
                     "&hcpid=&date='</script>";
             response.getWriter().println(script);
         }
-        else
-        {
+
+        else{
             try {
-                String alert=Recipient.getMapper().book(recid,hcpid,tid,vacid);
-                String script= "<script>alert('" +alert+"');";
-                script += "location.href='src/ui-elements/my_booking.jsp?id="+recid+ "'</script>";
+                String alert = Recipient.getMapper().book(recid, hcpid, tid, vacid,booktype);
+                String script = "<script>alert('" + alert + "');";
+                script += "location.href='src/ui-elements/my_booking.jsp?id=" + recid + "'</script>";
                 response.getWriter().println(script);
             } catch (SQLException e) {
                 e.printStackTrace();
