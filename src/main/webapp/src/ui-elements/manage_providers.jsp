@@ -281,7 +281,6 @@
             ]
         });
         $('.deleterow').on('click',function(){
-            console.log("1");
         var tablename = $(this).closest('table').DataTable();  
         tablename
                 .row( $(this)

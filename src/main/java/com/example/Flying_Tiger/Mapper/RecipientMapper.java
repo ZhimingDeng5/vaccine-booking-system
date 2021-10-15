@@ -324,7 +324,7 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(6, recipient.getID());
         myStmt.executeUpdate();
     }
-    public void book(long recid,long hcpid, long tid,long vacid) throws SQLException{
+    public String book(long recid,long hcpid, long tid,long vacid) throws SQLException{
         dbc.openDB();
         // update
         String query = "UPDATE " + this.table + " set  \"suitable\"=true, \"timeslotID\"=?, \"hcpID\"=?, \"vacID\"=?  " +
@@ -334,13 +334,22 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(2, hcpid);
         myStmt.setLong(3,vacid);
         myStmt.setLong(4, recid);
-        myStmt.executeUpdate();
         String query2= "UPDATE timeslot_healthcareprovider "+"SET \"numLeft\"=\"numLeft\"-1 WHERE \"hcpID\"="+hcpid+
-                " AND \"timeslotID\"="+getTimeslotID(recid);
+                " AND \"timeslotID\"="+tid+" AND \"numLeft\">0;";
         PreparedStatement myStmt2=dbc.setPreparedStatement(query2);
-        myStmt2.executeUpdate();
+        int rowcount=myStmt2.executeUpdate();
+        if(rowcount==0)
+        {
+            String checkquery="SELECT \"numLeft\" From timeslot_healthcareprovider Where \"hcpID\" = ? and \"timeslotID\"=? ";
+            return throwConcurrencyException(checkquery,hcpid,tid);
+        }
+        else
+        {
         myStmt.executeUpdate();
+        }
+        return "successfully book!";
     }
+
     /**
      * update the row about timeslotID and hcpID given the contents submitted by web
      * @param ID,timeslotDate,timeslotTime,hcpName
@@ -363,6 +372,31 @@ public class RecipientMapper extends UserMapper {
         myStmt.setLong(3, ID);
         myStmt.executeUpdate();
     }
+    public String throwConcurrencyException(String checksql,long hcpId,long timeslotId)
+    {
 
-
+        try {
+            PreparedStatement myStmt = null;
+            myStmt=dbc.setPreparedStatement(checksql);
+            myStmt.setLong(1,hcpId);
+            myStmt.setLong(2,timeslotId);
+            ResultSet rs=myStmt.executeQuery();
+            if(rs.next())
+            {
+                if(rs.getInt("numLeft")==0)
+                {
+                    return "fail to book because there is no seat left!";
+                }
+            }
+            else
+            {
+                return "The timeslot has been deleted!";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "unexpected error!";
+    }
 }
+
+

@@ -1,4 +1,4 @@
-<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
+﻿<%@ page import="com.example.Flying_Tiger.Mapper.VaccineMapper" %>
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -14,16 +14,6 @@
     <link rel="stylesheet" href="../assets/plugin/datatables/dataTables.bootstrap5.min.css">
     <!-- project css file  -->
     <link rel="stylesheet" href="../assets/css/ihealth.style.min.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(c) {
-            $('.alert-close').on('click', function(c){
-                $('.message').fadeOut('slow', function(c){
-                    $('.message').remove();
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -121,7 +111,7 @@
                                 <%
                                     Vaccine[] vaccines=VaccineMapper.getInstance().findall();
                                 %>
-                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                                <table id="myProjectTable1" class="table table-hover align-middle mb-0" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Vaccine Type</th>
@@ -136,7 +126,8 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" data-id="<%=vaccine.getID()%>"  data-type="<%=vaccine.getType()%>" class="btn btn-outline-secondary editrow"
+                                                    <button type="button" data-id="<%=vaccine.getID()%>"  data-type="<%=vaccine.getType()%>"
+                                                            class="btn btn-outline-secondary editrow"
                                                             data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
                                                     <button type="button" class="btn btn-outline-secondary deleterow"
                                                             onclick="window.location='delete_vacType.jsp?id=<%=vaccine.getID()%>'"><i class="icofont-ui-delete text-danger"></i></button>
@@ -216,18 +207,19 @@
 
     $(document).ready(function() {
         $('#myProjectTable')
-        .addClass( 'nowrap' )
-        .dataTable( {
-            responsive: true,
-            columnDefs: [
-                { targets: [-1, -3], className: 'dt-body-right' }
-            ]
-        });
+            .addClass( 'nowrap' )
+            .dataTable( {
+                responsive: true,
+                columnDefs: [
+                    { targets: [-1, -3], className: 'dt-body-right' }
+                ]
+            });
+        console.log("5");
         $('.deleterow').on('click',function(){
-        var tablename = $(this).closest('table').DataTable();  
-        tablename
+            var tablename = $(this).closest('table').DataTable();
+            tablename
                 .row( $(this)
-                .parents('tr') )
+                    .parents('tr') )
                 .remove()
                 .draw();
         } );
@@ -239,7 +231,6 @@
             console.log(type);
         } );
     });
-
 </script>
 </body>
 </html>
