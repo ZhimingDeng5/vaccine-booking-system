@@ -1,6 +1,5 @@
 package com.example.Flying_Tiger.Mapper;
 
-import com.example.Flying_Tiger.Class.HealthCareProvider;
 import com.example.Flying_Tiger.Class.User;
 import com.example.Flying_Tiger.Class.Vaccine;
 
@@ -32,7 +31,7 @@ public class VaccineMapper extends Mapper {
             Vaccine[] vaccines = new Vaccine[size];
             for (int i = 0; i < size; i++) {
                 rs.next();
-                vaccines[i] = new Vaccine(rs.getLong("ID"), rs.getString("vacType"));
+                vaccines[i] = new Vaccine(rs.getLong("ID"), rs.getString("vacType"),rs.getInt("version"));
             }
             return vaccines;
 
@@ -45,12 +44,31 @@ public class VaccineMapper extends Mapper {
     public Vaccine find(long id) throws SQLException {
         ResultSet rs = super.findRow(id);
         String type;
+        int version;
         User result;
         try {
             if (rs.next()) {
                 id = rs.getLong("ID");
                 type = rs.getString("vacType");
-                return new Vaccine(id, type);
+                version=rs.getInt("version");
+                return new Vaccine(id, type,version);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Vaccine findt(String type) throws SQLException {
+        ResultSet rs = super.findRow2(type);
+        int version;
+        User result;
+        try {
+            if (rs.next()) {
+                long id = rs.getLong("ID");
+                type = rs.getString("vacType");
+                version=rs.getInt("version");
+                return new Vaccine(id, type,version);
             }
 
         } catch (SQLException e) {
@@ -62,12 +80,13 @@ public class VaccineMapper extends Mapper {
     public void insert(Long id, String vaccine) {
         dbc.openDB();
         String query = "INSERT INTO public." + super.table +
-                "(\"ID\",\"vacType\") VALUES (?,?)";
+                "(\"ID\",\"vacType\",\"version\") VALUES (?,?,?)";
         PreparedStatement myStmt = null;
         try {
             myStmt = dbc.setPreparedStatement(query);
             myStmt.setLong(1, id);
             myStmt.setString(2, vaccine);
+            myStmt.setInt(3,1);
             myStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,18 +106,19 @@ public class VaccineMapper extends Mapper {
         }
     }
 
-    public void update(Vaccine vaccine) throws SQLException{
+    public void update(Vaccine vaccine) throws SQLException {
         dbc.openDB();
         // update
-        String query = "UPDATE " + super.table +
-                "set \"vacType\"=? WHERE \"ID\"=?;" ;
+        String query =
+        "UPDATE " + this.table + " set \"vacType\" = ?, \"version\"=?  WHERE  \"ID\" = ?; ";
         PreparedStatement myStmt = null;
         try {
             myStmt = dbc.setPreparedStatement(query);
             myStmt.setString(1, vaccine.getType());
-            myStmt.setLong(2, vaccine.getID());
+            myStmt.setInt(2, vaccine.getVersion() + 1);
+            myStmt.setLong(3, vaccine.getID());
             myStmt.executeUpdate();
-        } catch (SQLException e) {
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }
