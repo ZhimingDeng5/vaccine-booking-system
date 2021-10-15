@@ -204,7 +204,7 @@
                                         <td>
                                             <%=numLeft%>
                                         </td>
-                                        <%if(!recipient.getSuitable()) {%>
+                                        <%if(!recipient.getSuitable()&&numLeft>0) {%>
                                         <td>
                                             <button type="button"  data-bs-toggle="modal" data-bs-target="#expadd"
                                                     class="btn btn-outline-secondary editrow"
