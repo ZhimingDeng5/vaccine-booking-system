@@ -1,4 +1,4 @@
-﻿<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
+<%@ page import="com.example.Flying_Tiger.Class.Recipient" %>
 <%@ page import="com.example.Flying_Tiger.Class.Questionaire" %>
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <%@ page import="com.example.Flying_Tiger.Class.Timeslot" %>
@@ -24,6 +24,7 @@
     long hcpid= Long.parseLong(request.getParameter("hcpid"));
     long vacid= Long.parseLong(request.getParameter("type"));
     String type= Vaccine.getMapper().find(vacid).getType();
+    String booktype=type;
     Questionaire questionaire=Questionaire.getMapper().find(hcpid,type);
     String tid=request.getParameter("tid");
     Date date= Timeslot.getMapper().timeslotDate(Long.parseLong(tid));
@@ -136,7 +137,7 @@
                                 <h6 class="mb-0 fw-bold ">Please answer the questionnaire before completing your booking.</h6>
                             </div>
                             <div class="card-body">
-                                <form action="../../AnswerJudge-Servlet?tid=<%=tid%>&recid=<%=id%>&hcpid=<%=hcpid%>&vacid=<%=vacid%>" method="post">
+                                <form action="../../AnswerJudge-Servlet?tid=<%=tid%>&recid=<%=id%>&hcpid=<%=hcpid%>&vacid=<%=vacid%>&booktype=<%=booktype%>" method="post">
                                     <div class="row g-3 align-items-center">
                                         <%
                                             int index=0;
