@@ -21,10 +21,17 @@ public class UpdatevcTypeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id= Long.parseLong(request.getParameter("vcId"));
+        Long id= Long.parseLong(request.getParameter("id"));
         String type=request.getParameter("type");
-        Vaccine vaccine = new Vaccine(id, type);
-        vaccine.setType(type);
+
+        try {
+            Vaccine vaccine = Vaccine.getMapper().find(id);
+            vaccine.setType(type);
+            Vaccine.getMapper().update(vaccine);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         String script = "<script>location.href='src/ui-elements/manage_vaccines.jsp'</script>";
         response.getWriter().println(script);
     }
