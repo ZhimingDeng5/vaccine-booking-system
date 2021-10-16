@@ -128,7 +128,7 @@
                             <h3 class="fw-bold mb-0">Edit Questionnaire</h3>
                             <div class="col-auto d-flex w-sm-100">
                                 <button type="button" class="btn btn-primary btn-set-task w-sm-100"
-                                onclick="window.location='Edit_questionnaire.jsp?id=<%=id%>'"></i>Back</button>
+                                onclick="window.location='../../ReleaseQuestionnaireServlet?id=<%=id%>&qid=<%=qid%>'"></i>Back</button>
                             </div>
                         </div>
                     </div>
