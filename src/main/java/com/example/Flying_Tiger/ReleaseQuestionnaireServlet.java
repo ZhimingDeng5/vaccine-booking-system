@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "EditQuestionnaireServlet", value = "/EditQuestionnaire-Servlet")
+@WebServlet(name = "ReleaseQuestionnaireServlet", value = "/ReleaseQuestionnaire-Servlet")
 public class ReleaseQuestionnaireServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
