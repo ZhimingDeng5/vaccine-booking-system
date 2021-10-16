@@ -1,4 +1,4 @@
-package com.example.Flying_Tiger.mapper;
+package com.example.Flying_Tiger.Mapper;
 import com.example.Flying_Tiger.Class.HealthCareProvider;
 import com.example.Flying_Tiger.Class.Recipient;
 import com.example.Flying_Tiger.Class.UnitOfWorkOfRecipient;
