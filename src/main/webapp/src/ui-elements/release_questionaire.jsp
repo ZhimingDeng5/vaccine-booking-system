@@ -3,6 +3,7 @@
 <%@ page import="com.example.Flying_Tiger.*" %>
 <%@ page import="com.example.Flying_Tiger.Class.HealthCareProvider" %>
 <%@ page import="com.example.Flying_Tiger.Mapper.ExclusiveWriteLockManager" %>
+<%@ page import="com.example.Flying_Tiger.Mapper.QuestionaireMapper" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -29,7 +30,7 @@
     ExclusiveWriteLockManager.getInstance().releaseLock(qid, id);
     String script = "<script>location.href='Edit_questionnaire.jsp?id="+id+"'</script>";
     response.getWriter().println(script);
-
+    QuestionaireMapper.CanselRealeaseTask();
 %>
 </body>
 </html>

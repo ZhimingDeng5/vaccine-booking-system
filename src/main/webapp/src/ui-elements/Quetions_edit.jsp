@@ -3,6 +3,7 @@
 <%@ page import="com.example.Flying_Tiger.Class.Vaccine" %>
 <%@ page import="com.example.Flying_Tiger.Class.Questionaire" %>
 <%@ page import="com.example.Flying_Tiger.Mapper.ExclusiveWriteLockManager" %>
+<%@ page import="com.example.Flying_Tiger.Mapper.QuestionaireMapper" %>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -28,7 +29,10 @@
                 id +"'</script>";
         response.getWriter().println(script);
     }
-
+    else
+    {
+        QuestionaireMapper.setReleaseTask(qid,id);
+    }
     String qtype=request.getParameter("type");
     String name="";
     HealthCareProvider hcp= null;

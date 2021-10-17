@@ -1,6 +1,7 @@
 package com.example.Flying_Tiger.Mapper;
 
 import com.example.Flying_Tiger.Class.Questionaire;
+import com.example.Flying_Tiger.Class.ReleaseTask;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ public class QuestionaireMapper extends Mapper {
     }
     private static QuestionaireMapper instance=new QuestionaireMapper();
     public static QuestionaireMapper getInstance(){return instance;};
+    private static ReleaseTask releaseTask;
     public Questionaire find(long id) throws SQLException {
         // find questionaire by id
         ResultSet rs = super.findRow(id);
@@ -177,5 +179,13 @@ public class QuestionaireMapper extends Mapper {
         myStmt.setInt(10,questionaire.getMaxAge());
         myStmt.setLong(11, questionaire.getID());
         myStmt.executeUpdate();
+    }
+    public static void setReleaseTask(long qid,long hcpid)
+    {
+        releaseTask=new ReleaseTask(qid,hcpid);
+    }
+    public static void CanselRealeaseTask()
+    {
+        releaseTask.cancelTask();
     }
 }
