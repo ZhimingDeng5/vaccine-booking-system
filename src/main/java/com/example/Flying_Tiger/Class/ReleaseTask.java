@@ -21,8 +21,9 @@ public class ReleaseTask {
         System.out.println("beep");
         release = new Runnable() {
             public void run() {
-                System.out.println("beep");
+                System.out.println("time out!");
                 ExclusiveWriteLockManager.getInstance().releaseLock(id, hcpid);
+                scheduler.shutdown();
             }
         };
         releaseHandle =
@@ -33,6 +34,8 @@ public class ReleaseTask {
 
     public void cancelTask(){
         releaseHandle.cancel(true);
+        System.out.println("cancel timer!");
+        scheduler.shutdown();
     }
 
    /* public static void main(String[] args){
