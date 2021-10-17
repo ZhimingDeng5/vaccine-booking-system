@@ -12,7 +12,9 @@
 │         ├── Part1
               └── Part1.pdf
 │         ├── Part2
-              └── P2 report.pdf
+              └── P2 report.pd
+│         ├── Part3
+              └── P3 report.pdf
 │         └── data samples
 │             └── datasamples.txt
 ├── src
@@ -42,6 +44,21 @@ health care provider ID: 200000000 Password:abcd
 # Changelog
 
 
+## Part 3
+
+### Branches included
+
+- Main branch
+- Debug
+- Frontend
+- Deployment 
+- Mapper
+
+### Resources added
+
+- SAD report ( /doc/Part3/report)
+- source code
+- meeting notes
 
 ## Part 2
 
