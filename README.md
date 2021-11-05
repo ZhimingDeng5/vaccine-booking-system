@@ -45,6 +45,16 @@ health care provider ID: 200000000 Password:abcd
 
 # Changelog
 
+## Part 4
+
+### Branches included
+
+- Main branch
+
+### Resources added
+
+- SAD report ( /doc/Part4/report)
+
 
 ## Part 3
 
